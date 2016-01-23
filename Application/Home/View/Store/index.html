@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>店铺大全信息--雷州半岛网站</title>
+        <include file='Public:header' />
+        <section class="container">
+            <nav class="wrapnav songti">
+                <assign name="lz_area" value="$Think.config.lz_area"/>
+                <volist name="lz_area" id="lz_areas">
+                    <a href="__MODULE__/Store/?ar={$lz_areas}" <if condition="$Think.get.ar eq $lz_areas">class="orange-active"</if>>{$lz_areas}</a>
+                </volist>
+            </nav>
+        </section>
+        <section class="container">
+        <include file='Public:left-side' />
+        <aside class="pull-right list-rt songti font12">
+            <div class="list-daohang">
+                <include file='Public:nav' />
+            </div>
+            <div class="list-choice">
+                <span class="pull-left">
+                    <strong>行业分类：</strong>
+                </span>
+                <span class="pull-left" id="bigname">
+                    <volist name="column" id="column">
+                    <a href="__MODULE__/Store/?ar={$Think.get.ar}&bf={$column.column_name}&xf={$Think.get.xf}&ty={$Think.get.ty}&tm={$Think.get.tm}" <if condition="$Think.get.bf eq $column['column_name']">class="orange-active"</if>>{$column.column_name}</a>
+                    </volist>
+                </span>
+            </div>
+            <if condition="$Think.get.bf neq ''">
+            <div class="list-choice" style="margin-top:-4px;display:block">
+            <span class="pull-left">
+                <strong>{$Think.get.bf}：</strong>
+            </span>
+            <span class="pull-left">
+                <volist name="sub_column" id="sub_column">
+                    <a href="__MODULE__/Store/?ar={$Think.get.ar}&bf={$Think.get.bf}&xf={$sub_column.column_name}&ty={$Think.get.ty}&tm={$Think.get.tm}" <if condition="$Think.get.xf eq $sub_column['column_name']">class="orange-active"</if>>{$sub_column.column_name}</a>
+                </volist>
+            </span>
+            </div>
+            <else />
+            <div class="list-choice" style="display:none"></div>
+            </if>
+            <div class="clearfix"></div>
+            <div class="list-choice">
+                <span class="pull-left">
+                    <strong>发布身份：</strong>
+                </span>
+                <span class="pull-left">
+                      <assign name="room_type" value="$Think.config.room_type"/>
+                      <volist name="room_type" id="type">
+                          <a href="__MODULE__/Store/?ar={$Think.get.ar}&bf={$Think.get.bf}&xf={$Think.get.xf}&ty={$type}&tm={$Think.get.tm}" <if condition="$Think.get.ty eq $type">class="orange-active"</if>>{$type}</a>
+                      </volist>
+                </span>
+            </div>
+            <div class="list-choice">
+                <span class="pull-left">
+                    <strong>有效时间：</strong>
+                </span>
+                <span class="pull-left list-count">
+                       <assign name="w_time" value="$Think.config.w_time"/>
+                        <volist name="w_time" id="w_times">
+                            <a href="__MODULE__/Store/?ar={$Think.get.ar}&bf={$Think.get.bf}&xf={$Think.get.xf}&ty={$Think.get.ty}&tm={$w_times}" <if condition="$Think.get.tm eq $w_times">class="orange-active"</if>>{$w_times}</a>
+                        </volist>
+                <div>总共 <span class="red font14"><strong>{$count}</strong></span> 条</div>
+                </span>
+            </div>
+           <div class="clearfix"></div>
+            <if condition="!empty($list)">
+            <div class="list-marry font14 list-store">
+                <ul>
+                    <volist name="list" id="list">
+                            <li class="pull-left">
+                                <a href="{:U('Store/detail',array('id' => $list['id']))}" title="{$list.title}" alt="{$list.title}" target="_blank"><img src="__APP__{$list.pic}" class="pull-left"/></a>
+                        <span class="pull-right">
+                            <h4><a href="{:U('Store/detail',array('id' => $list['id']))}" target="_blank" title="{$list.title}">{$list.title|msubstr=0,21,'utf-8',true}</a></h4>
+                            <p>行业：{$list.category}/{$list.sub_cateid}</p>
+                            <p>身份：{$list.identity}</p>
+                            <p>地址：{$list.address}</p>
+                            <time class="text-muted">{$list.add_time|date="Y/m/d",###}<br>有效：<?php
+                                $now = $list['expire']-time();
+                                $day= ceil($now/(3600*24));
+                                if($day<0){
+                                            echo "已过期";
+                                }else{
+                                echo $day.'天';
+                                }
+                                ?>
+                            </time>
+                        </span>
+                            </li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <div class="text-center font14">
+                {$page}
+            </div>
+            <else/>
+            <p>此栏目暂时没有数据了!</p>
+            </if>
+        </aside>
+    </section>
+    <include file='Public:footer' />
+</body>
+</html>

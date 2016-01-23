@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>找回密码--雷州岛网站</title>
+	<include file='Public:header' />
+<section class="container register-forget" style="height: 90px;overflow:hidden;">
+    <form id="defaultForm" action="{:U('User/forgetOk')}" role="form" method="post">
+        <div class="form-group">
+            <span class="pull-left">我的邮箱：</span>
+            <span class="pull-left"><input type="text" name="member_username" class="form-control wid250" placeholder="请输入你的邮箱"/></span>
+            <span class="pull-left"><button type="submit" class="btn btn-warning" style="position: absolute">提交</button></span>
+        </div>
+    </form>
+
+</section>
+<include file="Public:footer"/>
+</body>
+</html>
+<script type="text/javascript">
+    $(function() {
+        $('#defaultForm').bootstrapValidator({
+            message: 'This value is not valid',
+            container: 'tooltip',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                member_username: {
+                    message: '请输入有效的用户名',
+                    validators: {
+                        notEmpty: {
+                            message: '辛苦下，输入有效的邮箱或者电话'
+                        }
+                    }
+                }
+            }
+        });
+
+    });
+</script>

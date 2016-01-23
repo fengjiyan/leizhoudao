@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎您的注册--雷州岛网站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="/slackck/Public/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/slackck/Public/assets/css/mycss.css" />
+    <script src="/slackck/Public/assets/js/jquery.min.js"></script>
+    <script src="/slackck/Public/assets/js/bootstrap.min.js"></script>
+    <script src="/slackck/Public/assets/js/my.js"></script>
+</head>
+<body>
+<header class="container">
+    <div class="login-logo">
+        <a href="/slackck"><img src="/slackck/Public/assets/img/register-logo.png" alt=""/></a>
+    </div>
+</header>
+<section class="container register-success">
+        <span class="pull-left">
+            <img src="/slackck/Public/assets/img/icon2.gif"/>
+        </span>
+        <span class="pull-left text-left">
+            <h2 class="green">恭喜你注册成功</h2>
+            <p>你申请的账号是：<strong class="red">{$Think.session.account}</strong> 记得要去邮箱里激活，账号才有效！</p>
+            <!--<p><a href="{:U('User/member')}" class="underline">4秒自动跳转到会员中心，没跳转请点击</a></p>-->
+            <a class="btn btn-primary" href="__APP__">网站首页</a><a class="btn btn-primary" style="margin-left: 10px" href="https://mail.qq.com/" target="_blank">去邮箱激活</a><a class="btn btn-warning" style="margin-left: 10px" href="{:U('User/login')}">马上登陆</a><!--<a class="btn btn-primary" href="{:U('User/member')}">完善我的资料</a> <a class="btn btn-primary" href="__APP__">网站首页</a> <a class="btn btn-danger" href="{:U('Article/freeWrite')}">免费发布</a>-->
+        </span>
+
+</section>
+<include file='Public:footer' />
+</body>
+</html>

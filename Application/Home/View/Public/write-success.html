@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提交成功--雷州岛网站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="/slackck/Public/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/slackck/Public/assets/css/mycss.css" />
+    <script src="/slackck/Public/assets/js/jquery.min.js"></script>
+    <script src="/slackck/Public/assets/js/bootstrap.min.js"></script>
+    <script src="/slackck/Public/assets/js/my.js"></script>
+</head>
+<body>
+<include file='Public:header' />
+<section class="container register-success" style="border-top:0">
+        <span class="pull-left">
+            <img src="/slackck/Public/assets/img/icon2.gif"/>
+        </span>
+        <span class="pull-left text-left">
+            <h2 class="green">恭喜你提交成功</h2>
+            <p>请耐心等待审核,如需有什么问题，请咨询管理员 QQ:846199647</p>
+            <!--<p><a href="{:U('User/member')}" class="underline">4秒自动跳转到会员中心，没跳转请点击</a></p>-->
+            <a class="btn btn-primary" href="__APP__">网站首页</a>
+            <a class="btn btn-primary" style="margin-left: 5px" href="{:U('Home/User/writeInfo')}">查看状态</a>
+            <a class="btn btn-primary" style="margin-left: 5px" href="{$href}">内容详情</a>
+            <a class="btn btn-warning" style="margin-left: 5px" href="{$modify}">重新编辑</a>
+        </span>
+
+</section>
+<include file='Public:footer' />
+</body>
+</html>

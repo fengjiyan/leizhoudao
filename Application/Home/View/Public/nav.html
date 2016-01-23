@@ -1,0 +1,66 @@
+<?php
+    $ctrl = CONTROLLER_NAME;//当前控制器名
+    $action = ACTION_NAME;//获取当前操作名
+    switch($ctrl){
+        case 'Store':
+            $name = '店铺面';
+            $href = "__MODULE__/Store";
+        break;
+        case 'Marry':
+            $name = '相亲';
+            $href = "__MODULE__/Marry";
+        break;
+        case 'Happy':
+            $name = '喜庆';
+            $href = "__MODULE__/Happy";
+        break;
+        case 'Car':
+            $name = '汽车';
+            $href = "__MODULE__/Car";
+        break;
+        case 'House':
+            $name = '房子';
+            $href = "__MODULE__/House";
+        break;
+
+        case 'Dianqi':
+            $name = '电器';
+            $href = "__MODULE__/Dianqi";
+        break;
+        case 'Sea':
+            $name = '海鲜';
+            $href = "__MODULE__/Sea";
+        break;
+        case 'Edu':
+            $name = '教育';
+            $href = "__MODULE__/Edu";
+        break;
+        case 'Recruit':
+            $name = '招聘';
+            $href = "__MODULE__/Recruit";
+        break;
+        case 'Chang':
+            $name = '厂家/批发/代理商';
+            $href = "__MODULE__/Chang";
+        break;
+        case 'Jiaju':
+            $name = '家居';
+            $href = "__MODULE__/Jiaju";
+        break;
+        case 'Xiju':
+            $name = '雷州戏剧';
+            $href = "__MODULE__/Xiju";
+        break;
+        default:
+            $name = '其他';
+            $href = "__MODULE__/Other";
+        break;
+    }
+    if($action == 'detail'){
+        $detai = " / 详细内容";
+    }
+        if($action == 'modify'){
+        $detai = " / 编辑";
+    }
+?>
+<span class="glyphicon glyphicon-home"></span> 当前位置：<a href="__APP__">首页</a> / <a href="<?php echo $href;?>"><?php echo $name;?></a><?php echo $detai;?>

@@ -1,0 +1,80 @@
+<extend name="base" />
+<block name="right">
+    <div class="pull-right member-right">
+        <div class="songti member-daohang">
+            <include file='Public:center-daohang' />
+        </div>
+        <div class="member-info songti">
+            <div class="member-photo">
+                <img src="__ROOT__/Uploads/{$pic}"/>
+                <div class="pull-right">
+                    <p><strong>用户名：</strong><span class="red">{$Think.session.account}</span></p>
+                    <p><strong>等级：</strong><if condition="$list.member_list_groupid eq 1">普通用户 <span><a href="#" class="red underline">马上升级</a></span><else /> <span class="red">VIP高级用户</span> <span class="green">恭喜你成为VIP高级会员</span></if></p>
+                    <p><strong></strong> <span><a href="#" class="green underline">等级有什么好处？</a></span></p>
+                </div>
+            </div>
+                <form action="{:U('User/updateMember')}" role="form" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="control-label">注册时间</label>
+                    <div><input type="text" class="form-control" disabled value="{$member_list_edit.member_list_addtime|date='Y年m月d日 H:i:s', ###}"/></div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label"><span class="red">* </span>性别</label>
+                    <div><input type="radio" name="member_list_sex" <if condition="$member_list_edit['member_list_sex'] eq 1">checked</if> value="1"/> 男 <input type="radio" name="member_list_sex" <if condition="$member_list_edit['member_list_sex'] eq 2">checked</if> value="2"/> 女 <input type="radio" name="member_list_sex" <if condition="$member_list_edit['member_list_sex'] eq 3">checked</if> value="3"/> 保密 </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">所在地</label>
+                    <div>
+                        <select name="member_list_province" id="province" onChange="loadRegion('province',2,'city','{:U('Admin/Ajax/getRegion')}');">
+                            <option value="0">省份/直辖市</option>
+                            <volist name="province" id="vo">
+                                <option value="{$vo.id}" <if condition="$member_list_edit['member_list_province'] eq $vo['id']">selected</if>>{$vo.name}</option>
+                            </volist>
+                        </select>
+                        <select name="member_list_city" id="city"  onchange="loadRegion('city',3,'town','{:U('Admin/Ajax/getRegion')}');">
+                            <option  value="0">市/县</option>
+
+                            <php>
+                                $city=M('Region')->where(array('pid'=>$member_list_edit['member_list_province']))->select();
+                            </php>
+                            <foreach name="city" item="v">
+                                <option <if condition="$member_list_edit['member_list_city'] eq $v['id']">selected</if> value="{$v.id}">{$v.name}</option>
+                            </foreach>
+
+                        </select>
+                        <select name="member_list_town" id="town">
+                            <option value="0">镇/区</option>
+                            <php>
+                                $town=M('Region')->where(array('pid'=>$member_list_edit['member_list_city']))->select();
+                            </php>
+                            <volist name="town" id="vy">
+                                <option <if condition="$member_list_edit['member_list_town'] eq $vy['id']">selected</if> value="{$vy.id}">{$vy.name}</option>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label"><span class="red">* </span>电话</label>
+                    <div><input type="text" class="form-control" name="member_list_tel"  value="{$member_list_edit.member_list_tel}"/></div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">电子邮箱</label>
+                    <div><input type="text" class="form-control"  name="member_list_email" value="{$member_list_edit.member_list_email}"/></div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">详细地址</label>
+                    <div><input type="text" class="form-control" style="width: 400px" name="member_list_address"  value="{$member_list_edit.member_list_address}"/></div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label"><span class="red">* </span>真实姓名</label>
+                    <div><input type="text" class="form-control" name="member_list_petname" value="{$member_list_edit.member_list_petname}"/></div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label"></label>
+                    <div><button class="btn btn-warning" style="width: 115px">保存</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/assets/js/region.js"></script>
+</block>

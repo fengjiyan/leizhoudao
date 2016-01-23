@@ -1,0 +1,25 @@
+<?php
+	$cid = I('cid');//大分类cid
+	switch($cid){
+		case '2': $name = '店铺面'; break;
+		case '4': $name = '喜庆'; break;
+		case '5': $name = '汽车'; break;
+		case '6': $name = '相亲'; break;
+		case '7': $name = '房子'; break;
+		case '8': $name = '电器'; break;
+		case '9': $name = '海鲜'; break;
+		case '13': $name = '教育'; break;
+		case '163': $name = '招聘'; break;
+		case '11': $name = '美食'; break;
+		case '12': $name = '农业'; break;
+		case '31': $name = '厂家|批发|代理商'; break;
+		case '15': $name = '家居'; break;
+		case '154': $name = '雷州剧'; break;
+		default: $name = '其他'; break;
+	}
+
+?>
+<span class="glyphicon glyphicon-home"></span> <a href="__APP__">首页</a> / <a href='__MODULE__/Free/?cid={$Think.get.cid}'>发布<?php echo $name;?></a>
+/ <if condition="$Think.get.bl neq ''"><a href='__MODULE__/Free/?cid={$Think.get.cid}&bl={$Think.get.bl}'>{$Think.get.bl}</a> / <else/></if>
+<if condition="$Think.get.sl neq ''"><a href='__MODULE__/Free/?cid={$Think.get.cid}&bl={$Think.get.bl}&sl={$Think.get.sl}'>{$Think.get.sl}</a> / <else/></if>
+<if condition="$Think.get.ar neq ''"><a href='__MODULE__/Free/?cid={$Think.get.cid}&bl={$Think.get.bl}&sl={$Think.get.sl}&ar={$Think.get.ar}'>{$Think.get.ar}</a>地区<else/></if>

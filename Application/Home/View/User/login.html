@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎您的登陆--雷州岛网站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="__PUBLIC__/assets/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="__PUBLIC__/assets/css/bootstrapValidator.css" />-->
+    <link rel="stylesheet" href="__PUBLIC__/assets/css/mycss.css" />
+    <script src="__PUBLIC__/assets/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/assets/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/assets/js/bootstrapValidator.min.js"></script>
+</head>
+<body>
+    <header class="container">
+        <div class="login-logo">
+            <a href="__APP__"><img src="__PUBLIC__/assets/img/login-logo.png"/></a>
+        </div>
+    </header>
+    <section class="login-wrap">
+        <div class="container">
+            <div class="login-inbg">
+                <div class="pull-right login">
+                    <h1 class="bg-info">欢迎登录雷州岛网</h1>
+                    <form id="defaultForm" action="{:U('User/doLogin')}" role="form" method="post">
+                        <div class="form-group">
+                            <input type="text" name="member_username" class="form-control"  placeholder="用户名/邮箱/手机"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="member_pwd" class="form-control" placeholder="密码"/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block btn-warning">登  陆</button>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="pull-left" name="auto_login" value="1"/>
+                            <span class="pull-left text-muted">一周内自动登陆</span>
+                            <span class="pull-left" style="margin-left: 15px"><a href="{:U('User/forget')}">忘记密码？激活</a></span>
+                            <span class="pull-right"><a href="{:U('User/register')}">立即注册</a></span>
+                        </div>
+                        <h3 class="text-muted">
+                            <span class="pull-left">使用其他方式登录</span>
+                            <span class="pull-left" style="margin-left: 12px"><a href="#" title="QQ登录">&nbsp;</a></span>
+                            <span class="pull-left" style="margin-left: 12px"><a href="#" title="微信登录">&nbsp;</a></span>
+                            <span class="pull-left" style="margin-left: 13px"><a href="#" title="新浪微博登录">&nbsp;</a></span>
+                        </h3>
+                        <input type="hidden" name="log_referer" value="<?php echo isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '' ;?>" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <include file="Public:footer"/>
+</body>
+</html>
+<script type="text/javascript">
+    $(function() {
+        $('#defaultForm').bootstrapValidator({
+            message: 'This value is not valid',
+            container: 'tooltip',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                member_username: {
+                    message: '请输入有效的用户名',
+                    validators: {
+                        notEmpty: {
+                            message: '不能为空'
+                        },
+                        stringLength: {
+                            min: 2
+                        }
+                    }
+                },
+                member_pwd: {
+                    container: 'popover',
+                    validators: {
+                        notEmpty: {
+                            message: '不能为空'
+                        },
+                        stringLength: {
+                            min: 6
+                        }
+                    }
+                }
+            }
+        });
+
+    });
+</script>

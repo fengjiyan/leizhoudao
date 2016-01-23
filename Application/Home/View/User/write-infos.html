@@ -1,0 +1,122 @@
+<extend name="base" />
+<block name="right">
+    <div class="pull-right member-right">
+        <div class="songti member-daohang">
+            <include file='Public:center-daohang' />
+        </div>
+        <div class="user-writeinfo">
+            <h5>总共发布 <strong class="red"> {$count} </strong>条</h5>
+            <table class="table table-striped  table-hover">
+                <thead class="bg-info font14">
+                <th>标题</th>
+                <th>所属分类</th>
+                <th>所在地区</th>
+                <th>审核状态</th>
+                <th>有效期</th>
+                <th>发布时间</th>
+                </thead>
+                <!--$href = "{:U('Store/detail',array('id' => $list['id']))}";-->
+                <tbody>
+                <volist name="list" id="list">
+                    <?php
+                       if($list['dianmian'] == 1){
+                           $href = "__MODULE__/Store/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Store/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Store/storeDel/id/".$list['id'].".html";
+                       }
+                       if($list['happy'] == 1){
+                           $href = "__MODULE__/Happy/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Happy/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Happy/happyDel/id/".$list['id'].".html";
+                       }
+                       if($list['marry'] == 1){
+                           $href = "__MODULE__/Marry/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Marry/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Marry/marryDel/id/".$list['id'].".html";
+                       }
+                       if($list['car'] == 1){
+                           $href = "__MODULE__/Car/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Car/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Car/carDel/id/".$list['id'].".html";
+                       }
+                       if($list['house'] == 1){
+                           $href = "__MODULE__/House/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/House/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/House/houseDel/id/".$list['id'].".html";
+                       }
+                       if($list['dianqi'] == 1){
+                           $href = "__MODULE__/Dianqi/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Dianqi/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Dianqi/dianqiDel/id/".$list['id'].".html";
+                       }
+                       if($list['sea'] == 1){
+                           $href = "__MODULE__/Sea/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Sea/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Marry/seaDel/id/".$list['id'].".html";
+                       }
+                       if($list['food'] == 1){
+                           $href = "__MODULE__/Food/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Food/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Marry/foodDel/id/".$list['id'].".html";
+                       }
+                       if($list['Farm'] == 1){
+                           $href = "__MODULE__/Farm/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Farm/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Marry/farmDel/id/".$list['id'].".html";
+                       }
+                       if($list['edu'] == 1){
+                           $href = "__MODULE__/Edu/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Edu/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Marry/eduDel/id/".$list['id'].".html";
+                       }
+                       if($list['recruit'] == 1){
+                           $href = "__MODULE__/Recruit/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Recruit/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Marry/recruitDel/id/".$list['id'].".html";
+                       }
+                       if($list['chang'] == 1){
+                           $href = "__MODULE__/Chang/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Chang/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Marry/changDel/id/".$list['id'].".html";
+                       }
+                       if($list['jiaju'] == 1){
+                           $href = "__MODULE__/Jiaju/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Jiaju/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Marry/jiajuDel/id/".$list['id'].".html";
+                       }
+                       if($list['xiju'] == 1){
+                           $href = "__MODULE__/Xiju/detail/id/".$list['id'].".html";
+                           $modify = "__MODULE__/Xiju/modify/id/".$list['id'].".html";
+                           $del = "__MODULE__/Marry/xijuDel/id/".$list['id'].".html";
+                       }
+                    ?>
+                    <tr class="songti">
+                        <td class="text-muted">·<a href="<?php echo $href;?>" target="_blank" title="{$list.title}">{$list.title|msubstr=0,30,'utf-8',true}</a></td>
+                        <td class="text-muted">{$list.category}{$list.object}<if condition="$list.sub_cateid neq ''">/<else/></if>{$list.sub_cateid}</td>
+                        <td class="text-muted">{$list.area}</td>
+                        <td class="text-muted font12">
+                            <if condition="$list.status eq 0">
+                            <span class="text-muted">未审核</span><br/>
+                              <a href="<?php echo $modify;?>" target="_blank">修改</a>|<a href="javascript:if(confirm('确定要删除这条信息吗?'))location='<?php echo $del;?>'">删除</a>
+                              <else/>
+                              <span class="green">已审核</span></if></td>
+                        <td class="text-muted"><span class="green">
+                            <?php
+                                $now = $list['expire']-time();
+                                $day= ceil($now/(3600*24));
+                                if($day<0){
+                                    echo "<span class='red'>已过期</span>";
+                                }else{
+                                    echo $day.'天';
+                                }
+                            ?></span></td>
+                        <td class="text-muted">{$list.add_time|date="Y/m/d",###}</td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <!--<div class="pull-right" style="margin-top:-15px">{$page}</div>-->
+        </div>
+
+    </div>
+</block>

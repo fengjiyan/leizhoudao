@@ -1,0 +1,11 @@
+<?php
+$action = ACTION_NAME;
+switch($action){
+    case 'member': $name = '我的资料'; break;
+    case 'modify-pwd': $name = '修改密码'; break;
+    case 'photo': $name = '修改头像'; break;
+    case 'writeInfo': $name = '我发布信息'; break;
+    default: $name = ''; break;
+}
+?>
+<span class="glyphicon glyphicon-home"></span> 当前位置：<a href="__APP__">首页</a> / <a href='__MODULE__/User/member'>个人中心</a> / <?php echo $name;?>

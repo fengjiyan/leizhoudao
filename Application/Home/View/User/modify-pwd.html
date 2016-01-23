@@ -1,0 +1,28 @@
+<extend name="base" />
+<block name="right">
+    <div class="pull-right member-right">
+        <div class="songti member-daohang">
+            <include file='Public:center-daohang' />
+        </div>
+        <div class="member-info songti">
+                <form action="{:U('User/updatePwd')}" role="form" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="control-label"><span class="red">* </span>原密码</label>
+                    <div><input type="password" class="form-control wid250" name="member_list_pwd"/></div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label"><span class="red">* </span>新密码</label>
+                    <div><input type="password" class="form-control wid250" name="member_list_newpwd"/></div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">确认密码</label>
+                    <div><input type="password" class="form-control wid250"  name="member_list_repwd"/></div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label"></label>
+                    <div><button class="btn btn-warning wid250">保存</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>

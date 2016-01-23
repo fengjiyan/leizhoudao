@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎您的注册--雷州岛网站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="__PUBLIC__/assets/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="__PUBLIC__/assets/css/bootstrapValidator.css" />-->
+    <link rel="stylesheet" href="__PUBLIC__/assets/css/mycss.css" />
+    <script src="__PUBLIC__/assets/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/assets/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/assets/js/bootstrapValidator.min.js"></script>
+</head>
+<body>
+<header class="container">
+    <div class="login-logo">
+        <a href="__APP__"><img src="__PUBLIC__/assets/img/register-logo.png"/></a>
+    </div>
+        <span class="pull-right logo-text">
+            <a href="{:U('User/login')}">登录</a> | <a href="{:U('User/register')}">注册</a>
+        </span>
+</header>
+<section class="container register pwd-reset">
+    <form method="post"  id="defaultForm" class="form-horizontal" action="{:U('User/pwdReset')}">
+        <h2>重新设置新密码</h2>
+        <div class="form-group">
+            <label for="name" class="control-label"><span class="red">* </span>你的用户名</label>
+            <input type="text" value="{$Think.session.account}" disabled class="form-control wid250" />
+        </div>
+        <div class="form-group">
+            <label for="name" class="control-label"><span class="red">* </span>请设置密码</label>
+            <input type="password" name="member_list_pwd" class="form-control wid250" placeholder="请输入密码"/>
+        </div>
+        <div class="form-group">
+            <label for="name" class="control-label"><span class="red">* </span>请确认密码</label>
+            <input type="password" name="member_ok_pwd" class="form-control wid250"/>
+        </div>
+        <div class="form-group" style="display: none">
+            <label for="name" class="control-label">&nbsp;</label>
+            <input type="checkbox" name="" disabled checked="checked"/>我已阅读并同意 <span class="songti">&lt;&lt;</span><a href="">协议</a><span class="songti">&gt;&gt;</span>
+        </div>
+
+        <section class="form-group">
+            <label for="name" class="control-label"></label>
+            <button type="submit" class="btn btn-warning">提交</button>
+        </section>
+    </form>
+</section>
+<include file='Public:footer' />
+</body>
+</html>
+<script type="text/javascript">
+    $(function() {
+        $('#defaultForm').bootstrapValidator({
+            message: '此值无效',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                member_list_pwd: {
+                    validators: {
+                        notEmpty: {
+                            message: '设置密码不能为空'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: '密码在6-30个字符'
+                        }
+                    }
+                },
+                member_ok_pwd: {
+                    validators: {
+                        notEmpty: {
+                            message: '确认密码不能为空'
+                        },
+
+                        identical: {
+                            field: 'member_list_pwd',
+                            message: '确认密码和设置密码不一样'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>

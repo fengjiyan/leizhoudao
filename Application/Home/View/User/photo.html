@@ -1,0 +1,45 @@
+<extend name="base" />
+<block name="right">
+    <div class="pull-right member-right">
+        <div class="songti member-daohang">
+            <include file='Public:center-daohang' />
+        </div>
+        <div class="member-info songti" style="margin-top:30px">
+            <form method="post" id="myaccountsafe" enctype="multipart/form-data" >
+            <div id="avatar_priview" class="modify-thumb">
+                <img src="__ROOT__/Public/Uploads/User-photo/{$pic}"/>
+            </div>
+            <div class="modify-photo">
+                <div class="j-mod-bd" id="j-mod-receive">
+                    <!-- 更改头像 -->
+                    <script type="text/javascript">
+                        function uploadevent(status){
+                            var time = new Date().getTime();
+                            document.getElementById('avatar_priview').innerHTML = "<img src='__ROOT__/Public/uploads/User-photo/"+status+"?" + time + "'/>" ;
+                        }
+                    </script>
+                    <div class="edit_message clearfix">
+                        <div class="edit_photo clearfix">
+                            <div class="photo_prev clearfix">
+                                <div class="photo_prev_head fl">
+                                </div>
+                                <!-- /上传头像 -->
+                                <div id="altContent" class="fl">
+                                    <input  id="username" type="hidden" value="20130101232565" />
+                                    <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" WIDTH="650" HEIGHT="450" id="myMovieName">
+                                        <PARAM NAME=movie VALUE="../../Public/flash/avatar.swf">
+                                        <PARAM NAME=quality VALUE=high>
+                                        <PARAM NAME=bgcolor VALUE=#FFFFFF>
+                                        <param name="flashvars" value="imgUrl=../../Public/flash/default.jpg&uploadUrl=__URL__/upfile&uploadSrc=false" />
+                                        <EMBED src="../../Public/flash/avatar.swf" quality=high bgcolor=#FFFFFF WIDTH="650" HEIGHT="450" wmode="transparent" flashVars="imgUrl=../../Public/flash/default.jpg&uploadUrl=__URL__/upfile&uploadSrc=false" NAME="myMovieName" ALIGN="" TYPE="application/x-shockwave-flash" allowScriptAccess="always" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer">
+                                        </EMBED>
+                                    </OBJECT>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</block>
