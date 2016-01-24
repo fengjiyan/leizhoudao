@@ -92,7 +92,7 @@
                     ?>
                     <tr class="songti">
                         <td class="text-muted">·<a href="<?php echo $href;?>" target="_blank" title="{$list.title}">{$list.title|msubstr=0,30,'utf-8',true}</a></td>
-                        <td class="text-muted">{$list.category}{$list.object}<if condition="$list.sub_cateid neq ''">/<else/></if>{$list.sub_cateid}</td>
+                        <td class="text-muted">{$list.category}{$list.object}{$list.type}<if condition="$list.sub_cateid neq ''">/<else/></if>{$list.sub_cateid}</td>
                         <td class="text-muted">{$list.area}</td>
                         <td class="text-muted font12">
                             <if condition="$list.status eq 0">

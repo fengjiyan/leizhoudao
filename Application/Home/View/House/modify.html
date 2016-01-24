@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>雷州戏剧信息编辑--雷州岛网站</title>
+    <title>房子信息编辑--雷州岛网站</title>
 <include file='Public:header' />
     <div class="container font12 songti wrap-nav">
         <include file='Public:nav' />
@@ -10,19 +10,19 @@
     <section class="container">
         <include file='Public:protocol' />
         <div class="register write-info songti font12">
-            <form action="{:U('Xiju/updateXiju')}" name="form0" id="defaultForm" id="form0" role="form" class="form-horizontal" method="post" enctype="multipart/form-data">
+            <form action="{:U('House/updateHouse')}" name="form0" id="defaultForm" id="form0" role="form" class="form-horizontal" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="{$Think.get.id}"/>
                 <div class="form-group">
                     <label for="name" class="control-label">所在地区</label>
                     <select name="area">
-                        <assign name="xj_areas" value="$Think.config.xj_areas"/>
-                        <volist name="xj_areas" id="lz_areas">
+                        <assign name="marry_area" value="$Think.config.marry_area"/>
+                        <volist name="marry_area" id="lz_areas">
                             <option value="{$lz_areas}" <if condition="$list.area eq $lz_areas">selected="selected"</if> >{$lz_areas}</option>
                         </volist>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="control-label">戏剧类型</label>
+                    <label for="name" class="control-label">房子类型</label>
                     <select name="type">
                         <volist name="all" id="lz_areas">
                             <option value="{$lz_areas.column_name}" <if condition="$list.type eq $lz_areas['column_name']">selected="selected"</if> >{$lz_areas.column_name}</option>
@@ -31,12 +31,13 @@
                     <input class="cateid" type="hidden" value="<?php echo $list['sub_cateid']?>"/>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="control-label">经营对象</label>
+                    <label for="name" class="control-label">房子所属</label>
                     <assign name="room_type" value="$Think.config.room_type"/>
                     <select name="manage" id="bigname">
                         <volist name="room_type" id="listsa">
                             <option value="{$listsa}" <if condition="$list.manage eq $listsa">selected="selected"</if>>{$listsa}</option>
                         </volist>
+                        <option value="中介">中介</option>
                     </select>
                     <input class="cateid" type="hidden" value="<?php echo $list['sub_cateid']?>"/>
                 </div>

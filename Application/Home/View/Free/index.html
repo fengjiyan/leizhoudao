@@ -60,19 +60,122 @@
     }
 
     //地区跳转,判断cid对应的页面
-    if(!empty($bl) and $cid==4){foreach($lz_area as $vo){echo "<a href='__MODULE__/Happy/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//喜庆
-    if(!empty($bl) and $cid==5){foreach($xl_area as $vo){echo "<a href='__MODULE__/Car/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//汽车
-    if(!empty($bl) and $cid==6){foreach($xl_area as $vo){echo "<a href='__MODULE__/Marry/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//相亲
-    if(!empty($bl) and $cid==7){foreach($lz_area as $vo){echo "<a href='__MODULE__/House/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//房子
-    if(!empty($bl) and $cid==8){foreach($lz_area as $vo){echo "<a href='__MODULE__/Dianqi/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//电器
-    if(!empty($bl) and $cid==9){foreach($lz_area as $vo){echo "<a href='__MODULE__/Sea/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//海鲜
-    if(!empty($bl) and $cid==11){foreach($lz_area as $vo){echo "<a href='__MODULE__/Food/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//美食
-    if(!empty($bl) and $cid==12){foreach($lz_area as $vo){echo "<a href='__MODULE__/Farm/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//农业
-    if(!empty($bl) and $cid==13){foreach($lz_area as $vo){echo "<a href='__MODULE__/Edu/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//教育
-    if(!empty($bl) and $cid==163){foreach($xl_area as $vo){echo "<a href='__MODULE__/Recruit/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//招聘
-    if(!empty($bl) and $cid==31){foreach($lz_area as $vo){echo "<a href='__MODULE__/Chang/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//厂家/批发/代理商
-    if(!empty($bl) and $cid==15){foreach($lz_area as $vo){echo "<a href='__MODULE__/Jiaju/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//家居
-    if(!empty($bl) and $cid==154){foreach($xl_areas as $vo){echo "<a href='__MODULE__/Xiju/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";}}//雷州戏剧
+    $user_name = session('account');
+    if(!empty($bl) and $cid==4){
+        if(!isset($user_name)){
+            echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+            foreach($lz_area as $vo){
+            echo "<a href='__MODULE__/Happy/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//喜庆
+    }
+
+    if(!empty($bl) and $cid==5){
+        if(!isset($user_name)){
+            echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($xl_area as $vo){
+            echo "<a href='__MODULE__/Car/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//汽车
+   }
+
+    if(!empty($bl) and $cid==6){
+        if(!isset($user_name)){
+            echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($xl_area as $vo){
+            echo "<a href='__MODULE__/Marry/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//相亲
+    }
+
+    if(!empty($bl) and $cid==7){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($xl_area as $vo){
+            echo "<a href='__MODULE__/House/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//房子
+    }
+
+    if(!empty($bl) and $cid==8){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($lz_area as $vo){
+            echo "<a href='__MODULE__/Dianqi/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//电器
+    }
+
+    if(!empty($bl) and $cid==9){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($lz_area as $vo){
+            echo "<a href='__MODULE__/Sea/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//海鲜
+    }
+
+    if(!empty($bl) and $cid==11){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($lz_area as $vo){
+            echo "<a href='__MODULE__/Food/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//美食
+    }
+
+    if(!empty($bl) and $cid==12){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($lz_area as $vo){
+            echo "<a href='__MODULE__/Farm/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//农业
+    }
+
+    if(!empty($bl) and $cid==13){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($lz_area as $vo){
+            echo "<a href='__MODULE__/Edu/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//教育
+    }
+
+    if(!empty($bl) and $cid==163){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($xl_area as $vo){
+            echo "<a href='__MODULE__/Recruit/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//招聘
+    }
+
+    if(!empty($bl) and $cid==31){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($xl_area as $vo){
+            echo "<a href='__MODULE__/Chang/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//厂家/批发/代理商
+    }
+
+    if(!empty($bl) and $cid==15){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($lz_area as $vo){
+            echo "<a href='__MODULE__/Jiaju/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//家居
+    }
+    if(!empty($bl) and $cid==154){
+        if(!isset($user_name)){
+        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        }else{
+        foreach($xl_areas as $vo){
+            echo "<a href='__MODULE__/Xiju/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+        }}//雷州戏剧
+    }
 
 ?>
     </div>

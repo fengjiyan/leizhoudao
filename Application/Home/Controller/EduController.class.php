@@ -1,32 +1,34 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class MarryController extends Controller {
-    public function allList($table = 'marry'){
-        R('Store/allList',array($table));
+class EduController extends Controller {
+    public function index($table = 'edu'){
+        R('Store/index',array($table));
     }
 
-    public function marryAdd($table = 'marry', $width='', $height=''){
+    public function eduAdd($table = 'edu', $width='', $height=''){
         R('Store/storeAdd',array($table, $width = 184, $height= 234));
     }
 
-    public function checkTitle($table = 'marry'){
+    public function checkTitle($table = 'edu'){
         R('Store/checkTitle',array($table));
     }
 
-    public function modify($table = 'marry'){
+    public function modify($table = 'edu'){
         R('Store/modify',array($table));
     }
 
-    public function updateMarry($table = 'marry', $width='', $height=''){
+    public function updateEdu($table = 'edu', $width='', $height=''){
         R('Store/updateStroe',array($table, $width = 184, $height= 234));
     }
-
-    public function detail($table='marry'){
+    public function write(){
+        R('Store/write');
+    }
+    public function detail($table='edu'){
           R('Store/detail',array($table));
     }
 
-    public function marryDel($table='marry'){
+    public function eduDel($table='edu'){
         R('Store/storeDel',array($table));
     }
 

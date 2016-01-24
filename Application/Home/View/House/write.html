@@ -2,87 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>雷州戏剧信息编辑--雷州岛网站</title>
-<include file='Public:header' />
-    <div class="container font12 songti wrap-nav">
-        <include file='Public:nav' />
+    <title>免费发房子信息--雷州半岛网站</title>
+    <include file='Public:header' />
+    <div class="container songti font12 wrap-nav">
+        <include file='Public:daohang' />
     </div>
     <section class="container">
         <include file='Public:protocol' />
         <div class="register write-info songti font12">
-            <form action="{:U('Xiju/updateXiju')}" name="form0" id="defaultForm" id="form0" role="form" class="form-horizontal" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="{$Think.get.id}"/>
+            <form action="{:U('House/houseAdd')}" name="form0" id="defaultForm" id="form0" role="form" class="form-horizontal" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name" class="control-label">所在地区</label>
                     <select name="area">
-                        <assign name="xj_areas" value="$Think.config.xj_areas"/>
-                        <volist name="xj_areas" id="lz_areas">
-                            <option value="{$lz_areas}" <if condition="$list.area eq $lz_areas">selected="selected"</if> >{$lz_areas}</option>
+                        <assign name="marry_area" value="$Think.config.marry_area"/>
+                        <volist name="marry_area" id="lz_areas">
+                            <option value="{$lz_areas}" <if condition="$Think.get.ar eq $lz_areas">selected="selected"</if> >{$lz_areas}</option>
                         </volist>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="control-label">戏剧类型</label>
+                    <label for="name" class="control-label">房子类型</label>
                     <select name="type">
-                        <volist name="all" id="lz_areas">
-                            <option value="{$lz_areas.column_name}" <if condition="$list.type eq $lz_areas['column_name']">selected="selected"</if> >{$lz_areas.column_name}</option>
+                        <volist name="list" id="lz_areas">
+                            <option value="{$lz_areas.column_name}" <if condition="$Think.get.bl eq $lz_areas['column_name']">selected="selected"</if> >{$lz_areas.column_name}</option>
                         </volist>
                     </select>
-                    <input class="cateid" type="hidden" value="<?php echo $list['sub_cateid']?>"/>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="control-label">经营对象</label>
+                    <label for="name" class="control-label">房子所属</label>
                     <assign name="room_type" value="$Think.config.room_type"/>
                     <select name="manage" id="bigname">
                         <volist name="room_type" id="listsa">
-                            <option value="{$listsa}" <if condition="$list.manage eq $listsa">selected="selected"</if>>{$listsa}</option>
+                            <option value="{$listsa}">{$listsa}</option>
                         </volist>
+                        <option value="中介">中介</option>
                     </select>
-                    <input class="cateid" type="hidden" value="<?php echo $list['sub_cateid']?>"/>
                 </div>
                 <div class="form-group">
                     <label for="name" class="control-label"><span class="red">* </span>标题</label>
-                    <input type="text" class="form-control wid512" name="title" value="{$list.title}" placeholder="请输入标题"/>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="control-label">价格</label>
-                    <input type="text" class="form-control wid120" value="{$list.price}" name="price"/>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="control-label">微信</label>
-                    <input type="text" class="form-control wid120" value="{$list.weixin}" name="weixin"/>
+                    <input type="text" class="form-control wid512" name="title" placeholder="请输入标题"/>
                 </div>
                 <div class="form-group">
                     <label for="name" class="control-label">联系人</label>
-                    <input type="text" class="form-control wid120" value="{$list.linker}" name="linker"/>
+                    <input type="text" class="form-control wid120" name="linker"/>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">价格</label>
+                    <input type="text" class="form-control wid250" name="price" placeholder="如：120元/位 或：面议"/>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">微信</label>
+                    <input type="text" class="form-control wid250" name="weixin"/>
                 </div>
                 <div class="form-group">
                     <label for="name" class="control-label">电话</label>
-                    <input type="text" class="form-control wid250" value="{$list.phone}" name="phone"/>
+                    <input type="text" class="form-control wid250" name="phone"/>
                 </div>
                 <div class="form-group">
                     <label for="name" class="control-label">有效期：</label>
                     <select name="expire">
                         <assign name="expire_time" value="$Think.config.expire_time"/>
+                        <!--<option value="">--请选择--</option>-->
                         <volist name="expire_time" id="expire_times">
                             <option value="{$expire_times}">{$expire_times}</option>
                         </volist>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">地址</label>
+                    <input type="text" class="form-control wid512" name="address"/>
+                </div>
                 <div class="form-group text-area">
                     <label for="name" class="control-label">描述</label>
                     <div>
-                        <textarea name="content"  class="form-control wid512" cols="80" rows="4">{$list.content}</textarea>
+                        <textarea name="content"  class="form-control wid512" cols="80" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="control-label">喜庆店面地址</label>
-                    <input type="text" class="form-control wid512" value="{$list.address}" name="address"/>
-                </div>
-                <div class="form-group">
                     <label for="name" class="control-label">封面图片</label>
-                    <img class="pull-left" src="__APP__/{$list.pic}" width="210" height="160" id="img0" >
-                    <span class="pull-left text-muted write-photo">图片仅支持格式：JPG|JPEG|GIF|PNG 先用ps处理再上传<br> 大小：210 * 160像素 < 12K <p>
+                    <img class="pull-left" src="__PUBLIC__/assets/img/no_img.jpg" width="210" height="160" id="img0" >
+                    <span class="pull-left text-muted write-photo">图片仅支持格式：JPG|JPEG|GIF|PNG 此功能支持在线缩放功能，原图张/100k以下<br> 或先用ps处理再上传大小：210 * 160像素 < 12K <p>
                         <a href="javascript:;" class="btn btn-primary file">
                             <input type="file" name="file0" id="file0" multiple="multiple"/>
                             选择上传图片
@@ -95,17 +94,17 @@
                 </div>
                 <div class="form-group" id="write-submit">
                     <label for="name" class="control-label"></label>
-                    <input type="submit" class="btn btn-warning wid120" value="确认提交"/>
+                    <input type="submit" class="btn btn-warning wid120" value="确认发布"/>
                 </div>
             </form>
         </div>
     </section>
     <include file='Public:footer' />
-</body>
+    </body>
 </html>
 <script src="__PUBLIC__/assets/js/upload-pic.js"></script>
 <script>
-    $(function () {
+    $(function() {
         function randomNumber(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);
         };
@@ -130,7 +129,7 @@
                             message: '标题在5-80个字符'
                         },
                         remote: {
-                            url: '{:U("Store/checkTitle")}',
+                            url: '{:U("Happy/checkTitle")}',
                             message: '标题曾经提交过了，换个厉害的新标题哦！'
                         },
                         regexp: {

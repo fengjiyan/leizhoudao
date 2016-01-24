@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charet="UTF-8">
+    <title>美食列表页--雷州半岛网站</title>
+    <include file='Public:header' />
+    <section class="container" style="margin-top:12px">
+        <include file='Public:left-side' />
+        <aside class="pull-right list-rt songti font12 marrr-wrap">
+            <div class="list-daohang">
+                <include file='Public:nav' />
+            </div>
+            <div class="list-choice">
+            <span class="pull-left">
+            <strong>所在地区：</strong>
+            </span>
+            <span class="pull-left" style="width:90%">
+            <assign name="lz_area" value="$Think.config.lz_area"/>
+            <volist name="lz_area" id="car_areas">
+                <a href="__MODULE__/Sea?ar={$car_areas}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.ar eq $car_areas">class="orange-active"</if>>{$car_areas}</a>
+            </volist>
+            </span>
+            </div>
+            <div class="list-choice">
+                <span class="pull-left">
+                    <strong>经营对象：</strong>
+                </span>
+                <span class="pull-left">
+                     <assign name="room_type" value="$Think.config.room_type"/>
+                <volist name="room_type" id="marry_areas">
+                    <a href="__MODULE__/Sea?ar={$Think.get.ar}&tys={$marry_areas}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.tys eq $marry_areas">class="orange-active"</if>>{$marry_areas}</a>
+                </volist>
+                </span>
+            </div>
+            <div class="list-choice">
+                <span class="pull-left">
+                    <strong>美食类型：</strong>
+                </span>
+                <span class="pull-left">
+                    <volist name="sub_column" id="marry_ages">
+                        <a href="__MODULE__/Sea?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$marry_ages['column_name']}&tms={$Think.get.tms}" <if condition="$Think.get.tp eq $marry_ages['column_name']">class="orange-active"</if>>{$marry_ages.column_name}</a>
+                    </volist>
+                </span>
+            </div>
+            <div class="list-choice">
+                <span class="pull-left">
+                    <strong>有效时间：</strong>
+                </span>
+                <span class="pull-left list-count">
+                       <assign name="w_time" value="$Think.config.w_time"/>
+                        <volist name="w_time" id="w_times">
+                            <a href="__MODULE__/Sea?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$w_times}" <if condition="$Think.get.tms eq $w_times">class="orange-active"</if>>{$w_times}</a>
+                        </volist>
+                <div>总共 <span class="red font14"><strong>{$count}</strong></span> 条</div>
+                </span>
+            </div>
+            <if condition="!empty($list)">
+                <if condition="!empty($list)">
+                    <div class="list-marry font14 list-store">
+                        <ul>
+                            <volist name="list" id="list">
+                                <li class="pull-left">
+                                    <a href="{:U('Sea/detail',array('id' => $list['id']))}" title="{$list.title}" alt="{$list.title}" target="_blank"><img src="__APP__{$list.pic}" class="pull-left"/></a>
+                        <span class="pull-right">
+                            <h4><a href="{:U('Sea/detail',array('id' => $list['id']))}" target="_blank" title="{$list.title}">{$list.title|msubstr=0,21,'utf-8',true}</a></h4>
+                            <p>类型：{$list.type}</p>
+                            <p>经营：{$list.manage}</p>
+                            <p>地址：{$list.address}</p>
+                            <time class="text-muted">{$list.add_time|date="Y/m/d",###}<br>有效：<?php
+                                $now = $list['expire']-time();
+                                $day= ceil($now/(3600*24));
+                                if($day<0){
+                                            echo "已过期";
+                                }else{
+                                echo $day.'天';
+                                }
+                                ?>
+                            </time>
+                        </span>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="text-center font14">
+                        {$page}
+                    </div>
+                    <else/>
+                    <p>此栏目暂时没有数据了!</p>
+                </if>
+        </aside>
+    </section>
+    <include file='Public:footer' />
+    </body>
+</html>

@@ -14,17 +14,37 @@ class UserController extends Controller {
         $this->_dianmian = M('dianmian');
         $this->_happy = M('happy');
         $this->_marry = M('marry');
+        $this->_house = M('house');
         $this->_car = M('car');
+        $this->_dianqi = M('dianqi');
+        $this->_sea = M('sea');
+        $this->_food = M('food');
+        $this->_farm = M('farm');
+        $this->_edu = M('edu');
+        $this->_recruit = M('recruit');
+        $this->_chang = M('chang');
+        $this->_jiaju = M('jiaju');
+        $this->_xiju = M('xiju');
        // $this->header();
 
     }
     public function writeInfo(){
         $user_name = session('account');
         $condition['user_name']= $user_name;
-        $count_dm      = $this->_dianmian->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_car      = $this->_happy->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_hp      = $this->_happy->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_mr      = $this->_marry->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_dianmian      = $this->_dianmian->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_car      = $this->_car->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_happy      = $this->_happy->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_house      = $this->_house->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_marry      = $this->_marry->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_dianqi      = $this->_dianqi->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_sea      = $this->_sea->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_food      = $this->_food->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_farm      = $this->_food->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_edu      = $this->_edu->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_recruit      = $this->_recruit->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_chang      = $this->_chang->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_jiaju      = $this->_jiaju->where($condition)->count('id');// 查询满足要求的总记录数
+        $count_xiju      = $this->_xiju->where($condition)->count('id');// 查询满足要求的总记录数
         $count = M()->field('id')
             ->table('mr_dianmian')->where($condition)
             ->union(array("SELECT count(id) FROM mr_happy where user_name ='$user_name'", "SELECT count(id) FROM mr_car where user_name ='$user_name'", "SELECT count(id)  FROM mr_marry where user_name ='$user_name'"),true)
@@ -34,11 +54,21 @@ class UserController extends Controller {
         //$count      = $count_dm + $count_hp  + $count_car + $count_mr;// 查询满足要求的总记录数
         $Page       = new \Think\Page($count,3);// 实例化分页类 传入总记录数和每页显示的记录数
         //$show       = $Page->show();// 分页显示输出
-        $list_dm = $this->_dianmian->where(array('user_name'=>$user_name))->order('add_time desc')->field('id,title,category,area,sub_cateid,status,expire,add_time,dianmian')->select();
-        $list_hp = $this->_happy->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,object,area,status,expire,add_time,happy')->select();
-        $list_car = $this->_car->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,manage,area,status,expire,add_time,car')->select();
-        $list_mr = $this->_marry->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,object,area,status,expire,add_time,marry')->select();
-        $list = array_merge($list_dm,$list_hp,$list_car,$list_mr);
+        $list_dianmian = $this->_dianmian->where(array('user_name'=>$user_name))->order('add_time desc')->field('id,title,category,area,sub_cateid,status,expire,add_time,dianmian')->select();
+        $list_happy = $this->_happy->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,object,area,status,expire,add_time,happy')->select();
+        $list_car = $this->_car->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,manage,area,status,expire,add_time,car')->select();
+        $list_marry = $this->_marry->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,object,area,status,expire,add_time,marry')->select();
+        $list_house = $this->_house->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,house')->select();
+        $list_dianqi = $this->_dianqi->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,dianqi')->select();
+        $list_sea = $this->_sea->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,sea')->select();
+        $list_food = $this->_food->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,food')->select();
+        $list_farm = $this->_farm->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,farm')->select();
+        $list_edu = $this->_edu->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,edu')->select();
+        $list_recruit = $this->_recruit->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,recruit')->select();
+        $list_chang = $this->_chang->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,chang')->select();
+        $list_jiaju = $this->_jiaju->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,jiaju')->select();
+        $list_xiju = $this->_xiju->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,xiju')->select();
+        $list = array_merge($list_dianmian,$list_happy,$list_car,$list_marry,$list_house,$list_dianqi,$list_sea,$list_food,$list_farm,$list_edu,$list_recruit,$list_chang,$list_jiaju,$list_xiju);
         $this->assign('count',$count);// 赋值数据集
         $this->assign('list',$list);// 赋值数据集
        // $this->assign('page',$show);// 赋值分页输出

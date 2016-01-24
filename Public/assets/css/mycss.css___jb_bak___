@@ -425,7 +425,7 @@ ul,li{
 .user-writeinfo th,.user-writeinfo td{width: 10%;text-align: center}
 .user-writeinfo th:nth-child(1),.user-writeinfo td:nth-child(1){text-align: left;width: 48%;padding-left: 10px}
 .user-writeinfo th:nth-child(2),.user-writeinfo td:nth-child(2){text-align: center;width: 12%;}
-.farm-list a{color: #1E8EFF !important}
+.farm-list a{color: #478DFF !important}
 
 .modify-photo img{
     margin-bottom: 30px;

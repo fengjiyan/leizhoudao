@@ -12,7 +12,17 @@ class StoreController extends Controller {
     }
     public function index($table = 'dianmian', $module = CONTROLLER_NAME){
         switch($module){
-            case 'Happy' : $bf = '喜庆';break;
+            case 'Happy'  : $bf = '喜庆';break;
+            case 'House'  : $bf = '房子';break;
+            case 'Dianqi' : $bf = '电器';break;
+            case 'Sea'    : $bf = '海鲜';break;
+            case 'Food'   : $bf = '美食';break;
+            case 'Farm'   : $bf = '农业';break;
+            case 'Edu'    : $bf = '教育';break;
+            case 'Recruit': $bf = '招聘';break;
+            case 'Chang'  : $bf = '厂家|批发|代理商';break;
+            case 'Jiaju'  : $bf = '家居';break;
+            case 'Xiju'   : $bf = '雷州剧';break;
         }
         // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
         $bf =I('bf') ? I('bf') : $bf ;
@@ -179,6 +189,7 @@ class StoreController extends Controller {
     public function write(){
         $cid = I('cid') ? I('cid') : 2;
         $column =  $this->_column->where(array('column_leftid' => $cid))->order('c_id')->select();
+        //var_dump($column);
         $this->assign('list',$column);// 赋值数据集
         $this->display('write');
     }
@@ -268,7 +279,7 @@ class StoreController extends Controller {
             case 'Food' : $bf = '美食';break;
             case 'Farm' : $bf = '农业';break;
             case 'Edu' : $bf = '教育';break;
-            case 'Recruit' : $bf = '招聘';break;
+            case 'House' : $bf = '房子';break;
             case 'Recruit' : $bf = '招聘';break;
             case 'Chang' : $bf = '厂家|批发|代理商';break;
             case 'Jiaju' : $bf = '家居';break;
@@ -281,7 +292,6 @@ class StoreController extends Controller {
         $condition['user_name']= session('account');
         $condition['id']= I('id');
         $all = $this->_column->where(array('column_leftid' => $cid))->order('c_id')->select();//全部栏目表
-//        $all = $this->_column->where(array('column_leftid' => 2))->order('c_id')->select();//全部栏目表
         $list = M("$table")->where($condition)->find();//铺面发布表
         $this->assign('all', $all);
         $this->assign('list', $list);
