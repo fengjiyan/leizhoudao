@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class HappyController extends Controller {
+class HappyController extends HeadController {
     public function index($table = 'happy'){
         R('Store/index',array($table));
     }
@@ -23,7 +23,7 @@ class HappyController extends Controller {
     }
 
     public function detail($table='happy'){
-          R('Store/detail',array($table));
+        R('Store/detail',array($table));
     }
 
     public function happyDel($table='happy'){

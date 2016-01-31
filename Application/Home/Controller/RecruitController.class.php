@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class RecruitController extends Controller {
+class RecruitController extends HeadController {
     public function index($table = 'recruit'){
         R('Store/index',array($table));
     }

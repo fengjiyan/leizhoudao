@@ -8,7 +8,7 @@
         <nav class="wrapnav songti">
             <assign name="lz_area" value="$Think.config.lz_area"/>
             <volist name="lz_area" id="lz_areas">
-                <a href="__MODULE__/Happy/?bfs={$lz_areas}" <if condition="$Think.get.bfs eq $lz_areas">class="orange-active"</if>>{$lz_areas}</a>
+                <a href="__APP__/Happy/?bfs={$lz_areas}" <if condition="$Think.get.bfs eq $lz_areas">class="orange-active"</if>>{$lz_areas}</a>
             </volist>
         </nav>
     </section>
@@ -24,21 +24,10 @@
                 </span>
                 <span class="pull-left">
                       <volist name="sub_column" id="marry_ranges">
-                          <a href="__MODULE__/Happy?ars={$marry_ranges.column_name}&bfs={$Think.get.bfs}&ty={$Think.get.ty}&tms={$Think.get.tms}" <if condition="$Think.get.ars eq $marry_ranges['column_name']">class="orange-active"</if>>{$marry_ranges.column_name}</a>
+                          <a href="__APP__/Happy?ars={$marry_ranges.column_name}&bfs={$Think.get.bfs}&ty={$Think.get.ty}&tms={$Think.get.tms}" <if condition="$Think.get.ars eq $marry_ranges['column_name']">class="orange-active"</if>>{$marry_ranges.column_name}</a>
                       </volist>
                 </span>
             </div>
-            <!--<div class="list-choice">-->
-                <!--<span class="pull-left">-->
-                    <!--<strong>所在地区：</strong>-->
-                <!--</span>-->
-                <!--<span class="pull-left">-->
-                      <!--<assign name="marry_area" value="$Think.config.marry_area"/>-->
-                      <!--<volist name="marry_area" id="marry_areas">-->
-                          <!--<a href="__MODULE__/Happy?ars={$Think.get.ars}&bfs={$marry_areas}&ty={$Think.get.ty}&tms={$Think.get.tms}" <if condition="$Think.get.bfs eq $marry_areas">class="orange-active"</if>>{$marry_areas}</a>-->
-                      <!--</volist>-->
-                <!--</span>-->
-            <!--</div>-->
             <div class="list-choice">
                 <span class="pull-left">
                     <strong>发布类型：</strong>
@@ -46,7 +35,7 @@
                 <span class="pull-left">
                        <assign name="room_type" value="$Think.config.room_type"/>
                         <volist name="room_type" id="marry_ages">
-                            <a href="__MODULE__/Happy?ars={$Think.get.ars}&bfs={$Think.get.bfs}&ty={$marry_ages}&tms={$Think.get.tms}" <if condition="$Think.get.ty eq $marry_ages">class="orange-active"</if>>{$marry_ages}</a>
+                            <a href="__APP__/Happy?ars={$Think.get.ars}&bfs={$Think.get.bfs}&ty={$marry_ages}&tms={$Think.get.tms}" <if condition="$Think.get.ty eq $marry_ages">class="orange-active"</if>>{$marry_ages}</a>
                         </volist>
                 </span>
             </div>
@@ -57,7 +46,7 @@
                 <span class="pull-left list-count">
                        <assign name="w_time" value="$Think.config.w_time"/>
                         <volist name="w_time" id="w_times">
-                            <a href="__MODULE__/Happy?ars={$Think.get.ars}&bfs={$Think.get.bfs}&ty={$Think.get.ty}&tms={$w_times}" <if condition="$Think.get.tms eq $w_times">class="orange-active"</if>>{$w_times}</a>
+                            <a href="__APP__/Happy?ars={$Think.get.ars}&bfs={$Think.get.bfs}&ty={$Think.get.ty}&tms={$w_times}" <if condition="$Think.get.tms eq $w_times">class="orange-active"</if>>{$w_times}</a>
                         </volist>
                 <div>总共 <span class="red font14"><strong>{$count}</strong></span> 条</div>
                 </span>
@@ -77,8 +66,8 @@
                             <time class="text-muted">{$list.add_time|date="Y/m/d",###}<br>有效：<?php
                                 $now = $list['expire']-time();
                                 $day= ceil($now/(3600*24));
-                                if($day<0){
-                                            echo "已过期";
+                                if($day<=0){
+                                echo "已过期";
                                 }else{
                                 echo $day.'天';
                                 }

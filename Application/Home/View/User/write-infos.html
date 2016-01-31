@@ -20,79 +20,93 @@
                 <volist name="list" id="list">
                     <?php
                        if($list['dianmian'] == 1){
-                           $href = "__MODULE__/Store/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Store/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Store/storeDel/id/".$list['id'].".html";
+                           $column_name = '店铺面';
+                           $href = "__APP__/Store/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Store/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Store/storeDel/id/".$list['id'].".html";
                        }
                        if($list['happy'] == 1){
-                           $href = "__MODULE__/Happy/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Happy/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Happy/happyDel/id/".$list['id'].".html";
+                           $column_name = '喜庆';
+                           $href = "__APP__/Happy/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Happy/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Happy/happyDel/id/".$list['id'].".html";
                        }
                        if($list['marry'] == 1){
-                           $href = "__MODULE__/Marry/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Marry/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Marry/marryDel/id/".$list['id'].".html";
+                           $column_name = '相亲';
+                           $href = "__APP__/Marry/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Marry/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/marryDel/id/".$list['id'].".html";
                        }
                        if($list['car'] == 1){
-                           $href = "__MODULE__/Car/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Car/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Car/carDel/id/".$list['id'].".html";
+                           $column_name = '汽车';
+                           $href = "__APP__/Car/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Car/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Car/carDel/id/".$list['id'].".html";
                        }
                        if($list['house'] == 1){
-                           $href = "__MODULE__/House/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/House/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/House/houseDel/id/".$list['id'].".html";
+                           $column_name = '房子';
+                           $href = "__APP__/House/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/House/modify/id/".$list['id'].".html";
+                           $del = "__APP__/House/houseDel/id/".$list['id'].".html";
                        }
                        if($list['dianqi'] == 1){
-                           $href = "__MODULE__/Dianqi/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Dianqi/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Dianqi/dianqiDel/id/".$list['id'].".html";
+                           $column_name = '电器';
+                           $href = "__APP__/Dianqi/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Dianqi/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Dianqi/dianqiDel/id/".$list['id'].".html";
                        }
                        if($list['sea'] == 1){
-                           $href = "__MODULE__/Sea/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Sea/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Marry/seaDel/id/".$list['id'].".html";
+                           $column_name = '海鲜';
+                           $href = "__APP__/Sea/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Sea/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/seaDel/id/".$list['id'].".html";
                        }
                        if($list['food'] == 1){
-                           $href = "__MODULE__/Food/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Food/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Marry/foodDel/id/".$list['id'].".html";
+                           $column_name = '美食';
+                           $href = "__APP__/Food/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Food/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/foodDel/id/".$list['id'].".html";
                        }
                        if($list['Farm'] == 1){
-                           $href = "__MODULE__/Farm/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Farm/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Marry/farmDel/id/".$list['id'].".html";
+                           $column_name = '农业';
+                           $href = "__APP__/Farm/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Farm/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/farmDel/id/".$list['id'].".html";
                        }
                        if($list['edu'] == 1){
-                           $href = "__MODULE__/Edu/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Edu/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Marry/eduDel/id/".$list['id'].".html";
+                           $column_name = '教育';
+                           $href = "__APP__/Edu/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Edu/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/eduDel/id/".$list['id'].".html";
                        }
                        if($list['recruit'] == 1){
-                           $href = "__MODULE__/Recruit/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Recruit/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Marry/recruitDel/id/".$list['id'].".html";
+                           $column_name = '招聘';
+                           $href = "__APP__/Recruit/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Recruit/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/recruitDel/id/".$list['id'].".html";
                        }
                        if($list['chang'] == 1){
-                           $href = "__MODULE__/Chang/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Chang/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Marry/changDel/id/".$list['id'].".html";
+                           $column_name = '厂家|批发|代理商';
+                           $href = "__APP__/Chang/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Chang/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/changDel/id/".$list['id'].".html";
                        }
                        if($list['jiaju'] == 1){
-                           $href = "__MODULE__/Jiaju/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Jiaju/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Marry/jiajuDel/id/".$list['id'].".html";
+                           $column_name = '家居';
+                           $href = "__APP__/Jiaju/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Jiaju/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Jiaju/jiajuDel/id/".$list['id'].".html";
                        }
                        if($list['xiju'] == 1){
-                           $href = "__MODULE__/Xiju/detail/id/".$list['id'].".html";
-                           $modify = "__MODULE__/Xiju/modify/id/".$list['id'].".html";
-                           $del = "__MODULE__/Marry/xijuDel/id/".$list['id'].".html";
+                           $column_name = '雷州剧';
+                           $href = "__APP__/Xiju/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Xiju/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Xiju/xijuDel/id/".$list['id'].".html";
                        }
                     ?>
                     <tr class="songti">
                         <td class="text-muted">·<a href="<?php echo $href;?>" target="_blank" title="{$list.title}">{$list.title|msubstr=0,30,'utf-8',true}</a></td>
-                        <td class="text-muted">{$list.category}{$list.object}{$list.type}<if condition="$list.sub_cateid neq ''">/<else/></if>{$list.sub_cateid}</td>
+                        <td class="text-muted"><if condition="$column_name neq ''">【<?php echo $column_name; ?>】</if>{$list.category}{$list.object}{$list.type}<if condition="$list.sub_cateid neq ''">/<else/></if>{$list.sub_cateid}</td>
                         <td class="text-muted">{$list.area}</td>
                         <td class="text-muted font12">
                             <if condition="$list.status eq 0">
@@ -104,7 +118,7 @@
                             <?php
                                 $now = $list['expire']-time();
                                 $day= ceil($now/(3600*24));
-                                if($day<0){
+                                if($day<=0){
                                     echo "<span class='red'>已过期</span>";
                                 }else{
                                     echo $day.'天';
@@ -113,6 +127,7 @@
                         <td class="text-muted">{$list.add_time|date="Y/m/d",###}</td>
                     </tr>
                 </volist>
+
                 </tbody>
             </table>
             <!--<div class="pull-right" style="margin-top:-15px">{$page}</div>-->

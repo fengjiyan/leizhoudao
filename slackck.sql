@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-01-23 05:15:10
+-- Generation Time: 2016-01-24 12:41:28
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -203,7 +203,45 @@ CREATE TABLE IF NOT EXISTS `mr_car` (
 --
 
 INSERT INTO `mr_car` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `car`) VALUES
-(112, '蔡先生', 0, '广之通包车开始预订了', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '汽车', '个人', '供电门口', '天上飞', '广之通包车开始预订了广之通包车开始预订了广之通包车开始预订了广之通包车开始预订了广之通包车开始预订了广之通包车开始预订了', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '乡镇', 7, '1');
+(112, '蔡先生', 0, '广之通包车开始预订了', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '汽车', '个人', '供电门口', '天上飞', '广之通包车开始预订了广之通包车开始预订了广之通包车开始预订了广之通包车开始预订了广之通包车开始预订了广之通包车开始预订了', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '乡镇', 10, '1');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mr_chang`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_chang` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `chang` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
+
+--
+-- 转存表中的数据 `mr_chang`
+--
+
+INSERT INTO `mr_chang` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `chang`) VALUES
+(112, '蔡先生', 0, '我是一个批发运货公司', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '水管', '公司', '某村口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '白沙', 17, '1');
 
 -- --------------------------------------------------------
 
@@ -474,7 +512,47 @@ INSERT INTO `mr_dianmian` (`id`, `area`, `category`, `sub_cateid`, `title`, `use
 (84, '附城', '服装', '内衣装', '我是标题测试4_3', 'slackck', 303, '商家', '93', '冯先生', '15812403463', '', '的丰盛的实得分实得分3', '雷州市南兴镇3', './Public/Uploads/2016-01-04/568a6039af87a.jpg', '', 1451899273, 1451909177, 1451899273, 1, '0.0.0.0', 0, 0, '1'),
 (85, '海康城区', '鞋|包|箱', '女鞋', '我是标题测试888', 'slackck', 234, '商家', '44', '冯先生', '15812403464', '', '地方实得分实得分实得分', '雷州市南兴镇4', './Public/Uploads/2016-01-04/568a67fda10d9.jpg', '', 1451910395, 1451911165, 1451899273, 0, '0.0.0.0', 0, 1, '1'),
 (86, '企水', '鞋|包|箱', '女鞋', '我是标题测试5', 'slackck', 235, '商家', '45', '冯先生', '15512403425', '', '的发的说法实得分的说法', '雷州市南兴镇5', './Public/Uploads/2016-01-04/568a6d3cbfc58.jpg', '', 1451912508, 1451912508, 1451899273, 1, '0.0.0.0', 0, 12, '1'),
-(164, '南兴', '百货|批发', '生活常用品', '世纪家养殖舱开业了,期待你的光临哦', '天上飞', 40, '商家', '56', '陈国', '13487975888', '', '世纪家养殖舱开业了,期待你的光临哦', '雷州杨家 ', './Public/Uploads/2016-01-18/569c562e0d85f.jpg', '', 1452177698, 1453086254, 1453691054, 0, '0.0.0.0', 127, 6, '1');
+(164, '南兴', '百货|批发', '生活常用品', '世纪家养殖舱开业了,期待你的光临哦', '天上飞', 40, '商家', '56', '陈国', '13487975888', '', '世纪家养殖舱开业了,期待你的光临哦', '雷州杨家 ', './Public/Uploads/2016-01-18/569c562e0d85f.jpg', '', 1452177698, 1453086254, 1453691054, 0, '0.0.0.0', 127, 7, '1');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mr_dianqi`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_dianqi` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `dianqi` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=115 ;
+
+--
+-- 转存表中的数据 `mr_dianqi`
+--
+
+INSERT INTO `mr_dianqi` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `dianqi`) VALUES
+(112, '蔡先生', 0, '美的空调器开张了', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '厨房电器', '中介', '供电门口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '乡镇', 14, '1'),
+(113, '冯先生', 0, '格力空调电器开张了', './Public/Uploads/2016-01-24/56a4458672a6b.jpg', '厨房电器', '商家', '南兴村 ', '天上飞', '有块农村土地出卖有块农村土地出卖有块农村土地出卖有块农村土地出卖', '15346878783', 'fengioaoyg', 1453606278, 1453611185, 1454215985, '面议 ', '', 0, '农村', 4, '1'),
+(114, '陈小姐', 0, '苏宁电器开张了', './Public/Uploads/2016-01-24/56a471e57310d.jpg', '办公设备', '个人', '雷州市附城小学对面', '天上飞', '苏宁电器开张了苏宁电器开张了苏宁电器开张了', '15812403465', 'fengioaoyg', 1453617637, 1453617637, 1456209637, '面议', '', 0, '附城', 4, '1');
 
 -- --------------------------------------------------------
 
@@ -507,6 +585,45 @@ INSERT INTO `mr_diyflag` (`diyflag_id`, `diyflag_value`, `diyflag_name`, `diyfla
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `mr_edu`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_edu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `edu` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
+
+--
+-- 转存表中的数据 `mr_edu`
+--
+
+INSERT INTO `mr_edu` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `edu`) VALUES
+(112, '蔡先生', 0, '雷州电脑老店开店了', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '电脑培训', '个人', '某村口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '白沙', 16, '1'),
+(115, '冯先生', 0, '高考在学，成绩猛进', './Public/Uploads/2016-01-24/56a48b037a55e.jpg', '高考复读班', '个人', '南兴村', '天上飞', '我的水果店开张了我的水果店开张了', '15812403465', 'fengioaoyg', 1453624067, 1453624067, 1458808067, '120元/位', '', 0, '客路', 1, '1');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `mr_email`
 --
 
@@ -526,6 +643,83 @@ INSERT INTO `mr_email` (`id`, `name`, `url`) VALUES
 (2, '163', 'http://mail.163.com'),
 (3, '126', 'http://mail.126.com'),
 (4, 'yeah', 'http://mail.yeah.net');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mr_farm`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_farm` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `farm` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
+
+--
+-- 转存表中的数据 `mr_farm`
+--
+
+INSERT INTO `mr_farm` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `farm`) VALUES
+(112, '蔡先生', 0, '雷州粮食厂老店开张了', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '粮食', '个人', '某村口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '白沙', 18, '1'),
+(115, '冯先生', 0, '福成蔬菜批发', './Public/Uploads/2016-01-24/56a48b037a55e.jpg', '水果', '个人', '南兴村', '天上飞', '我的水果店开张了我的水果店开张了', '15812403465', 'fengioaoyg', 1453624067, 1453624067, 1458808067, '120元/位', '', 0, '客路', 3, '1');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mr_food`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_food` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `food` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=115 ;
+
+--
+-- 转存表中的数据 `mr_food`
+--
+
+INSERT INTO `mr_food` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `food`) VALUES
+(112, '蔡先生', 0, '雷州酸菜老店开张了', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '酸菜', '个人', '某村口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '白沙', 14, '1');
 
 -- --------------------------------------------------------
 
@@ -566,6 +760,83 @@ CREATE TABLE IF NOT EXISTS `mr_happy` (
 INSERT INTO `mr_happy` (`id`, `linker`, `status`, `title`, `pic`, `identity`, `size`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `object`, `price`, `ip`, `recycle`, `area`, `hits`, `happy`) VALUES
 (108, '陈小姐', 0, '我的理发店开张了，新客户打8折优惠了', './Public/Uploads/2016-01-22/56a1a28886bd2.jpg', '商家', 60, '雷州市附城小学对面', '天上飞', '我的理发店开张了，新客户打8折优惠了我的理发店开张了，新客户打8折优惠了我的理发店开张了，新客户打8折优惠了我的理发店开张了，新客户打8折优惠了我的理发店开张了，新客户打8折优惠了', '15346878783', 'fengioaoyg', 1453433480, 1453433480, 0, '理发店', '面议', '', 0, '附城', 19, '1'),
 (110, '蔡先生', 0, '我店有结婚小车出租', './Public/Uploads/2016-01-22/56a2206a7630c.jpg', '公司', 100, '雷州城区', '天上飞', '我店有结婚小车出租我店有结婚小车出租我店有结婚小车出租我店有结婚小车出租我店有结婚小车出租我店有结婚小车出租', '15346878783', 'feflglol', 1453465706, 1453465706, 1456057706, '结婚小车', '面议', '', 0, '海康城区', 3, '1');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mr_house`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_house` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `house` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=114 ;
+
+--
+-- 转存表中的数据 `mr_house`
+--
+
+INSERT INTO `mr_house` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `house`) VALUES
+(112, '蔡先生', 0, '雷州城区房子出租了，价格低', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '出租房', '中介', '供电门口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '乡镇', 14, '1'),
+(113, '冯先生', 0, '有块农村土地出卖，欢迎咨询', './Public/Uploads/2016-01-24/56a4458672a6b.jpg', '地皮|土地', '商家', '南兴村 ', '天上飞', '有块农村土地出卖有块农村土地出卖有块农村土地出卖有块农村土地出卖', '15346878783', 'fengioaoyg', 1453606278, 1453611185, 1454215985, '面议 ', '', 0, '农村', 3, '1');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mr_jiaju`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_jiaju` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `jiaju` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
+
+--
+-- 转存表中的数据 `mr_jiaju`
+--
+
+INSERT INTO `mr_jiaju` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `jiaju`) VALUES
+(112, '蔡先生', 0, '雷州府城家居8折优惠了', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '家居', '公司', '某村口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '白沙', 18, '1');
 
 -- --------------------------------------------------------
 
@@ -621,7 +892,7 @@ INSERT INTO `mr_marry` (`id`, `real_name`, `status`, `title`, `pic`, `income`, `
 (91, '陈雯', 0, '我想找个爱我的男人', './Public/Uploads/2016-01-17/569b5e71cf0fb.jpg', '3000', 45, '牛座', '会计', '162', '50', '上网，看书，交友', '大专', '广州番禺', '天上飞', '我想找个爱我的男人我想找个爱我的男人', '15812403465', '846199647', 'fengjiyan', 1453022833, 1453022833, 1454318833, '美女', '', 0, 0, '海康城区', 0, '1'),
 (93, '宋萍', 0, '想找个女人结婚，无诚勿扰', './Public/Uploads/2016-01-17/569b7f10569b8.jpg', '3000', 19, '摩羯座', '电脑销售', '162', '56', '上网、看书、交友', '大专', '广州番禺', '天上飞', '想找个女人结婚想找个女人结婚想找个女人结婚', '15812403465', '8461', 'fengjiyan', 1453031184, 1453086472, 1454382472, '帅哥', '', 0, 0, '海康城区', 13, '1'),
 (102, '冯妹', 0, '真心找个爱我的老公，你还在等什么', './Public/Uploads/2016-01-18/569c5a739bbf5.jpg', '3000', 27, '牛座', '摩托车修理', '162', '48', '上网，看书，交友', '大专', '商家', '天上飞', '真心找个结婚的男人真心找个结婚的男人真心找个结婚的男人真心找个结婚的男人真心找个结婚的男人', '13812403435', '6787787855', 'fengjiyan', 1453085201, 1453087347, 1453692147, '美女', '', 0, 0, '海康城区', 1, '1'),
-(103, '冯妹', 0, '真心找个爱我的老公，你是吗', './Public/Uploads/2016-01-18/569c548b4fb29.jpg', '3000', 27, '牛座', '摩托车修理', '162', '48', '上网，看书，交友', '大专', '商家', '天上飞', '真心找个结婚的男人真心找个结婚的男人真心找个结婚的男人真心找个结婚的男人真心找个结婚的男人', '13812403435', '6787787855', 'fengjiyan', 1453085309, 1453086064, 1453690864, '美女', '', 0, 0, '海康城区', 5, '1');
+(103, '冯妹', 0, '真心找个爱我的老公，你是吗', './Public/Uploads/2016-01-18/569c548b4fb29.jpg', '3000', 27, '牛座', '摩托车修理', '162', '48', '上网，看书，交友', '大专', '商家', '天上飞', '真心找个结婚的男人真心找个结婚的男人真心找个结婚的男人真心找个结婚的男人真心找个结婚的男人', '13812403435', '6787787855', 'fengjiyan', 1453085309, 1453086064, 1453690864, '美女', '', 0, 0, '海康城区', 6, '1');
 
 -- --------------------------------------------------------
 
@@ -816,6 +1087,45 @@ CREATE TABLE IF NOT EXISTS `mr_plug_linktype` (
 INSERT INTO `mr_plug_linktype` (`plug_linktype_id`, `plug_linktype_name`, `plug_linktype_order`) VALUES
 (1, '首页', '1'),
 (11, '新闻中心', '50');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mr_recruit`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_recruit` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `recruit` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
+
+--
+-- 转存表中的数据 `mr_recruit`
+--
+
+INSERT INTO `mr_recruit` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `recruit`) VALUES
+(112, '蔡先生', 0, '雷州电脑老店招聘了', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '电脑培训', '公司', '某村口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '白沙', 17, '1'),
+(115, '冯先生', 0, 'php招老师了', './Public/Uploads/2016-01-24/56a48b037a55e.jpg', '高考复读班', '个人', '南兴村', '天上飞', '我的水果店开张了我的水果店开张了', '15812403465', 'fengioaoyg', 1453624067, 1453624067, 1458808067, '120元/位', '', 0, '客路', 3, '1');
 
 -- --------------------------------------------------------
 
@@ -4250,6 +4560,44 @@ INSERT INTO `mr_region` (`id`, `pid`, `name`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `mr_sea`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_sea` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `sea` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=115 ;
+
+--
+-- 转存表中的数据 `mr_sea`
+--
+
+INSERT INTO `mr_sea` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `sea`) VALUES
+(112, '蔡先生', 0, '海鲜开张了', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '贝', '商家', '某村口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '白沙', 16, '1');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `mr_sys`
 --
 
@@ -4312,6 +4660,44 @@ INSERT INTO `mr_we_menu` (`we_menu_id`, `we_menu_name`, `we_menu_leftid`, `we_me
 (6, '二级菜单', 4, 1, '', 1, 50),
 (7, '三级菜单', 5, 1, '', 1, 50),
 (8, '联系我们', 1, 1, '', 1, 50);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mr_xiju`
+--
+
+CREATE TABLE IF NOT EXISTS `mr_xiju` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `linker` char(20) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `type` char(10) NOT NULL,
+  `manage` char(10) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `phone` char(50) NOT NULL,
+  `weixin` varchar(50) NOT NULL,
+  `add_time` int(10) NOT NULL,
+  `update_time` int(10) NOT NULL,
+  `expire` int(10) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `ip` char(15) NOT NULL,
+  `recycle` tinyint(1) NOT NULL,
+  `area` char(10) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `xiju` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
+
+--
+-- 转存表中的数据 `mr_xiju`
+--
+
+INSERT INTO `mr_xiju` (`id`, `linker`, `status`, `title`, `pic`, `type`, `manage`, `address`, `user_name`, `content`, `phone`, `weixin`, `add_time`, `update_time`, `expire`, `price`, `ip`, `recycle`, `area`, `hits`, `xiju`) VALUES
+(112, '蔡先生', 0, '雷州专业戏剧预约中', './Public/Uploads/2016-01-23/56a2f4856b512.jpg', '专业班', '公司', '某村口', '天上飞', '雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低雷州城区房子出租了，价格低', '15346878783', 'fengioaoyg', 1453520005, 1453520005, 1454816005, '120元/位', '', 0, '白沙', 19, '1');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

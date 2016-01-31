@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class MarryController extends Controller {
+class MarryController extends HeadController {
     public function index($table = 'marry'){
         R('Store/index',array($table));
     }

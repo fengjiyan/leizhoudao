@@ -8,7 +8,7 @@
             <nav class="wrapnav songti">
                 <assign name="lz_area" value="$Think.config.lz_area"/>
                 <volist name="lz_area" id="lz_areas">
-                    <a href="__MODULE__/Store/?ar={$lz_areas}" <if condition="$Think.get.ar eq $lz_areas">class="orange-active"</if>>{$lz_areas}</a>
+                    <a href="__APP__/Store/?ar={$lz_areas}" <if condition="$Think.get.ar eq $lz_areas">class="orange-active"</if>>{$lz_areas}</a>
                 </volist>
             </nav>
         </section>
@@ -24,7 +24,7 @@
                 </span>
                 <span class="pull-left" id="bigname">
                     <volist name="column" id="column">
-                    <a href="__MODULE__/Store/?ar={$Think.get.ar}&bf={$column.column_name}&xf={$Think.get.xf}&ty={$Think.get.ty}&tm={$Think.get.tm}" <if condition="$Think.get.bf eq $column['column_name']">class="orange-active"</if>>{$column.column_name}</a>
+                    <a href="__APP__/Store/?ar={$Think.get.ar}&bf={$column.column_name}&xf={$Think.get.xf}&ty={$Think.get.ty}&tm={$Think.get.tm}" <if condition="$Think.get.bf eq $column['column_name']">class="orange-active"</if>>{$column.column_name}</a>
                     </volist>
                 </span>
             </div>
@@ -35,7 +35,7 @@
             </span>
             <span class="pull-left">
                 <volist name="sub_column" id="sub_column">
-                    <a href="__MODULE__/Store/?ar={$Think.get.ar}&bf={$Think.get.bf}&xf={$sub_column.column_name}&ty={$Think.get.ty}&tm={$Think.get.tm}" <if condition="$Think.get.xf eq $sub_column['column_name']">class="orange-active"</if>>{$sub_column.column_name}</a>
+                    <a href="__APP__/Store/?ar={$Think.get.ar}&bf={$Think.get.bf}&xf={$sub_column.column_name}&ty={$Think.get.ty}&tm={$Think.get.tm}" <if condition="$Think.get.xf eq $sub_column['column_name']">class="orange-active"</if>>{$sub_column.column_name}</a>
                 </volist>
             </span>
             </div>
@@ -50,7 +50,7 @@
                 <span class="pull-left">
                       <assign name="room_type" value="$Think.config.room_type"/>
                       <volist name="room_type" id="type">
-                          <a href="__MODULE__/Store/?ar={$Think.get.ar}&bf={$Think.get.bf}&xf={$Think.get.xf}&ty={$type}&tm={$Think.get.tm}" <if condition="$Think.get.ty eq $type">class="orange-active"</if>>{$type}</a>
+                          <a href="__APP__/Store/?ar={$Think.get.ar}&bf={$Think.get.bf}&xf={$Think.get.xf}&ty={$type}&tm={$Think.get.tm}" <if condition="$Think.get.ty eq $type">class="orange-active"</if>>{$type}</a>
                       </volist>
                 </span>
             </div>
@@ -61,7 +61,7 @@
                 <span class="pull-left list-count">
                        <assign name="w_time" value="$Think.config.w_time"/>
                         <volist name="w_time" id="w_times">
-                            <a href="__MODULE__/Store/?ar={$Think.get.ar}&bf={$Think.get.bf}&xf={$Think.get.xf}&ty={$Think.get.ty}&tm={$w_times}" <if condition="$Think.get.tm eq $w_times">class="orange-active"</if>>{$w_times}</a>
+                            <a href="__APP__/Store/?ar={$Think.get.ar}&bf={$Think.get.bf}&xf={$Think.get.xf}&ty={$Think.get.ty}&tm={$w_times}" <if condition="$Think.get.tm eq $w_times">class="orange-active"</if>>{$w_times}</a>
                         </volist>
                 <div>总共 <span class="red font14"><strong>{$count}</strong></span> 条</div>
                 </span>
@@ -81,8 +81,8 @@
                             <time class="text-muted">{$list.add_time|date="Y/m/d",###}<br>有效：<?php
                                 $now = $list['expire']-time();
                                 $day= ceil($now/(3600*24));
-                                if($day<0){
-                                            echo "已过期";
+                                if($day<=0){
+                                echo "已过期";
                                 }else{
                                 echo $day.'天';
                                 }

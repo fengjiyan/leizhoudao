@@ -1,4 +1,5 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+      xmlns="http://www.w3.org/1999/html"/>
 <link href="__PUBLIC__/assets/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="__PUBLIC__/assets/css/mycss.css" />
 <script src="__PUBLIC__/assets/js/jquery.min.js"></script>
@@ -14,56 +15,96 @@
             </div>
             <div class="pull-right head-right">
                 <div>
-                    <button class="btn btn-default pull-left" style="margin-right:30px">切换地区 <span class="caret glyphicon"></span></button>
-                    <form action="" class="form-inline pull-left">
-                        <input type="text" class="form-control" style="width:350px;margin-right: 10px" placeholder="请输入关键字"/>
-                        <button class="btn btn-primary"> <span class="glyphicon glyphicon-search"></span> 搜索</button>
-                    </form>
+                        <li class="dropdown">
+                            <a class="btn btn-default dropdown-toggle pull-left" data-toggle="dropdown" href="javascript:;">切换地区<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li ><a href="">雷州</a></li>
+                                    <li><a href="">湛江</a></li>
+                                    <li><a href="">遂溪</a></li>
+                                </ul>
+                            </a>
+                        </li>
+                        <form  class="form-inline pull-left"  >
+                        <!--<form action="__APP__/Head/search" class="form-inline pull-left" method="get">-->
+                            <div id="search-input">
+                                <input type="text" class="form-control" placeholder="请输入关键字"/>
+                                <div class="search-choice">
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;"><span><if condition="$Think.get.type neq ''">{$Think.get.type}<else/>店铺大全</if></span><span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <volist name="search_column" id="columns">
+                                                <li><a href="javascript:;" title="{$columns.column_name}">{$columns.column_name}</a></li>
+                                            </volist>
+                                        </ul>
+                                    </li>
+                                    <script>
+                                        $(function(){
+                                            var type = $(".search-choice .dropdown span:first-child");
+                                            var input = $("#search-input input");
+                                            $(".search-choice .dropdown-menu li").on("click",function() {
+                                                var col_name = type.text($(this).text());
+                                            });
+
+                                            $("#queryForm").on("click",function(e){
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                window.location.href="__APP__/Head/search?name="+input.val()+"&type="+type.text();
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary"   id="queryForm" style="position:absolute"> <span class="glyphicon glyphicon-search"></span> 搜索</button>
+                        </form>
                     <present name="Think.session.account">
-                        <span class="pull-right">你好： <a href="__MODULE__/User/member"><span class="red">{$Think.session.account}</span></a> 用户 【 <a href="__MODULE__/User/outLogin">退出</a> 】</span>
+                        <span class="pull-right">你好： <a href="__APP__/User/member"><span class="red">{$Think.session.account}</span></a> 用户 【 <a href="__APP__/User/outLogin">退出</a> 】</span>
                         <else/>
-                        <a href="__MODULE__/User/register" class="pull-right"> <span class="glyphicon glyphicon-hand-right"></span> 注册 </a>
-                        <a href="__MODULE__/User/login" class="pull-right" style="margin-right: 14px"><span class="glyphicon glyphicon-user"></span> 登录</a>
+                        <a href="__APP__/User/register" class="pull-right"> <span class="glyphicon glyphicon-hand-right"></span> 注册 </a>
+                        <a href="__APP__/User/login" class="pull-right" style="margin-right: 14px"><span class="glyphicon glyphicon-user"></span> 登录</a>
                     </present>
-                    <a class="btn btn-danger pull-left" href="__MODULE__/Free" style="margin-left:30px"><span class="glyphicon glyphicon-edit"></span> 免费发布</a>
+                    <a class="btn btn-danger pull-left" href="__APP__/Free" style="margin-left:82px"><span class="glyphicon glyphicon-edit"></span> 免费发布</a>
                 </div>
-
-
             </div>
         </div>
         <div class="mynav">
             <ul class="mynav-bg">
                 <li class="active"><a href="/">首页</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Store" <if condition="CONTROLLER_NAME eq 'Store'">class="mynav-active"</if>>店铺大全</a></li>
+                <li><a href="__APP__/Store" <if condition="CONTROLLER_NAME eq 'Store'">class="mynav-active"</if>>店铺大全</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Happy" <if condition="CONTROLLER_NAME eq 'Happy'">class="mynav-active"</if>>喜庆</a></li>
+                <li><a href="__APP__/Happy" <if condition="CONTROLLER_NAME eq 'Happy'">class="mynav-active"</if>>喜庆</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Car" <if condition="CONTROLLER_NAME eq 'Car'">class="mynav-active"</if>>汽车</a></li>
+                <li><a href="__APP__/Car" <if condition="CONTROLLER_NAME eq 'Car'">class="mynav-active"</if>>汽车</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Marry" <if condition="CONTROLLER_NAME eq 'Marry'">class="mynav-active"</if> >相亲</a></li>
+                <li><a href="__APP__/Marry" <if condition="CONTROLLER_NAME eq 'Marry'">class="mynav-active"</if> >相亲</a></li>
                 <div></div>
-                <li><a href="__MODULE__/House" <if condition="CONTROLLER_NAME eq 'House'">class="mynav-active"</if>>房子</a></li>
+                <li><a href="__APP__/House" <if condition="CONTROLLER_NAME eq 'House'">class="mynav-active"</if>>房子</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Dianqi" <if condition="CONTROLLER_NAME eq 'Dianqi'">class="mynav-active"</if>>电器</a></li>
+                <li><a href="__APP__/Dianqi" <if condition="CONTROLLER_NAME eq 'Dianqi'">class="mynav-active"</if>>电器</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Sea" <if condition="CONTROLLER_NAME eq 'Sea'">class="mynav-active"</if>>海鲜</a></li>
+                <li><a href="__APP__/Sea" <if condition="CONTROLLER_NAME eq 'Sea'">class="mynav-active"</if>>海鲜</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Food" <if condition="CONTROLLER_NAME eq 'Food'">class="mynav-active"</if>>美食</a></li>
+                <li><a href="__APP__/Food" <if condition="CONTROLLER_NAME eq 'Food'">class="mynav-active"</if>>美食</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Farm" <if condition="CONTROLLER_NAME eq 'Farm'">class="mynav-active"</if>>农业</a></li>
+                <li><a href="__APP__/Farm" <if condition="CONTROLLER_NAME eq 'Farm'">class="mynav-active"</if>>农业</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Edu" <if condition="CONTROLLER_NAME eq 'Edu'">class="mynav-active"</if>>教育</a></li>
+                <li><a href="__APP__/Edu" <if condition="CONTROLLER_NAME eq 'Edu'">class="mynav-active"</if>>教育</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Recruit" <if condition="CONTROLLER_NAME eq 'Recruit'">class="mynav-active"</if>>招聘</a></li>
+                <li><a href="__APP__/Recruit" <if condition="CONTROLLER_NAME eq 'Recruit'">class="mynav-active"</if>>招聘</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Chang" <if condition="CONTROLLER_NAME eq 'Chang'">class="mynav-active"</if>>厂家/批发/代理商</a></li>
+                <li><a href="__APP__/Chang" <if condition="CONTROLLER_NAME eq 'Chang'">class="mynav-active"</if>>厂家/批发/代理商</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Jiaju" <if condition="CONTROLLER_NAME eq 'Jiaju'">class="mynav-active"</if>>家居</a></li>
+                <li><a href="__APP__/Jiaju" <if condition="CONTROLLER_NAME eq 'Jiaju'">class="mynav-active"</if>>家居</a></li>
                 <div></div>
-                <li><a href="__MODULE__/Xiju" <if condition="CONTROLLER_NAME eq 'Xiju'">class="mynav-active"</if>>雷州剧</a></li>
+                <li><a href="__APP__/Xiju" <if condition="CONTROLLER_NAME eq 'Xiju'">class="mynav-active"</if>>雷州剧</a></li>
                 <div></div>
-                <li class="pull-right"><a href="javascript:void(0)">更多 <span class="glyphicon glyphicon-th-list"></span></a></li>
+                <li class="pull-right dropdown"><a href="javascript:void(0)" data-toggle="dropdown">更多 <span class="glyphicon glyphicon-th-list"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="">七星彩梦册</a></li>
+                        <li><a href="">最新活动专区</a></li>
+                        <li><a href="">其他信息</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

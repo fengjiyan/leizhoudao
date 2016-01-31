@@ -14,20 +14,20 @@
           <!--echo  $bl = $list['column_name'];-->
         <!--?>-->
         <ul>
-            <li><a href="__MODULE__/Free/?cid=2" <if condition="$Think.get.cid eq ''">class="white-active"</if><if condition="$Think.get.cid eq 2">class="white-active"</if>>店铺面</a></li>
-            <li><a href="__MODULE__/Free/?cid=4" <if condition="$Think.get.cid eq 4">class="white-active"</if>>喜庆</a></li>
-            <li><a href="__MODULE__/Free/?cid=5" <if condition="$Think.get.cid eq 5">class="white-active"</if>>汽车</a></li>
-            <li><a href="__MODULE__/Free/?cid=6" <if condition="$Think.get.cid eq 6">class="white-active"</if>>相亲</a></li>
-            <li><a href="__MODULE__/Free/?cid=7" <if condition="$Think.get.cid eq 7">class="white-active"</if>>房子</a></li>
-            <li><a href="__MODULE__/Free/?cid=8" <if condition="$Think.get.cid eq 8">class="white-active"</if>>电器</a></li>
-            <li><a href="__MODULE__/Free/?cid=9" <if condition="$Think.get.cid eq 9">class="white-active"</if>>海鲜</a></li>
-            <li><a href="__MODULE__/Free/?cid=11" <if condition="$Think.get.cid eq 11">class="white-active"</if>>美食</a></li>
-            <li><a href="__MODULE__/Free/?cid=12" <if condition="$Think.get.cid eq 12">class="white-active"</if>>农业</a></li>
-            <li><a href="__MODULE__/Free/?cid=13" <if condition="$Think.get.cid eq 13">class="white-active"</if>>教育</a></li>
-            <li><a href="__MODULE__/Free/?cid=163" <if condition="$Think.get.cid eq 163">class="white-active"</if>>招聘</a></li>
-            <li><a href="__MODULE__/Free/?cid=31" <if condition="$Think.get.cid eq 31">class="white-active"</if>>厂家/批发/代理商</a></li>
-            <li><a href="__MODULE__/Free/?cid=15" <if condition="$Think.get.cid eq 15">class="white-active"</if>>家居</a></li>
-            <li><a href="__MODULE__/Free/?cid=154" <if condition="$Think.get.cid eq 154">class="white-active"</if>>雷州剧</a></li>
+            <li><a href="__APP__/Free/?cid=2" <if condition="$Think.get.cid eq ''">class="white-active"</if><if condition="$Think.get.cid eq 2">class="white-active"</if>>店铺面</a></li>
+            <li><a href="__APP__/Free/?cid=4" <if condition="$Think.get.cid eq 4">class="white-active"</if>>喜庆</a></li>
+            <li><a href="__APP__/Free/?cid=5" <if condition="$Think.get.cid eq 5">class="white-active"</if>>汽车</a></li>
+            <li><a href="__APP__/Free/?cid=6" <if condition="$Think.get.cid eq 6">class="white-active"</if>>相亲</a></li>
+            <li><a href="__APP__/Free/?cid=7" <if condition="$Think.get.cid eq 7">class="white-active"</if>>房子</a></li>
+            <li><a href="__APP__/Free/?cid=8" <if condition="$Think.get.cid eq 8">class="white-active"</if>>电器</a></li>
+            <li><a href="__APP__/Free/?cid=9" <if condition="$Think.get.cid eq 9">class="white-active"</if>>海鲜</a></li>
+            <li><a href="__APP__/Free/?cid=11" <if condition="$Think.get.cid eq 11">class="white-active"</if>>美食</a></li>
+            <li><a href="__APP__/Free/?cid=12" <if condition="$Think.get.cid eq 12">class="white-active"</if>>农业</a></li>
+            <li><a href="__APP__/Free/?cid=13" <if condition="$Think.get.cid eq 13">class="white-active"</if>>教育</a></li>
+            <li><a href="__APP__/Free/?cid=163" <if condition="$Think.get.cid eq 163">class="white-active"</if>>招聘</a></li>
+            <li><a href="__APP__/Free/?cid=31" <if condition="$Think.get.cid eq 31">class="white-active"</if>>厂家/批发/代理商</a></li>
+            <li><a href="__APP__/Free/?cid=15" <if condition="$Think.get.cid eq 15">class="white-active"</if>>家居</a></li>
+            <li><a href="__APP__/Free/?cid=154" <if condition="$Think.get.cid eq 154">class="white-active"</if>>雷州剧</a></li>
         </ul>
     </div>
     <div class="write-cn">
@@ -42,20 +42,20 @@
          //共用一级栏目
          foreach($list as $vo){
             $name1 = $vo['column_name'];
-            echo "<a href='__MODULE__/Free/?cid=$cid&bl=$name1'>".$name1."</a>";
+            echo "<a href='__APP__/Free/?cid=$cid&bl=$name1'>".$name1."</a>";
         }
     }
     if(!empty($bl) and $cid==2 and empty($sl)){
         //店铺二级栏目
         foreach($sub_column as $vo){
         $name2 = $vo['column_name'];
-        echo "<a href='__MODULE__/Free/?cid=$cid&bl=$bl&sl=$name2'>".$name2."</a>";
+        echo "<a href='__APP__/Free/?cid=$cid&bl=$bl&sl=$name2'>".$name2."</a>";
         }
     }
     if(!empty($bl) and $cid==2 and !empty($sl)){
         //店铺三级栏目--地区
         foreach($lz_area as $vo){
-            echo "<a href='__MODULE__/Store/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Store/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }
     }
 
@@ -63,117 +63,117 @@
     $user_name = session('account');
     if(!empty($bl) and $cid==4){
         if(!isset($user_name)){
-            echo "<script>window.location.href='__MODULE__/User/login';</script>";
+            echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
             foreach($lz_area as $vo){
-            echo "<a href='__MODULE__/Happy/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Happy/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//喜庆
     }
 
     if(!empty($bl) and $cid==5){
         if(!isset($user_name)){
-            echo "<script>window.location.href='__MODULE__/User/login';</script>";
+            echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($xl_area as $vo){
-            echo "<a href='__MODULE__/Car/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Car/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//汽车
    }
 
     if(!empty($bl) and $cid==6){
         if(!isset($user_name)){
-            echo "<script>window.location.href='__MODULE__/User/login';</script>";
+            echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($xl_area as $vo){
-            echo "<a href='__MODULE__/Marry/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Marry/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//相亲
     }
 
     if(!empty($bl) and $cid==7){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($xl_area as $vo){
-            echo "<a href='__MODULE__/House/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/House/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//房子
     }
 
     if(!empty($bl) and $cid==8){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($lz_area as $vo){
-            echo "<a href='__MODULE__/Dianqi/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Dianqi/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//电器
     }
 
     if(!empty($bl) and $cid==9){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($lz_area as $vo){
-            echo "<a href='__MODULE__/Sea/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Sea/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//海鲜
     }
 
     if(!empty($bl) and $cid==11){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($lz_area as $vo){
-            echo "<a href='__MODULE__/Food/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Food/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//美食
     }
 
     if(!empty($bl) and $cid==12){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($lz_area as $vo){
-            echo "<a href='__MODULE__/Farm/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Farm/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//农业
     }
 
     if(!empty($bl) and $cid==13){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($lz_area as $vo){
-            echo "<a href='__MODULE__/Edu/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Edu/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//教育
     }
 
     if(!empty($bl) and $cid==163){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($xl_area as $vo){
-            echo "<a href='__MODULE__/Recruit/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Recruit/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//招聘
     }
 
     if(!empty($bl) and $cid==31){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($xl_area as $vo){
-            echo "<a href='__MODULE__/Chang/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Chang/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//厂家/批发/代理商
     }
 
     if(!empty($bl) and $cid==15){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($lz_area as $vo){
-            echo "<a href='__MODULE__/Jiaju/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Jiaju/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//家居
     }
     if(!empty($bl) and $cid==154){
         if(!isset($user_name)){
-        echo "<script>window.location.href='__MODULE__/User/login';</script>";
+        echo "<script>window.location.href='__APP__/User/login';</script>";
         }else{
         foreach($xl_areas as $vo){
-            echo "<a href='__MODULE__/Xiju/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
+            echo "<a href='__APP__/Xiju/write?cid=$cid&bl=$bl&sl=$sl&ar=$vo'>".$vo."</a>";
         }}//雷州戏剧
     }
 

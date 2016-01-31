@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class JiajuController extends Controller {
+class JiajuController extends HeadController {
     public function index($table = 'jiaju'){
         R('Store/index',array($table));
     }

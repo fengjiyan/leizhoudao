@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class CarController extends Controller {
+class CarController extends HeadController {
     public function index($table = 'car'){
         R('Store/index',array($table));
     }

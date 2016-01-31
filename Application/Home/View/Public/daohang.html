@@ -19,7 +19,7 @@
 	}
 
 ?>
-<span class="glyphicon glyphicon-home"></span> <a href="__APP__">首页</a> / <a href='__MODULE__/Free/?cid={$Think.get.cid}'>发布<?php echo $name;?></a>
-/ <if condition="$Think.get.bl neq ''"><a href='__MODULE__/Free/?cid={$Think.get.cid}&bl={$Think.get.bl}'>{$Think.get.bl}</a> / <else/></if>
-<if condition="$Think.get.sl neq ''"><a href='__MODULE__/Free/?cid={$Think.get.cid}&bl={$Think.get.bl}&sl={$Think.get.sl}'>{$Think.get.sl}</a> / <else/></if>
-<if condition="$Think.get.ar neq ''"><a href='__MODULE__/Free/?cid={$Think.get.cid}&bl={$Think.get.bl}&sl={$Think.get.sl}&ar={$Think.get.ar}'>{$Think.get.ar}</a>地区<else/></if>
+<span class="glyphicon glyphicon-home"></span> <a href="__APP__">首页</a> / <a href='__APP__/Free/?cid={$Think.get.cid}'>发布<?php echo $name;?></a>
+/ <if condition="$Think.get.bl neq ''"><a href='__APP__/Free/?cid={$Think.get.cid}&bl={$Think.get.bl}'>{$Think.get.bl}</a> / <else/></if>
+<if condition="$Think.get.sl neq ''"><a href='__APP__/Free/?cid={$Think.get.cid}&bl={$Think.get.bl}&sl={$Think.get.sl}'>{$Think.get.sl}</a> / <else/></if>
+<if condition="$Think.get.ar neq ''"><a href='__APP__/Free/?cid={$Think.get.cid}&bl={$Think.get.bl}&sl={$Think.get.sl}&ar={$Think.get.ar}'>{$Think.get.ar}</a>地区<else/></if>

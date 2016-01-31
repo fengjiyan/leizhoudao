@@ -3,19 +3,31 @@ namespace Home\Controller;
 use Think\Controller;
 
 
-class UserController extends Controller {
+class UserController extends HeadController {
     private $_member_list = null;
     private $_dianmian = null;
+    private $_happy = null;
     private $_marry = null;
+    private $_house = null;
+    private $_car = null;
+    private $_dianqi = null;
+    private $_sea = null;
+    private $_food = null;
+    private $_farm = null;
+    private $_edu = null;
+    private $_recruit = null;
+    private $_chang = null;
+    private $_jiaju = null;
+    private $_xiju = null;
     //控制器初始化方法
     public function _initialize(){
-        //parent::_initialize();
+        parent::_initialize();
         $this->_member_list = M('member_list');
         $this->_dianmian = M('dianmian');
         $this->_happy = M('happy');
+        $this->_car = M('car');
         $this->_marry = M('marry');
         $this->_house = M('house');
-        $this->_car = M('car');
         $this->_dianqi = M('dianqi');
         $this->_sea = M('sea');
         $this->_food = M('food');
@@ -31,28 +43,24 @@ class UserController extends Controller {
     public function writeInfo(){
         $user_name = session('account');
         $condition['user_name']= $user_name;
-        $count_dianmian      = $this->_dianmian->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_car      = $this->_car->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_happy      = $this->_happy->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_house      = $this->_house->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_marry      = $this->_marry->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_dianqi      = $this->_dianqi->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_sea      = $this->_sea->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_food      = $this->_food->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_farm      = $this->_food->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_edu      = $this->_edu->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_recruit      = $this->_recruit->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_chang      = $this->_chang->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_jiaju      = $this->_jiaju->where($condition)->count('id');// 查询满足要求的总记录数
-        $count_xiju      = $this->_xiju->where($condition)->count('id');// 查询满足要求的总记录数
-        $count = M()->field('id')
-            ->table('mr_dianmian')->where($condition)
-            ->union(array("SELECT count(id) FROM mr_happy where user_name ='$user_name'", "SELECT count(id) FROM mr_car where user_name ='$user_name'", "SELECT count(id)  FROM mr_marry where user_name ='$user_name'"),true)
-            ->select();
+        $count_dianmian      = $this->_dianmian->where($condition)->count('id');
+        $count_car      = $this->_car->where($condition)->count('id');
+        $count_happy      = $this->_happy->where($condition)->count('id');
+        $count_house      = $this->_house->where($condition)->count('id');
+        $count_marry      = $this->_marry->where($condition)->count('id');
+        $count_dianqi      = $this->_dianqi->where($condition)->count('id');
+        $count_sea      = $this->_sea->where($condition)->count('id');
+        $count_food      = $this->_food->where($condition)->count('id');
+        $count_farm      = $this->_food->where($condition)->count('id');
+        $count_edu      = $this->_edu->where($condition)->count('id');
+        $count_recruit      = $this->_recruit->where($condition)->count('id');
+        $count_chang      = $this->_chang->where($condition)->count('id');
+        $count_jiaju      = $this->_jiaju->where($condition)->count('id');
+        $count_xiju      = $this->_xiju->where($condition)->count('id');
+        //$count=M()->field('id')->union(array("SELECT count(id) FROM mr_happy where user_name ='$user_name'","SELECT count(id) FROM mr_car where user_name ='$user_name'", "SELECT count(id)  FROM mr_marry where user_name ='$user_name'"),true)->select();
         //echo M()->_sql();
-        //var_dump(count($count));
-        //$count      = $count_dm + $count_hp  + $count_car + $count_mr;// 查询满足要求的总记录数
-        $Page       = new \Think\Page($count,3);// 实例化分页类 传入总记录数和每页显示的记录数
+        $count      = $count_dianmian + $count_car  + $count_happy + $count_house + $count_marry + $count_dianqi + $count_sea + $count_food + $count_farm + $count_edu + $count_recruit + $count_chang + $count_jiaju + $count_xiju;
+        $Page       = new \Think\Page($count,3);
         //$show       = $Page->show();// 分页显示输出
         $list_dianmian = $this->_dianmian->where(array('user_name'=>$user_name))->order('add_time desc')->field('id,title,category,area,sub_cateid,status,expire,add_time,dianmian')->select();
         $list_happy = $this->_happy->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,object,area,status,expire,add_time,happy')->select();
@@ -96,7 +104,8 @@ class UserController extends Controller {
     }
     public function updateMember(){
         header("Content-Type:text/html; charset=utf-8");
-        $sl_data = $_POST;
+        $sl_data = $this->_member_list->creat();
+        //$sl_data = $_POST;
         $sl_data['member_list_addtime']=time();
         $sl_data['member_list_ip']=get_client_ip();
         $data = $this->_member_list->where(array('member_list_username' => session('account')))->save($sl_data);
@@ -127,25 +136,33 @@ class UserController extends Controller {
         }
 
     }
+
+    public function mySay(){
+       $user_name = session('account');
+        $count = M("say")->where(array('user_name' => $user_name))->count('id');// 查询满足要求的总记录数
+        $list = M("say")->where(array('user_name' => $user_name))->select();
+        $this->assign('count',$count);
+        $this->assign('list',$list);
+        $this->display('my-say');
+    }
     public function doLogin(){
         header("Content-Type:text/html; charset=utf-8");
         $auto = $_POST['auto_login'];
         if(isset($auto)){
-            setcookie('user','bai',time()*60*60*24*7);//7天后过期
+            setcookie('user','bai',time() + 60*60*24*30);//30天后过期
         }else{
-            setcookie('user','bai',time()*60*60*24*3);//1小时后过期
+            setcookie('user','bai',time() + 60*60*24);//1小时后过期
         }
-//        setcookie("account", $auto, time() + 3600*7);
         $username = $_POST['member_username'];
         $pwd = md5($_POST['member_pwd']);
         $update_logintime['member_list_logintime'] = time();
-        $list1 = $this->_member_list->where(array('member_list_username' => $username, 'member_list_pwd' => $pwd))->find();
-        $list2 = $this->_member_list->where(array('member_list_tel' => $username, 'member_list_pwd' => $pwd))->find();
-        $list3 = $this->_member_list->where(array('member_list_email' => $username, 'member_list_pwd' => $pwd))->find();
+        $list1 = $this->_member_list->where(array('member_list_username' => $username, 'member_list_pwd' => $pwd))->find();//用户名
+        $list2 = $this->_member_list->where(array('member_list_tel' => $username, 'member_list_pwd' => $pwd))->find();//电话号码
+        $list3 = $this->_member_list->where(array('member_list_email' => $username, 'member_list_pwd' => $pwd))->find();//邮箱
         if($list1){
             if(!($list1['member_list_status']) == 1){
-//                echo "<script>alert('账号还没激活，请及时激活！');</script>";
-                $this->error('账号还没激活，请及时激活！');
+                //echo "<script>alert('账号还没激活，请及时激活！');</script>";
+                $this->error('账号还没激活，请及时激活或者联系管理员');
             }else{
                 session('account', $list1['member_list_username']);
                 session('member_list_logintime', $list1['member_list_logintime']);
@@ -153,14 +170,14 @@ class UserController extends Controller {
 
         }else if($list2){
             if(!($list2['member_list_status']) == 1){
-                $this->error('账号还没激活，请及时激活！');
+                $this->error('账号还没激活，请及时激活或者联系管理员');
             }else{
                 session('account', $list2['member_list_username']);
                 session('member_list_logintime', $list2['member_list_logintime']);
             }
         }else if($list3){
             if(!($list3['member_list_status']) == 1){
-                $this->error('账号还没激活，请及时激活或者联系管理员！');
+                $this->error('账号还没激活，请及时激活或者联系管理员');
             }else{
                 session('account', $list3['member_list_username']);
                 session('member_list_logintime', $list3['member_list_logintime']);
@@ -171,13 +188,14 @@ class UserController extends Controller {
         $dest_url = $_POST['log_referer'];
         $str = explode('/', $dest_url);
         if(in_array('registerAdd.html', $str)){
-            $dest_url = __APP__."/Home/User/member";
+            $dest_url = __APP__."/User/member";
         }
-        $dest_url = empty($dest_url)? __APP__."/Home/User/member" : $dest_url;
+        $dest_url = empty($dest_url)? __APP__."/User/member" : $dest_url;
         $tager = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'];
         if ($dest_url == $tager) {
             redirect($tager);
         }else{
+
             redirect($dest_url);
         }
     }
@@ -199,7 +217,7 @@ class UserController extends Controller {
         $data['member_list_groupid'] = 1;
         $list = $this->_member_list -> add($data);
         if($list){
-            $this->success('注册成功',U("Home/User/register"),1);exit;
+            $this->success('注册成功',U("User/register"),1);exit;
             $list = $this->_member_list->where("member_list_username='$username'")->find();
             session('account',$list['member_list_username']);
             session('member_list_logintime',$list['member_list_logintime']);
@@ -232,7 +250,7 @@ class UserController extends Controller {
             if(!$mail->send()) {
                 $this->error('邮件发送失败，稍后重试: '. $mail->ErrorInfo,'',3);
             } else {
-                $this->success('邮箱已发送请注意查收,激活后请刷新页面',U("Home/User/login"),3);
+                $this->success('邮箱已发送请注意查收,激活后请刷新页面',U("User/login"),3);
             }
         }else{
             $this->error('系统繁忙，请稍后重试');
@@ -379,7 +397,7 @@ class UserController extends Controller {
             if (!$mail->send()) {
                 $this->error('邮件发送失败，稍后重试: ' . $mail->ErrorInfo, '', 3);
             } else {
-                $this->success('邮箱已发送请注意查收,激活后请刷新页面', U("Home/User/login"), 3);
+                $this->success('邮箱已发送请注意查收,激活后请刷新页面', U("User/login"), 3);
             }
 
         }else{

@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class SeaController extends Controller {
+class SeaController extends HeadController {
     public function index($table = 'sea'){
         R('Store/index',array($table));
     }

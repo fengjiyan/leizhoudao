@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class ChangController extends Controller {
+class ChangController extends HeadController {
     public function index($table = 'chang'){
         R('Store/index',array($table));
     }

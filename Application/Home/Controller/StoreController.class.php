@@ -1,13 +1,13 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class StoreController extends Controller {
+class StoreController extends HeadController {
     private $_column = null;
     //控制器初始化方法
     public function _initialize(){
-        //parent::_initialize();
+        parent::_initialize();
         $this->_column = M('column');
-        // $this->header();
+       // $this->head();
 
     }
     public function index($table = 'dianmian', $module = CONTROLLER_NAME){
@@ -20,7 +20,7 @@ class StoreController extends Controller {
             case 'Farm'   : $bf = '农业';break;
             case 'Edu'    : $bf = '教育';break;
             case 'Recruit': $bf = '招聘';break;
-            case 'Chang'  : $bf = '厂家|批发|代理商';break;
+            case 'Chang'  : $bf = '厂|批发|代';break;
             case 'Jiaju'  : $bf = '家居';break;
             case 'Xiju'   : $bf = '雷州剧';break;
         }
@@ -364,10 +364,20 @@ class StoreController extends Controller {
     }
 
     public function detail($table='dianmian'){
-        $id = $_GET['id'];
-        $list = M("$table")->where(array('id='.$id))->find();
+        $id = I('id');
+        $list = M("$table")->where(array('id' => $id))->find();
+        $count = M("say")->where(array('article_id' => $id))->count('id');// 查询满足要求的总记录数
+        $say = M("say")->where(array('article_id' => $id, 'article_title'=>$list['title']))->select();
+        if($table=='farm' || $table=='recruit' || $table=='chang'){
+            $rand = M("$table")->limit(8)->order('rand()')->select();
+        }else{
+            $rand = M("$table")->limit(4)->order('rand()')->select();
+        }
         M("$table")->where(array('id'=>$id))->setInc('hits',1);
+        $this->assign('count', $count);
+        $this->assign('say', $say);
         $this->assign('list', $list);
+        $this->assign('rand', $rand);
         $this->display('detail');
     }
 
@@ -375,6 +385,7 @@ class StoreController extends Controller {
         $id = $_GET['id'];
         $list = M("$table")->where(array('id='.$id))->delete();
         if($list){
+
             $this->redirect('Home/User/writeInfo');
         }else{
             $this->error('系统繁忙，请稍后重试');

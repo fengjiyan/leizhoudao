@@ -1,0 +1,70 @@
+<div class="clearfix"></div>
+<div class="content-detail-info content-detail-noborder" id="say">
+	<span class="pull-left">用户评论</span>
+	<span class="pull-right font14"><a href="javascript:;">全部评论</a>（<strong class="red">{$count}</strong>）条</span>
+</div>
+<if condition="!empty($say)">
+<volist name="say" id="vo">
+<div class="content-msg">
+	<img class="pull-left" src="__ROOT__/public/uploads/User-photo/{$vo.photo}"/>
+	<span class="pull-left">
+		<span class="text-muted">{$vo.user_name}用户</span>
+		<p>{$vo.content}</p>
+	</span>
+	<time class="pull-right text-muted">
+		{$vo.add_time|date='Y/m/d H:i', ###}
+	</time>
+</div>
+</volist>
+	<else/>
+	<p style="margin-top: 13px">暂时没有评论~</p>
+</if>
+<form id="contact" class="form-horizontal" method="post" action="__APP__/Head/sayAdd"/>
+<input name="id" type="hidden" value="{$Think.get.id}"/>
+<input name="article_title" type="hidden" value="{$list.title}"/>
+<input name="href" type="hidden" value="<?php echo $_SERVER['PATH_INFO'];?>" />
+<input type="hidden" name="score"  value=""  id="is_good"/>
+<div class="msg-write">
+	<textarea id="content" name="content" cols="141" rows="3" placeholder="先登录，后发表"></textarea>
+</div>
+<p class="text-right">
+	<a href="__APP__/User/register">现在注册</a> | <a href="__APP__/User/forget">忘记密码？</a> <if condition="$Think.session.account eq ''"><button class="btn btn-warning" disabled type="submit">发布</button><else/><button class="btn btn-warning" type="submit">发布</button></if>
+</p>
+<script type="text/javascript" src="__PUBLIC__/assets/js/jquery.form.js"></script>
+<script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+<script>
+	$(function(){
+		$('#contact').ajaxForm({
+			beforeSubmit: checkForm,
+			success: complete,
+			dataType: 'json'
+		});
+		function checkForm(){
+			if( '' == $.trim($('#content').val())){
+				layer.alert('评论内容不能为空', {icon: 6}, function(index){
+					layer.close(index);
+					$('#content').focus();
+				});
+				return false;
+			}
+		}
+		function complete(data){
+			var $id= "{$Think.get.id}";
+			if(data.status==1){
+				layer.alert(data.info, {icon: 6}, function(index){
+					layer.close(index);
+					$('#content').val('');
+                    window.location.reload();
+//					window.location.href=data.url;
+				});
+				return false;
+			}else{
+				layer.alert(data.info, {icon: 6}, function(index){
+					layer.close(index);
+					window.location.href=data.url;
+				});
+				return false;
+			}
+		}
+	});
+</script>

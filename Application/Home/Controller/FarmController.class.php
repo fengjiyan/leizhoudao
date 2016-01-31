@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class FarmController extends Controller {
+class FarmController extends HeadController {
     public function index($table = 'farm'){
         R('Store/index',array($table));
     }

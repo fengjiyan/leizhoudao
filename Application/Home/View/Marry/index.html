@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>相亲列表页--雷州半岛网站</title>
     <include file='Public:header' />
-    <section class="container" style="margin-top: 15px">
+    <section class="container" style="margin-top: 12px">
         <include file='Public:left-side' />
         <aside class="pull-right list-rt songti font12 marrr-wrap">
             <div class="list-daohang">
@@ -17,7 +17,7 @@
                 <span class="pull-left">
                       <assign name="marry_range" value="$Think.config.marry_range"/>
                       <volist name="marry_range" id="marry_ranges">
-                          <a href="__MODULE__/Marry/?ars={$marry_ranges}&bfs={$Think.get.bfs}&xfs={$Think.get.xfs}&tms={$Think.get.tms}" <if condition="$Think.get.ars eq $marry_ranges">class="orange-active"</if>>{$marry_ranges}</a>
+                          <a href="__APP__/Marry/?ars={$marry_ranges}&bfs={$Think.get.bfs}&xfs={$Think.get.xfs}&tms={$Think.get.tms}" <if condition="$Think.get.ars eq $marry_ranges">class="orange-active"</if>>{$marry_ranges}</a>
                       </volist>
                 </span>
             </div>
@@ -28,7 +28,7 @@
                 <span class="pull-left">
                       <assign name="marry_area" value="$Think.config.marry_area"/>
                       <volist name="marry_area" id="marry_areas">
-                          <a href="__MODULE__/Marry/?ars={$Think.get.ars}&bfs={$marry_areas}&xfs={$Think.get.xfs}&tms={$Think.get.tms}" <if condition="$Think.get.bfs eq $marry_areas">class="orange-active"</if>>{$marry_areas}</a>
+                          <a href="__APP__/Marry/?ars={$Think.get.ars}&bfs={$marry_areas}&xfs={$Think.get.xfs}&tms={$Think.get.tms}" <if condition="$Think.get.bfs eq $marry_areas">class="orange-active"</if>>{$marry_areas}</a>
                       </volist>
                 </span>
             </div>
@@ -39,7 +39,7 @@
                 <span class="pull-left">
                        <assign name="marry_age" value="$Think.config.marry_age"/>
                         <volist name="marry_age" id="marry_ages">
-                            <a href="__MODULE__/Marry/?ars={$Think.get.ars}&bfs={$Think.get.bfs}&xfs={$marry_ages}&tms={$Think.get.tms}" <if condition="$Think.get.xfs eq $marry_ages">class="orange-active"</if>>{$marry_ages}</a>
+                            <a href="__APP__/Marry/?ars={$Think.get.ars}&bfs={$Think.get.bfs}&xfs={$marry_ages}&tms={$Think.get.tms}" <if condition="$Think.get.xfs eq $marry_ages">class="orange-active"</if>>{$marry_ages}</a>
                         </volist>
                 </span>
             </div>
@@ -50,7 +50,7 @@
                 <span class="pull-left list-count">
                        <assign name="w_time" value="$Think.config.w_time"/>
                         <volist name="w_time" id="w_times">
-                            <a href="__MODULE__/Marry/?ars={$Think.get.ars}&bfs={$Think.get.bfs}&xfs={$Think.get.xfs}&tms={$w_times}" <if condition="$Think.get.tms eq $w_times">class="orange-active"</if>>{$w_times}</a>
+                            <a href="__APP__/Marry/?ars={$Think.get.ars}&bfs={$Think.get.bfs}&xfs={$Think.get.xfs}&tms={$w_times}" <if condition="$Think.get.tms eq $w_times">class="orange-active"</if>>{$w_times}</a>
                         </volist>
                 <div>总共 <span class="red font14"><strong>{$count}</strong></span> 条</div>
                 </span>
@@ -69,8 +69,8 @@
                             <time class="text-muted">{$list.add_time|date="Y/m/d",###}<br>有效：<?php
                                 $now = $list['expire']-time();
                                 $day= ceil($now/(3600*24));
-                                if($day<0){
-                                            echo "已过期";
+                                if($day<=0){
+                                echo "已过期";
                                 }else{
                                 echo $day.'天';
                                 }

@@ -17,7 +17,7 @@
             <span class="pull-left" style="width:90%">
             <assign name="lz_area" value="$Think.config.lz_area"/>
             <volist name="lz_area" id="car_areas">
-                <a href="__MODULE__/Dianqi?ar={$car_areas}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.ar eq $car_areas">class="orange-active"</if>>{$car_areas}</a>
+                <a href="__APP__/Dianqi?ar={$car_areas}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.ar eq $car_areas">class="orange-active"</if>>{$car_areas}</a>
             </volist>
             </span>
             </div>
@@ -28,7 +28,7 @@
                 <span class="pull-left">
                      <assign name="room_type" value="$Think.config.room_type"/>
                 <volist name="room_type" id="marry_areas">
-                    <a href="__MODULE__/Dianqi?ar={$Think.get.ar}&tys={$marry_areas}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.tys eq $marry_areas">class="orange-active"</if>>{$marry_areas}</a>
+                    <a href="__APP__/Dianqi?ar={$Think.get.ar}&tys={$marry_areas}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.tys eq $marry_areas">class="orange-active"</if>>{$marry_areas}</a>
                 </volist>
                 </span>
             </div>
@@ -38,7 +38,7 @@
                 </span>
                 <span class="pull-left">
                     <volist name="sub_column" id="marry_ages">
-                        <a href="__MODULE__/Dianqi?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$marry_ages['column_name']}&tms={$Think.get.tms}" <if condition="$Think.get.tp eq $marry_ages['column_name']">class="orange-active"</if>>{$marry_ages.column_name}</a>
+                        <a href="__APP__/Dianqi?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$marry_ages['column_name']}&tms={$Think.get.tms}" <if condition="$Think.get.tp eq $marry_ages['column_name']">class="orange-active"</if>>{$marry_ages.column_name}</a>
                     </volist>
                 </span>
             </div>
@@ -49,7 +49,7 @@
                 <span class="pull-left list-count">
                        <assign name="w_time" value="$Think.config.w_time"/>
                         <volist name="w_time" id="w_times">
-                            <a href="__MODULE__/Dianqi?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$w_times}" <if condition="$Think.get.tms eq $w_times">class="orange-active"</if>>{$w_times}</a>
+                            <a href="__APP__/Dianqi?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$w_times}" <if condition="$Think.get.tms eq $w_times">class="orange-active"</if>>{$w_times}</a>
                         </volist>
                 <div>总共 <span class="red font14"><strong>{$count}</strong></span> 条</div>
                 </span>
@@ -69,8 +69,8 @@
                             <time class="text-muted">{$list.add_time|date="Y/m/d",###}<br>有效：<?php
                                 $now = $list['expire']-time();
                                 $day= ceil($now/(3600*24));
-                                if($day<0){
-                                            echo "已过期";
+                                if($day<=0){
+                                echo "已过期";
                                 }else{
                                 echo $day.'天';
                                 }

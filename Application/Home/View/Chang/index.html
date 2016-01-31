@@ -17,7 +17,7 @@
             <span class="pull-left" style="width:90%">
             <assign name="marry_area" value="$Think.config.marry_area"/>
             <volist name="marry_area" id="car_areas">
-                <a href="__MODULE__/Chang?ar={$car_areas}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.ar eq $car_areas">class="orange-active"</if>>{$car_areas}</a>
+                <a href="__APP__/Chang?ar={$car_areas}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.ar eq $car_areas">class="orange-active"</if>>{$car_areas}</a>
             </volist>
             </span>
             </div>
@@ -26,9 +26,9 @@
                     <strong>经营对象：</strong>
                 </span>
                 <span class="pull-left">
-                     <assign name="edu_type" value="$Think.config.edu_type"/>
-                <volist name="edu_type" id="marry_areas">
-                    <a href="__MODULE__/Chang?ar={$Think.get.ar}&tys={$marry_areas}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.tys eq $marry_areas">class="orange-active"</if>>{$marry_areas}</a>
+                     <assign name="room_type" value="$Think.config.room_type"/>
+                <volist name="room_type" id="marry_areas">
+                    <a href="__APP__/Chang?ar={$Think.get.ar}&tys={$marry_areas}&tp={$Think.get.tp}&tms={$Think.get.tms}" <if condition="$Think.get.tys eq $marry_areas">class="orange-active"</if>>{$marry_areas}</a>
                 </volist>
                 </span>
             </div>
@@ -38,7 +38,7 @@
                 </span>
                 <span class="pull-left">
                     <volist name="sub_column" id="marry_ages">
-                        <a href="__MODULE__/Chang?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$marry_ages['column_name']}&tms={$Think.get.tms}" <if condition="$Think.get.tp eq $marry_ages['column_name']">class="orange-active"</if>>{$marry_ages.column_name}</a>
+                        <a href="__APP__/Chang?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$marry_ages['column_name']}&tms={$Think.get.tms}" <if condition="$Think.get.tp eq $marry_ages['column_name']">class="orange-active"</if>>{$marry_ages.column_name}</a>
                     </volist>
                 </span>
             </div>
@@ -49,7 +49,7 @@
                 <span class="pull-left list-count">
                        <assign name="w_time" value="$Think.config.w_time"/>
                         <volist name="w_time" id="w_times">
-                            <a href="__MODULE__/Chang?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$w_times}" <if condition="$Think.get.tms eq $w_times">class="orange-active"</if>>{$w_times}</a>
+                            <a href="__APP__/Chang?ar={$Think.get.ar}&tys={$Think.get.tys}&tp={$Think.get.tp}&tms={$w_times}" <if condition="$Think.get.tms eq $w_times">class="orange-active"</if>>{$w_times}</a>
                         </volist>
                 <div>总共 <span class="red font14"><strong>{$count}</strong></span> 条</div>
                 </span>
@@ -68,14 +68,14 @@
                             <tbody>
                             <volist name="list" id="list">
                                 <tr class="songti">
-                                    <td class="text-muted">·<a href="{:U('Farm/detail',array('id' => $list['id']))}" target="_blank" title="{$list.title}">{$list.title|msubstr=0,30,'utf-8',true}</a></td>
+                                    <td class="text-muted">·<a href="{:U('Recruit/detail',array('id' => $list['id']))}" target="_blank" title="{$list.title}">{$list.title|msubstr=0,30,'utf-8',true}</a></td>
                                     <td class="text-muted">{$list.category}{$list.object}{$list.type}<if condition="$list.sub_cateid neq ''">/<else/></if>{$list.sub_cateid}</td>
                                     <td class="text-muted">{$list.area}</td>
                                     <td class="text-muted"><span class="green">
                             <?php
                                 $now = $list['expire']-time();
                                 $day= ceil($now/(3600*24));
-                                if($day<0){
+                                if($day<=0){
                                     echo "<span class='red'>已过期</span>";
                                         }else{
                                         echo $day.'天';
@@ -86,7 +86,6 @@
                             </volist>
                             </tbody>
                         </table>
-                        <!--<div class="pull-right" style="margin-top:-15px">{$page}</div>-->
                     </div>
                     <else/>
                     <p>此栏目暂时没有数据了!</p>

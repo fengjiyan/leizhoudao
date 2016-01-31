@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class DianqiController extends Controller {
+class DianqiController extends HeadController {
     public function index($table = 'dianqi'){
         R('Store/index',array($table));
     }

@@ -1,8 +1,8 @@
 <?php
 return array(
     //分组设置
-        'APP_GROUP_LIST' => 'Home,Admin', //项目分组设定
-        'DEFAULT_GROUP'  => 'Admin', //默认分组
+		'MODULE_ALLOW_LIST'    =>    array('Home','Admin'),
+		//'DEFAULT_MODULE'       =>    'Home',
         'URL_MODEL' => 2,
         'DB_TYPE'   => 'mysql', // 数据库类型
         'DB_HOST'   => 'localhost', // 数据库连接地址
@@ -13,6 +13,7 @@ return array(
         'DB_PREFIX' => 'mr_', // 数据库前缀
         'DB_CHARSET'=> 'utf8', // 数据库编码
         'DB_DEBUG'  =>  TRUE, // 是否开启调试模式
+		//'URL_ROUTER_ON'   => true, //开启路由
         'DB_LIKE_FIELDS'=>'news_title|news_content|news_flag|news_open',//自动模糊查询字段
         'LOAD_EXT_CONFIG' => 'sdk_config',//扩展第三方登录配置文件
 

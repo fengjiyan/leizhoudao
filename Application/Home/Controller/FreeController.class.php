@@ -1,13 +1,13 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class FreeController extends Controller {
+class FreeController extends HeadController {
     private $_column = null;
     private $_dianmian = null;
     private $_marr = null;
     //控制器初始化方法
     public function _initialize(){
-        //parent::_initialize();
+        parent::_initialize();
         $this->_column = M('column');
         $this->_dianmian = M('dianmian');
         $this->_marry = M('marry');
