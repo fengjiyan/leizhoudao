@@ -4,6 +4,15 @@ use Think\Controller;
 class HeadController extends Controller {
     public function _initialize(){
         $this->_column = M('column');
+        $this->_dianmian = M('dianmian');
+        $this->_happy = M('happy');
+        $this->_car = M('car');
+        $list_top=M()->query("SELECT union_type,id,title,add_time FROM(SELECT 1 AS union_type,c.id,c.title,c.add_time,c.attr FROM mr_dianmian c UNION SELECT 2,dhy.id,dhy.title,dhy.add_time,dhy.attr FROM mr_happy dhy UNION SELECT 3,h.id,h.title,h.add_time,h.attr FROM mr_car h UNION SELECT 4,ma.id,ma.title,ma.add_time,ma.attr FROM mr_marry ma UNION SELECT 5,ho.id,ho.title,ho.add_time,ho.attr FROM mr_house ho UNION SELECT 6,dq.id,dq.title,dq.add_time,dq.attr FROM mr_dianqi dq UNION SELECT 7,se.id,se.title,se.add_time,se.attr FROM mr_sea se UNION SELECT 8,fo.id,fo.title,fo.add_time,fo.attr FROM mr_food fo UNION SELECT 9,fa.id,fa.title,fa.add_time,fa.attr FROM mr_farm fa UNION SELECT 10,ed.id,ed.title,ed.add_time,ed.attr FROM mr_edu ed UNION SELECT 11,ri.id,ri.title,ri.add_time,ri.attr FROM mr_recruit ri UNION SELECT 12,ch.id,ch.title,ch.add_time,ch.attr FROM mr_chang ch UNION SELECT 13,ji.id,ji.title,ji.add_time,ji.attr FROM mr_jiaju ji UNION SELECT 14,xj.id,xj.title,xj.add_time,xj.attr FROM mr_xiju xj) ta
+WHERE ta.attr = 1 ORDER BY ta.add_time desc LIMIT 10");
+        $list_new=M()->query("SELECT union_type,id,title,add_time FROM(SELECT 1 AS union_type,c.id,c.title,c.add_time,c.attr FROM mr_dianmian c UNION SELECT 2,dhy.id,dhy.title,dhy.add_time,dhy.attr FROM mr_happy dhy UNION SELECT 3,h.id,h.title,h.add_time,h.attr FROM mr_car h UNION SELECT 4,ma.id,ma.title,ma.add_time,ma.attr FROM mr_marry ma UNION SELECT 5,ho.id,ho.title,ho.add_time,ho.attr FROM mr_house ho UNION SELECT 6,dq.id,dq.title,dq.add_time,dq.attr FROM mr_dianqi dq UNION SELECT 7,se.id,se.title,se.add_time,se.attr FROM mr_sea se UNION SELECT 8,fo.id,fo.title,fo.add_time,fo.attr FROM mr_food fo UNION SELECT 9,fa.id,fa.title,fa.add_time,fa.attr FROM mr_farm fa UNION SELECT 10,ed.id,ed.title,ed.add_time,ed.attr FROM mr_edu ed UNION SELECT 11,ri.id,ri.title,ri.add_time,ri.attr FROM mr_recruit ri UNION SELECT 12,ch.id,ch.title,ch.add_time,ch.attr FROM mr_chang ch UNION SELECT 13,ji.id,ji.title,ji.add_time,ji.attr FROM mr_jiaju ji UNION SELECT 14,xj.id,xj.title,xj.add_time,xj.attr FROM mr_xiju xj) tas
+ ORDER BY tas.add_time desc LIMIT 10");
+        $this->assign("listvo",$list_top);
+        $this->assign("listnew",$list_new);
         $search_column =  $this->_column->where(array('column_leftid' => 1))->order('c_id')->select();
         $this->assign('search_column',$search_column);// 赋值数据集
     }

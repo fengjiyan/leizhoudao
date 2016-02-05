@@ -22,6 +22,10 @@ class CarController extends HeadController {
         R('Store/updateStroe',array($table, $width = 184, $height= 234));
     }
 
+    public function write(){
+        R('Store/write');
+    }
+
     public function detail($table='car'){
           R('Store/detail',array($table));
     }

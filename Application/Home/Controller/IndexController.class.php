@@ -2,42 +2,51 @@
 namespace Home\Controller;
 use Think\Controller;
 
+class IndexController extends HeadController {
+    private $_column = null;
+    private $_dianmian = null;
+    //控制器初始化方法
+    public function _initialize(){
+        parent::_initialize();
+        $this->_column = M('column');
+        $this->_dianmian = M('dianmian');
+        $this->_friend = M('plug_link');
 
-class IndexController extends Controller {
-
+    }
     public function index(){
-//    	if (empty($_COOKIE['aid'])){
-//    		$this->redirect('Login/login');
-//    	}
-    	$news=M('news');
-    	$info = array(
-    			'PCTYPE'=>PHP_OS,
-    			'RUNTYPE'=>$_SERVER["SERVER_SOFTWARE"],
-    			'ONLOAD'=>ini_get('upload_max_filesize'),
-    			'ThinkPHPTYE'=>THINK_VERSION,
-    	);
-    	
-    	$start=strtotime(date('Y-m-01 00:00:00'));
-		$end = strtotime(date('Y-m-d H:i:s'));
-		$data['news_time'] = array('between',array($start,$end));
-		$news_list=$news->where($data)->order('news_hits desc')->limit(0,8)->select();//热门文章排行
-		$news_count=$news->count();//总文章数
-		$this->assign('news_count',$news_count);
-		
-		$today=strtotime(date('Y-m-d 00:00:00'));//今天开始日期
-		$todata['news_time'] = array('egt',$today);
-		$tonews_count=$news->where($todata)->count();//今日发表文章数
-		$this->assign('tonews_count',$tonews_count);
-		
-		$ztday=strtotime(date('Y-m-d 00:00:00'))-60*60*24;//昨天开始日期
-		$ztdata['news_time'] = array('between',array($ztday,$today));
-		$ztnews_count=$news->where($ztdata)->count();//总文章数
-		$this->assign('ztnews_count',$ztnews_count);
-		$difday=($tonews_count-$ztnews_count)/$ztnews_count*100;//今日与昨日的差
-		$this->assign('difday',$difday);
-		
-		$this->assign('info',$info);
-		$this->assign('news_list',$news_list);
+        $list =  $this->_dianmian->order('add_time')->field("id,title,describe,pic")->limit(8)->select();
+        $link =  $this->_friend->order('plug_link_id')->field("plug_link_id,plug_link_name,plug_link_url")->select();
+        $dpcolumn = $this->_column->where(array('column_leftid' => 2))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//店铺大全
+        $xqscolumn = $this->_column->where(array('column_leftid' => 4))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//喜庆
+        $qccolumn = $this->_column->where(array('column_leftid' => 5))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//汽车
+        $xqcolumn = $this->_column->where(array('column_leftid' => 6))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//相亲
+        $fzcolumn = $this->_column->where(array('column_leftid' => 7))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//房子
+        $dqcolumn = $this->_column->where(array('column_leftid' => 8))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//电器
+        $hxcolumn = $this->_column->where(array('column_leftid' => 9))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//海鲜
+        $mscolumn = $this->_column->where(array('column_leftid' => 11))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//美食
+        $nycolumn = $this->_column->where(array('column_leftid' => 12))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//农业
+        $jycolumn = $this->_column->where(array('column_leftid' => 13))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//教育
+        $zpcolumn = $this->_column->where(array('column_leftid' => 163))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//招聘
+        $cjcolumn = $this->_column->where(array('column_leftid' => 31))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//厂家/批发/代理商
+        $jjcolumn = $this->_column->where(array('column_leftid' => 15))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//家居
+        $lzjcolumn = $this->_column->where(array('column_leftid' => 154))->order("c_id asc")->field("c_id,column_name,column_leftid")->select();//雷州剧
+        //var_dump($sub_column);
+        $this->assign("dlist",$list);
+        $this->assign("link",$link);
+        $this->assign("dpcolumn",$dpcolumn);
+        $this->assign("xqscolumn",$xqscolumn);
+        $this->assign("qccolumn",$qccolumn);
+        $this->assign("xqcolumn",$xqcolumn);
+        $this->assign("fzcolumn",$fzcolumn);
+        $this->assign("dqcolumn",$dqcolumn);
+        $this->assign("hxcolumn",$hxcolumn);
+        $this->assign("mscolumn",$mscolumn);
+        $this->assign("nycolumn",$nycolumn);
+        $this->assign("jycolumn",$jycolumn);
+        $this->assign("zpcolumn",$zpcolumn);
+        $this->assign("cjcolumn",$cjcolumn);
+        $this->assign("jjcolumn",$jjcolumn);
+        $this->assign("lzjcolumn",$lzjcolumn);
 		$this->display();
     }
 

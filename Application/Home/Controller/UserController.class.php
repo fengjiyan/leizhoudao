@@ -43,45 +43,39 @@ class UserController extends HeadController {
     public function writeInfo(){
         $user_name = session('account');
         $condition['user_name']= $user_name;
-        $count_dianmian      = $this->_dianmian->where($condition)->count('id');
-        $count_car      = $this->_car->where($condition)->count('id');
-        $count_happy      = $this->_happy->where($condition)->count('id');
-        $count_house      = $this->_house->where($condition)->count('id');
-        $count_marry      = $this->_marry->where($condition)->count('id');
-        $count_dianqi      = $this->_dianqi->where($condition)->count('id');
-        $count_sea      = $this->_sea->where($condition)->count('id');
-        $count_food      = $this->_food->where($condition)->count('id');
-        $count_farm      = $this->_food->where($condition)->count('id');
-        $count_edu      = $this->_edu->where($condition)->count('id');
-        $count_recruit      = $this->_recruit->where($condition)->count('id');
-        $count_chang      = $this->_chang->where($condition)->count('id');
-        $count_jiaju      = $this->_jiaju->where($condition)->count('id');
-        $count_xiju      = $this->_xiju->where($condition)->count('id');
-        //$count=M()->field('id')->union(array("SELECT count(id) FROM mr_happy where user_name ='$user_name'","SELECT count(id) FROM mr_car where user_name ='$user_name'", "SELECT count(id)  FROM mr_marry where user_name ='$user_name'"),true)->select();
-        //echo M()->_sql();
-        $count      = $count_dianmian + $count_car  + $count_happy + $count_house + $count_marry + $count_dianqi + $count_sea + $count_food + $count_farm + $count_edu + $count_recruit + $count_chang + $count_jiaju + $count_xiju;
-        $Page       = new \Think\Page($count,3);
+        $count=M()->query("SELECT count(id) as count FROM(SELECT 1 AS union_type,c.id,c.user_name FROM mr_dianmian c UNION SELECT 2,dhy.id,dhy.user_name FROM mr_happy dhy UNION SELECT 3,h.id,h.user_name FROM mr_car h UNION SELECT 4,ma.id,ma.user_name FROM mr_marry ma UNION SELECT 5,ho.id,ho.user_name FROM mr_house ho UNION SELECT 6,dq.id,dq.user_name FROM mr_dianqi dq UNION SELECT 7,se.id,se.user_name FROM mr_sea se UNION SELECT 8,fo.id,fo.user_name FROM mr_food fo UNION SELECT 9,fa.id,fa.user_name FROM mr_farm fa UNION SELECT 10,ed.id,ed.user_name FROM mr_edu ed UNION SELECT 11,ri.id,ri.user_name FROM mr_recruit ri UNION SELECT 12,ch.id,ch.user_name FROM mr_chang ch UNION SELECT 13,ji.id,ji.user_name FROM mr_jiaju ji UNION SELECT 14,xj.id,xj.user_name FROM mr_xiju xj) ta
+WHERE ta.user_name = '$user_name'");
+        //$Page       = new \Think\Page($count,4);;
         //$show       = $Page->show();// 分页显示输出
-        $list_dianmian = $this->_dianmian->where(array('user_name'=>$user_name))->order('add_time desc')->field('id,title,category,area,sub_cateid,status,expire,add_time,dianmian')->select();
-        $list_happy = $this->_happy->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,object,area,status,expire,add_time,happy')->select();
-        $list_car = $this->_car->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,manage,area,status,expire,add_time,car')->select();
-        $list_marry = $this->_marry->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,object,area,status,expire,add_time,marry')->select();
-        $list_house = $this->_house->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,house')->select();
-        $list_dianqi = $this->_dianqi->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,dianqi')->select();
-        $list_sea = $this->_sea->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,sea')->select();
-        $list_food = $this->_food->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,food')->select();
-        $list_farm = $this->_farm->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,farm')->select();
-        $list_edu = $this->_edu->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,edu')->select();
-        $list_recruit = $this->_recruit->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,recruit')->select();
-        $list_chang = $this->_chang->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,chang')->select();
-        $list_jiaju = $this->_jiaju->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,jiaju')->select();
-        $list_xiju = $this->_xiju->where(array('user_name'=>$user_name)) ->order('add_time desc')->field('id,title,type,area,status,expire,add_time,xiju')->select();
-        $list = array_merge($list_dianmian,$list_happy,$list_car,$list_marry,$list_house,$list_dianqi,$list_sea,$list_food,$list_farm,$list_edu,$list_recruit,$list_chang,$list_jiaju,$list_xiju);
+        $list=M()->query("SELECT union_type,id,title,add_time,user_name,area,status,expire,type FROM(SELECT 1 AS union_type,c.id,c.title,c.add_time,c.user_name,c.area,c.status,c.expire,c.type FROM mr_dianmian c UNION SELECT 2,dhy.id,dhy.title,dhy.add_time,dhy.user_name,dhy.area,dhy.status,dhy.expire,dhy.type FROM mr_happy dhy UNION SELECT 3,h.id,h.title,h.add_time,h.user_name,h.area,h.status,h.expire,h.type FROM mr_car h UNION SELECT 4,ma.id,ma.title,ma.add_time,ma.user_name,ma.area,ma.status,ma.expire,ma.type FROM mr_marry ma UNION SELECT 5,ho.id,ho.title,ho.add_time,ho.user_name,ho.area,ho.status,ho.expire,ho.type FROM mr_house ho UNION SELECT 6,dq.id,dq.title,dq.add_time,dq.user_name,dq.area,dq.status,dq.expire,dq.type FROM mr_dianqi dq UNION SELECT 7,se.id,se.title,se.add_time,se.user_name,se.area,se.status,se.expire,se.type FROM mr_sea se UNION SELECT 8,fo.id,fo.title,fo.add_time,fo.user_name,fo.area,fo.status,fo.expire,fo.type FROM mr_food fo UNION SELECT 9,fa.id,fa.title,fa.add_time,fa.user_name,fa.area,fa.status,fa.expire,fa.type FROM mr_farm fa UNION SELECT 10,ed.id,ed.title,ed.add_time,ed.user_name,ed.area,ed.status,ed.expire,ed.type FROM mr_edu ed UNION SELECT 11,ri.id,ri.title,ri.add_time,ri.user_name,ri.area,ri.status,ri.expire,ri.type FROM mr_recruit ri UNION SELECT 12,ch.id,ch.title,ch.add_time,ch.user_name,ch.area,ch.status,ch.expire,ch.type FROM mr_chang ch UNION SELECT 13,ji.id,ji.title,ji.add_time,ji.user_name,ji.area,ji.status,ji.expire,ji.type FROM mr_jiaju ji UNION SELECT 14,xj.id,xj.title,xj.add_time,xj.user_name,xj.area,xj.status,xj.expire,xj.type FROM mr_xiju xj) ta
+WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc");
         $this->assign('count',$count);// 赋值数据集
         $this->assign('list',$list);// 赋值数据集
        // $this->assign('page',$show);// 赋值分页输出
         $this->display('write-infos');
     }
+    public static function merge($a='', $b=''){
+        $args = func_get_args();
+        $res = array_shift($args);
+        while (!empty($args)) {
+            $next = array_shift($args);
+            foreach ($next as $k => $v) {
+                if (is_int($k)) {
+                    if (isset($res[$k])) {
+                        $res[] = $v;
+                    } else {
+                        $res[$k] = $v;
+                    }
+                } elseif (is_array($v) && isset($res[$k]) && is_array($res[$k])) {
+                    $res[$k] = self::merge($res[$k], $v);
+                } else {
+                    $res[$k] = $v;
+                }
+            }
+        }
+        return $res;
+    }
+
     public function member(){
         $name = session('account');
         if (!isset($name)) {

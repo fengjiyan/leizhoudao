@@ -23,17 +23,8 @@
                 <div class="form-group">
                     <label for="name" class="control-label">汽车类型</label>
                     <select name="type">
-                        <assign name="car_type" value="$Think.config.car_type"/>
-                        <volist name="car_type" id="lz_areas">
-                            <option value="{$lz_areas}" <if condition="$Think.get.ar eq $lz_areas">selected="selected"</if> >{$lz_areas}</option>
-                        </volist>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="control-label">汽车信息</label>
-                    <select name="object" id="bigname">
-                        <volist name="alla" id="listsa">
-                            <option value="{$lists.column_name}" <if condition="$list['object'] eq $lists['column_name']">selected="selected"</if> >{$lists.column_name}</option>
+                        <volist name="list" id="lz_areas">
+                            <option value="{$lz_areas.column_name}" <if condition="$Think.get.bl eq $lz_areas['column_name']">selected="selected"</if> >{$lz_areas.column_name}</option>
                         </volist>
                     </select>
                 </div>

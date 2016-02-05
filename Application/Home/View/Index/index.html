@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>雷州岛网站</title>
-    <include file='Public:header' />    <section class="container" style="margin-top:20px">
+    <include file='Public:header' />    <section class="container" style="margin-top:13px">
         <div class="pull-left my-notice">
             <div class="panel panel-default panel-info">
                 <div class="panel-heading font14">
@@ -11,40 +11,45 @@
                 </div>
                 <p class="my-notice-cn songti font12">
                     本网站是服务雷州半岛地区一个发布平台，方便大家，服务于家乡大家为宗旨，欢迎给网站提出宝贵意见！谢谢 <br/>
-                    <span class="pull-right red">admin</span><br/><span class="pull-right">2015.12.9</span>
+                    <span class="pull-right red">admin</span><br/><span class="pull-right">2016.2.3</span>
 
                 </p>
             </div>
             <div class="panel panel-default panel-info my-qq">
-                <a href="#"><img src="__PUBLIC__/assets/img/qq.gif" alt="qq咨询"/></a>
-                <a href="#"><img src="__PUBLIC__/assets/img/weixin.gif" alt="微信咨询"/></a>
+                <a href="javascript:;"><img src="__PUBLIC__/assets/img/qq.gif" alt="qq咨询"/></a>
+                <a href="javascript:;"><img src="__PUBLIC__/assets/img/weixin.gif" alt="微信咨询"/></a>
             </div>
         </div>
         <div class="pull-right">
             <div class="panel panel-default panel-info my-news">
                 <div class="panel-heading font14">
-                    置顶信息 <span class="pull-right"><a href="#" >我要置顶</a></span>
+                    置顶信息 <span class="pull-right"></span>
                 </div>
                 <ul class="list-group my-info-top font12 songti">
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted red" href="#" data-toggle="tooltip" title="出售五菱宏光出售五菱宏光出售五菱宏光出售五菱宏光">出售五菱宏光</a> <span class="pull-right text-muted">12-9</span></li>
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市</a> <span class="pull-right text-muted">12-9</span></li>
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">出售五菱宏光出售五菱宏光</a> <span class="pull-right text-muted">12-9</span></li>
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted green" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市购</a> <span class="pull-right text-muted">12-9</span></li>
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-                    <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市订购</a> <span class="pull-right text-muted">12-9</span></li>
-<!--                    --><?php //for($i = 0;$i<10;$i++) :?>
-<!--                        <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>-->
-<!--                    --><?php //endfor;?>
+                    <volist name="listvo" id="listvo">
+                        <?php
+                           if($listvo['union_type'] == 1){ $href = "__APP__/Store/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 2){ $href = "__APP__/Happy/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 3){ $href = "__APP__/Car/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 4){ $href = "__APP__/Marry/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 5){ $href = "__APP__/House/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 6){ $href = "__APP__/Dianqi/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 7){ $href = "__APP__/Sea/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 8){ $href = "__APP__/Food/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 9){ $href = "__APP__/Farm/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 10){ $href = "__APP__/Edu/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 11){ $href = "__APP__/Recruit/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 12){ $href = "__APP__/Chang/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 13){ $href = "__APP__/Jiaju/detail/id/".$listvo['id'].".html";}
+                           if($listvo['union_type'] == 14){ $href = "__APP__/Xiju/detail/id/".$listvo['id'].".html";}
+                        ?>
+                        <li class="list-group-item" style="border:0;line-height: 15px;">·<a href="<?php echo $href;?>" target="_blank" data-toggle="tooltip" title="{$listvo.title}">{$listvo.title|msubstr=0,15,'utf-8',true}</a> <span class="pull-right text-muted">{$listvo.add_time|date="m/d",###}</span></li>
+                    </volist>
                 </ul>
             </div>
         </div>
         <div class="pull-right">
             <div class="my-showdroppic carousel slide" id="myCarousel">
-<!--            <img src="__PUBLIC__/assets/img/pic1.jpg" alt=""/>-->
                 <ol class="carousel-indicators">
                     <li class="active" data-target="#myCarousel" data-slide-to="0"></li>
                     <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -52,13 +57,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="__PUBLIC__/assets/img/pic1_a.jpg" alt=""/>
+                        <a href="javascript:;"><img src="__PUBLIC__/assets/img/pic1_a.jpg"/></a>
                     </div>
                     <div class="item">
-                        <img src="__PUBLIC__/assets/img/pic2_a.jpg" alt=""/>
+                        <a href="javascript:;"><img src="__PUBLIC__/assets/img/pic2_a.jpg"/></a>
                     </div>
                     <div class="item">
-                        <img src="__PUBLIC__/assets/img/pic3_a.jpg" alt=""/>
+                        <a href="javascript:;"><img src="__PUBLIC__/assets/img/pic3_a.jpg"/></a>
                     </div>
                 </div>
                 <a href="#myCarousel" data-slide="prev" class="carousel-control left">&lsaquo;</a>
@@ -71,252 +76,139 @@
             <h4 class="pull-left my-blue-bg font14">
                 推荐铺面
             </h4>
-            <span class="pull-left songti font12 my-exendnews"><span class="glyphicon glyphicon-volume-up"> </span><strong>推广信息：</strong> <sapn class="red">雷州三元塔12月份免费关看了，欢迎大家光临！</sapn></span>
-            <a class="pull-right" href="#">更多</a>
+            <span class="pull-left songti font12 my-exendnews"><span class="glyphicon glyphicon-volume-up"> </span><strong>推广信息：</strong> <sapn class="red">2016年猴年向大家拜年，恭贺新春！</sapn></span>
+            <a class="pull-right" href="__APP__/Store" target="_blank">更多</a>
         </div>
-        <div class="my-showpic">
-                <ul class="panel-heading">
-                    <?php for($i=0; $i<=6; $i++):?>
+        <div class="my-showpic" >
+            <ul class="panel-heading" style="padding: 0 !important;">
+                <volist name="dlist" id="dlist">
                     <li>
-                        <img src="__PUBLIC__/assets/img/pic2.jpg" data-toggle="tooltip" alt="我是显示完整标题" title="我是显示完整标题我是显示完整标题我是显示完整标题" data-content="右侧的 Popover 中的一些内容"/>
-                        <h4 class="songti font12 text-center my-absolute"><a href="#" title="########">南兴镇国民药材</a></h4>
+                        <a href="{:U('Store/detail',array('id' => $dlist['id']))}" target="_blank" title="{$dlist.title}"><img src="__APP__{$dlist.pic}" data-toggle="tooltip" alt="{$dlist.title}" title="{$dlist.title}" data-content="{$dlist.describe}"/></a>
+                        <h4 class="songti font12 text-center my-absolute"><a href="{:U('Store/detail',array('id' => $dlist['id']))}" target="_blank" title="{$dlist.title}">{$dlist.title|msubstr=0,9,'utf-8',true}</a></h4>
                     </li>
-                    <?php endfor;?>
-                </ul>
+                </volist>
+            </ul>
         </div>
     </section>
-    <section class="container">
-        <div class="pull-left my-marrylf">
-            <div class="text-center my-more">
-                <h4 class="pull-left my-blue-bg font14">
-                    喜庆信息
-                </h4>
-                <a class="pull-right" href="#">更多</a>
-                <span class="pull-right songti font12">
-                    <a href="#">婚纱</a> |
-                    <a href="#">发廊</a> |
-                    <a href="#">租小车</a> |
-                    <a href="#">择吉利日</a> |
-                    <a href="#">其他</a>&nbsp;&nbsp;&nbsp;
-                </span>
-            </div>
-            <div class="my-happy songti font12 my-border-buttom">
-                <div class="pull-left">
-                    <img src="__PUBLIC__/assets/img/pic2.jpg" data-toggle="tooltip" alt="我是显示完整标题" title="南兴新时代灯饰五金店" data-content="售最新电器，五金，水管..."/>
-                    <h4 class="text-center font12"><a href="#">雷州奶茶</a></h4>
-                </div>
-                <ul class="pull-right">
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-            <div class="my-happy songti font12">
-                <div class="pull-left">
-                    <img src="__PUBLIC__/assets/img/pic2.jpg" data-toggle="tooltip" alt="我是显示完整标题" title="我是显示完整标题我是显示完整标题我是显示完整标题" data-content="右侧的 Popover 中的一些内容"/>
-                    <h4 class="text-center font12"><a href="#">雷州奶茶</a></h4>
-                </div>
-                <ul class="pull-right">
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="pull-right my-marryrf">
-            <div class="text-center my-more">
-                <h4 class="pull-left my-blue-bg font14">
-                    酒店信息
-                </h4>
-                <a class="pull-right" href="#">更多</a>
-                <span class="pull-right songti font12">
-                    <a href="#">婚纱</a> |
-                    <a href="#">发廊</a> |
-                    <a href="#">租小车</a> |
-                    <a href="#">择吉利日</a> |
-                    <a href="#">其他</a>&nbsp;&nbsp;&nbsp;
-                </span>
-            </div>
-            <div class="my-happy songti font12 my-border-buttom">
-                <div class="pull-left">
-                    <img src="__PUBLIC__/assets/img/pic2.jpg" data-toggle="tooltip" alt="我是显示完整标题" title="我是显示完整标题我是显示完整标题我是显示完整标题" data-content="右侧的 Popover 中的一些内容"/>
-                    <h4 class="text-center font12"><a href="#">雷州奶茶</a></h4>
-                </div>
-                <ul class="pull-right">
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-            <div class="my-happy songti font12">
-                <div class="pull-left">
-                    <img src="__PUBLIC__/assets/img/pic2.jpg" data-toggle="tooltip" alt="我是显示完整标题" title="我是显示完整标题我是显示完整标题我是显示完整标题" data-content="右侧的 Popover 中的一些内容"/>
-                    <h4 class="text-center font12"><a href="#">雷州奶茶</a></h4>
-                </div>
-                <ul class="pull-right">
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-        </div>
+    <section class="container index-list" style="margin-top:7px">
+        <span class="pull-left"><strong><a href="__APP__/Store" target="_blank">店面大全：</a></strong></span>
+        <span class="pull-left">
+            <volist name="dpcolumn" id="dpcolumn">
+                <a href="__APP__/Store?bf={$dpcolumn.column_name}" target="_blank" title="{$dpcolumn.column_name}">{$dpcolumn.column_name}</a>
+            </volist>
+        </span>
     </section>
-    <div class="container my-adver">
-        <a href="#"><img src="__PUBLIC__/assets/img/ad1.jpg" alt="广告一"/></a>
-    </div>
-    <section class="container" style="margin-top:20px">
-        <div class="pull-left my-marrylf">
-            <div class="text-center my-more">
-                <h4 class="pull-left my-blue-bg font14">
-                    汽车信息
-                </h4>
-                <a class="pull-right" href="#">更多</a>
-                <span class="pull-right songti font12">
-                    <a href="#">婚纱 | </a>
-                    <a href="#">发廊 | </a>
-                    <a href="#">租小车 | </a>
-                    <a href="#">择吉利日 | </a>
-                    <a href="#">其他&nbsp;&nbsp;&nbsp;</a>
-                </span>
-            </div>
-            <div class="my-happy songti font12 my-border-buttom">
-                <img class="pull-left" src="__PUBLIC__/assets/img/pic2.jpg" alt=""/>
-                <ul class="pull-right">
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-            <div class="my-happy songti font12">
-                <img class="pull-left" src="__PUBLIC__/assets/img/pic2.jpg" alt=""/>
-                <ul class="pull-right">
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="pull-right my-marryrf">
-            <div class="text-center my-more">
-                <h4 class="pull-left my-blue-bg font14">
-                    招聘岗位
-                </h4>
-                <a class="pull-right" href="#">更多</a>
-                 <span class="pull-right songti font12">
-                    <a href="#">婚纱 | </a>
-                    <a href="#">发廊 | </a>
-                    <a href="#">租小车 | </a>
-                    <a href="#">择吉利日 | </a>
-                    <a href="#">其他&nbsp;&nbsp;&nbsp;</a>
-                </span>
-            </div>
-            <div class="songti font12 my-recruit">
-                <ul>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-        </div>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Happy" target="_blank">喜庆：</a></strong></span>
+        <span class="pull-left">
+            <volist name="xqscolumn" id="xqscolumn">
+                <a href="__APP__/Happy?ars={$xqscolumn.column_name}" target="_blank" title="{$xqscolumn.column_name}">{$xqscolumn.column_name}</a>
+            </volist>
+        </span>
     </section>
-    <div class="container my-adver">
-        <a href="#"><img src="__PUBLIC__/assets/img/ad1.jpg" alt="广告一"/></a>
-    </div>
-    <section class="container" style="margin-top:20px">
-        <div class="pull-left my-marrylf">
-            <div class="text-center my-more">
-                <h4 class="pull-left my-blue-bg font14">
-                    二手货
-                </h4>
-                <a class="pull-right" href="#">更多</a>
-                <span class="pull-right songti font12">
-                    <a href="#">婚纱 | </a>
-                    <a href="#">发廊 | </a>
-                    <a href="#">租小车 | </a>
-                    <a href="#">择吉利日 | </a>
-                    <a href="#">其他&nbsp;&nbsp;&nbsp;</a>
-                </span>
-            </div>
-            <div class="my-happy songti font12 my-border-buttom">
-                <img class="pull-left" src="__PUBLIC__/assets/img/pic2.jpg" alt=""/>
-                <ul class="pull-right">
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-            <div class="my-happy songti font12">
-                <img class="pull-left" src="__PUBLIC__/assets/img/pic2.jpg" alt=""/>
-                <ul class="pull-right">
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="pull-right my-marryrf">
-            <div class="text-center my-more">
-                <h4 class="pull-left my-blue-bg font14">
-                    房子信息
-                </h4>
-                <a class="pull-right" href="#">更多</a>
-                 <span class="pull-right songti font12">
-                    <a href="#">婚纱 | </a>
-                    <a href="#">发廊 | </a>
-                    <a href="#">租小车 | </a>
-                    <a href="#">择吉利日 | </a>
-                    <a href="#">其他&nbsp;&nbsp;&nbsp;</a>
-                </span>
-            </div>
-            <div class="songti font12 my-recruit">
-                <ul>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋装上市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">新款儿童秋市，欢迎订购</a><span  class="pull-right text-muted">12-09</span></li>
-                    <li>[交通工具] <a href="#" title="#####">出售五菱新款儿童秋装上市，欢迎订购宏光</a><span  class="pull-right text-muted">12-09</span></li>
-                </ul>
-            </div>
-        </div>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Car" target="_blank">汽车：</a></strong></span>
+        <span class="pull-left">
+            <volist name="qccolumn" id="qccolumn">
+                <a href="__APP__/Car?tp={$qccolumn.column_name}" target="_blank" title="{$qccolumn.column_name}">{$qccolumn.column_name}</a>
+            </volist>
+        </span>
     </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Marry" target="_blank">相亲：</a></strong></span>
+        <span class="pull-left">
+            <volist name="xqcolumn" id="xqcolumn">
+                <a href="__APP__/Marry?ars={$xqcolumn.column_name}" target="_blank" title="{$xqcolumn.column_name}">{$xqcolumn.column_name}</a>
+            </volist>
+        </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/House" target="_blank">房子：</a></strong></span>
+        <span class="pull-left">
+            <volist name="fzcolumn" id="fzcolumn">
+                <a href="__APP__/House?tp={$fzcolumn.column_name}" target="_blank" title="{$fzcolumn.column_name}">{$fzcolumn.column_name}</a>
+            </volist>
+        </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Dianqi" target="_blank">电器：</a></strong></span>
+        <span class="pull-left">
+            <volist name="dqcolumn" id="dqcolumn">
+                <a href="__APP__/Dianqi?tp={$dqcolumn.column_name}" target="_blank" title="{$dqcolumn.column_name}">{$dqcolumn.column_name}</a>
+            </volist>
+        </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Sea" target="_blank">海鲜：</a></strong></span>
+        <span class="pull-left">
+            <volist name="hxcolumn" id="hxcolumn">
+                <a href="__APP__/Sea?tp={$hxcolumn.column_name}" target="_blank" title="{$hxcolumn.column_name}">{$hxcolumn.column_name}</a>
+            </volist>
+        </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Sea" target="_blank">美食：</a></strong></span>
+        <span class="pull-left">
+            <volist name="mscolumn" id="mscolumn">
+                <a href="__APP__/Food?tp={$mscolumn.column_name}" target="_blank" title="{$mscolumn.column_name}">{$mscolumn.column_name}</a>
+            </volist>
+        </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Farm" target="_blank">农业：</a></strong></span>
+        <span class="pull-left">
+            <volist name="nycolumn" id="nycolumn">
+                <a href="__APP__/Farm?tp={$nycolumn.column_name}" target="_blank" title="{$nycolumn.column_name}">{$nycolumn.column_name}</a>
+            </volist>
+        </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Edu" target="_blank">教育：</a></strong></span>
+        <span class="pull-left">
+            <volist name="jycolumn" id="jycolumn">
+                <a href="__APP__/Edu?tp={$jycolumn.column_name}" target="_blank" title="{$jycolumn.column_name}">{$jycolumn.column_name}</a>
+            </volist>
+        </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Recruit" target="_blank">招聘：</a></strong></span>
+            <span class="pull-left">
+                <volist name="zpcolumn" id="zpcolumn">
+                    <a href="__APP__/Recruit?tp={$zpcolumn.column_name}" target="_blank" title="{$zpcolumn.column_name}">{$zpcolumn.column_name}</a>
+                </volist>
+            </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Chang" target="_blank">厂家/批发/代理商：</a></strong></span>
+            <span class="pull-left">
+                <volist name="cjcolumn" id="cjcolumn">
+                    <a href="__APP__/Chang?tp={$cjcolumn.column_name}" target="_blank" title="{$cjcolumn.column_name}">{$cjcolumn.column_name}</a>
+                </volist>
+            </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Jiaju" target="_blank">家居：</a></strong></span>
+            <span class="pull-left">
+                <volist name="jjcolumn" id="jjcolumn">
+                    <a href="__APP__/Jiaju?tp={$jjcolumn.column_name}" target="_blank" title="{$jjcolumn.column_name}">{$jjcolumn.column_name}</a>
+                </volist>
+            </span>
+    </section>
+    <section class="container index-list">
+        <span class="pull-left"><strong><a href="__APP__/Xiju" target="_blank">雷州剧：</a></strong></span>
+            <span class="pull-left">
+                <volist name="lzjcolumn" id="lzjcolumn">
+                    <a href="__APP__/Xiju?tp={$lzjcolumn.column_name}" target="_blank" title="{$lzjcolumn.column_name}">{$lzjcolumn.column_name}</a>
+                </volist>
+            </span>
+    </section>
+
     <footer class="container">
         <section class="my-friendship songti font12">
             <span><strong>友情链接：</strong></span>
-            <a href="#" title="####">九洲教育</a> |
-            <a href="#" title="####">九洲教育</a> |
-            <a href="#" title="####">九洲教育</a> |
-            <a href="#" title="####">九洲教育</a> |
-            <a href="#" title="####">九洲教育</a> |
+            <volist name="link" id="link">
+                <a href="http://{$link.plug_link_url}" title="{$link.plug_link_name}" target="_blank">{$link.plug_link_name}</a>&nbsp;|&nbsp;
+            </volist>
         </section>
         <section class="text-center my-copy">
             <a href="#">关于我们</a> |
@@ -329,19 +221,9 @@
 </html>
  <script>
      $(function(){
-         $('.my-info-top a').tooltip({
-             trigger : 'hover'
-         });
-         //$('.panel-heading img').tooltip({
-         //    trigger : 'hover'
-         //});
-         $('.panel-heading img').popover({
-             trigger : 'hover'
-         });
-         $('.my-happy img').popover({
-             trigger : 'hover'
-         });
-
+         $('.my-info-top a').tooltip({ trigger : 'hover'});
+         $('.panel-heading img').popover({ trigger : 'hover'});
+         $('.my-happy img').popover({ trigger : 'hover'});
          $(".member-menu li a[name = "+actionName+"]").addClass("my-active");
      });
  </script>

@@ -1,4 +1,7 @@
 @charset "UTF-8";
+a:focus{
+    outline: none;
+}
 .songti{
     font-family: '宋体';
 }
@@ -151,22 +154,21 @@ ul,li{
 }
 .my-showdroppic a{
     font-size: 100px;
-    line-height: 318px;
+    line-height: 305px;
 }
 .my-info-top{
     padding:10px 0;
 }
 .my-info-top li{
     line-height: 0.4 !important;
-    padding-left:22px;
-    background: url("../img/dot.gif") 14px 13px no-repeat;
+    padding-left: 10px;
 }
 .my-news{
     margin-left: 20px;
     width: 252px;
 }
 .my-qq{
-    height: 128px;
+    height: 124px;
     background: url("../img/pic1.gif") left 0 no-repeat;
 
 }
@@ -200,17 +202,28 @@ ul,li{
     margin-left: 132px;
     line-height: 40px;
 }
+.my-showpic{
+    height: 136px;
+    border-bottom: 1px dotted #e8e8e8;
+}
 .my-showpic ul li{
-    margin:10px 0 20px;
-    margin-right: 32px;
+    margin-top:14px !important;
+    margin-bottom:0px !important;
+    margin-right: 22.8px;
     float: left;
-    /*position: relative;*/
+}
+.my-showpic ul li:last-child{
+    margin-right: 0px;
+    float: right;
+}
+.my-showpic img{
+    width: 130px;
+    height: 104px;
 }
 .my-showpic h4{
     margin:0;
     padding:0;
     width: 100%;
-    /*position: absolute;*/
     position: relative;
     bottom: 25px;
     background: #000;
@@ -258,11 +271,35 @@ ul,li{
     line-height: 25.4px;
 }
 .my-friendship{
-    border-top: 1px solid #E8E8E8;
+    margin-top: 10px;
+    border-top: 1px dotted #E8E8E8;
 }
 .my-friendship a{
     line-height: 36px;
 }
+.index-list span:nth-child(1){
+    text-align: right;
+    width: 120px;
+}
+.index-list span:nth-child(2){
+    width: 1070px;
+}
+.index-list{
+    height: 32px;
+    line-height: 28px;
+}
+.index-list span:nth-child(2) a{
+    float: left;
+    display: block;
+    padding: 0 9.3px;
+}
+.index-list span:nth-child(1) a{
+    color:#333;
+}
+.index-list span:nth-child(1) a:hover{
+    color:#fff;
+}
+.index-list a:hover{background: orange;color:#fff;text-decoration: none}
 .my-copy{
     font-family: '宋体';
     padding:20px 0;
@@ -494,7 +531,7 @@ ul,li{
 .user-say th:nth-child(2){width: 45%;font-size: 14px}
 .user-say th:nth-child(3){width: 6%;font-size: 14px}
 .user-say th:nth-child(3){width: 8%;font-size: 14px}
-.farm-list a{color: #478DFF !important}
+.farm-list a{color: #337AB7 !important}
 
 .modify-photo img{
     margin-bottom: 30px;
@@ -628,7 +665,7 @@ ul,li{
     margin-left: 0;
     width: 265px;
 }
-.list-title .panel-heading{
+.my-notice .panel-heading,.my-news .panel-heading,.list-title .panel-heading{
     height: 34px !important;
     line-height: 16px;
     overflow: hidden;
@@ -666,17 +703,21 @@ ul,li{
     text-align: right;
 }
 .list-choice span:nth-child(2){
-    width: 785px;
+    width: 838px;
+}
+#list-store  span:nth-child(2){
+    width: 793px;
 }
 .list-rt  .list-choice a{
     margin-right: 6px;
     line-height: 22px;
     margin-bottom: 8px;
     float: left;
-    display: block;
+    display: inline-block;
     padding:0 9.1px;
     background: #F9F9F9;
 }
+#list-choice span a{padding:0 8px}
 .list-rt  .list-choice a:hover,.list-active{
     text-decoration: none;
     background:#FFA64D !important;
@@ -807,7 +848,7 @@ ul,li{
     line-height: 28px;
 }
 .wrap_title a{
-    color: #1E8EFF;
+    color: #337AB7;
 }
 .middle-border{
     margin-top: 18px;

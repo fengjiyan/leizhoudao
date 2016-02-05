@@ -13,6 +13,7 @@ class StoreController extends HeadController {
     public function index($table = 'dianmian', $module = CONTROLLER_NAME){
         switch($module){
             case 'Happy'  : $bf = '喜庆';break;
+            case 'Car'  : $bf = '汽车';break;
             case 'House'  : $bf = '房子';break;
             case 'Dianqi' : $bf = '电器';break;
             case 'Sea'    : $bf = '海鲜';break;
@@ -201,7 +202,7 @@ class StoreController extends HeadController {
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize   =     1200000 ;// 设置附件上传大小
         $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $root = $upload->rootPath  =     './Public/Uploads/'; // 设置附件上传根目录
+        $root = $upload->rootPath  =     '/Public/Uploads/'; // 设置附件上传根目录
        // $upload->savePath =  'store';// 设置附件上传目录
         $upload->saveRule  =     'time';
         $info   =   $upload->upload();
@@ -239,11 +240,18 @@ class StoreController extends HeadController {
                 $data['expire'] = time() + 240*24*60*60;
                 break;
         }
+        if(I('sub_cateid')){
+           $type = I('sub_cateid');
+        }
+        if(I('object')){
+            $type = I('object');
+        }
         $data['add_time'] = time();
         $data['update_time'] = time();
         $data['submit_ip'] = get_client_ip();
         $data['pic'] = $img_url;
         $data['user_name'] = session('account');
+        $data['type'] = $type;
         $list = M("$table") -> add($data);
         if($list ){
             R('Public/index',array($list));
@@ -307,7 +315,7 @@ class StoreController extends HeadController {
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize   =     1200000 ;// 设置附件上传大小
         $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $root = $upload->rootPath  =     './Public/Uploads/'; // 设置附件上传根目录
+        $root = $upload->rootPath  =     '/Public/Uploads/'; // 设置附件上传根目录
         // $upload->savePath =  'store';// 设置附件上传目录
         $upload->saveRule  =     'time';
         $info   =   $upload->upload();
@@ -352,9 +360,16 @@ class StoreController extends HeadController {
                 $sl_data['expire'] = time() + 240*24*60*60;
                 break;
         }
+        if(I('sub_cateid')){
+            $type = I('sub_cateid');
+        }
+        if(I('object')){
+            $type = I('object');
+        }
         $sl_data['pic']=$img_url;
         $sl_data['update_time']=time();
         $sl_data['update_ip']=get_client_ip();
+        $sl_data['type']=$type;
         $data = M("$table")->where(array('user_name' => $user_name, 'id' => $id))->save($sl_data);
         if($data){
             R('Public/index',array($id));

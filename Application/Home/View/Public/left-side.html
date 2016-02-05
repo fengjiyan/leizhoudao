@@ -1,43 +1,62 @@
 <aside class="pull-left list-lf">
     <div class="panel panel-default panel-info my-news list-title">
         <div class="panel-heading font14">
-            置顶信息 <span class="pull-right"><a href="#" >我要置顶</a></span>
+            置顶信息 <span class="pull-right"><a href="javascript:;" ></a></span>
         </div>
         <ul class="list-group my-info-top font12 songti">
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted red" href="#" data-toggle="tooltip" title="出售五菱宏光出售五菱宏光出售五菱宏光出售五菱宏光">出售五菱宏光</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">出售五菱宏光出售五菱宏光</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted green" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <!--                    --><?php //for($i = 0;$i<10;$i++) :?>
-            <!--                        <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>-->
-            <!--                    --><?php //endfor;?>
+            <volist name="listvo" id="listvo">
+                <?php
+                   if($listvo['union_type'] == 1){ $href = "__APP__/Store/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 2){ $href = "__APP__/Happy/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 3){ $href = "__APP__/Car/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 4){ $href = "__APP__/Marry/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 5){ $href = "__APP__/House/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 6){ $href = "__APP__/Dianqi/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 7){ $href = "__APP__/Sea/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 8){ $href = "__APP__/Food/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 9){ $href = "__APP__/Farm/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 10){ $href = "__APP__/Edu/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 11){ $href = "__APP__/Recruit/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 12){ $href = "__APP__/Chang/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 13){ $href = "__APP__/Jiaju/detail/id/".$listvo['id'].".html";}
+                   if($listvo['union_type'] == 14){ $href = "__APP__/Xiju/detail/id/".$listvo['id'].".html";}
+                ?>
+            <li class="list-group-item" style="border:0;line-height: 15px;">·<a href="<?php echo $href;?>" target="_blank" data-toggle="tooltip" title="{$listvo.title}">{$listvo.title|msubstr=0,15,'utf-8',true}</a> <span class="pull-right text-muted">{$listvo.add_time|date="m/d",###}</span></li>
+            </volist>
         </ul>
     </div>
     <div class="list-adver"><a href=""><img src="__PUBLIC__/assets/img/ad2.jpg" alt=""/></a></div>
     <div class="panel panel-default panel-info my-news list-title">
         <div class="panel-heading font14">
-            推荐信息
+            最新信息
         </div>
         <ul class="list-group my-info-top font12 songti">
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted red" href="#" data-toggle="tooltip" title="出售五菱宏光出售五菱宏光出售五菱宏光出售五菱宏光">出售五菱宏光</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">出售五菱宏光出售五菱宏光</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted green" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市订购</a> <span class="pull-right text-muted">12-9</span></li>
-            <!--                    --><?php //for($i = 0;$i<10;$i++) :?>
-            <!--                        <li class="list-group-item" style="border:0;line-height: 15px;"><a class="text-muted" href="#" title="###">新款儿童秋装上市，欢迎订购</a> <span class="pull-right text-muted">12-9</span></li>-->
-            <!--                    --><?php //endfor;?>
+            <volist name="listnew" id="listvos">
+                <?php
+                   if($listvos['union_type'] == 1){ $href = "__APP__/Store/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 2){ $href = "__APP__/Happy/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 3){ $href = "__APP__/Car/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 4){ $href = "__APP__/Marry/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 5){ $href = "__APP__/House/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 6){ $href = "__APP__/Dianqi/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 7){ $href = "__APP__/Sea/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 8){ $href = "__APP__/Food/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 9){ $href = "__APP__/Farm/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 10){ $href = "__APP__/Edu/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 11){ $href = "__APP__/Recruit/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 12){ $href = "__APP__/Chang/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 13){ $href = "__APP__/Jiaju/detail/id/".$listvos['id'].".html";}
+                   if($listvos['union_type'] == 14){ $href = "__APP__/Xiju/detail/id/".$listvos['id'].".html";}
+                ?>
+                <li class="list-group-item" style="border:0;line-height: 15px;">·<a href="<?php echo $href;?>" target="_blank" data-toggle="tooltip" title="{$listvos.title}">{$listvos.title|msubstr=0,15,'utf-8',true}</a> <span class="pull-right text-muted">{$listvos.add_time|date="m/d",###}</span></li>
+            </volist>
         </ul>
     </div>
+    <script>
+        $(function(){
+            $('.my-info-top a').tooltip({ trigger : 'hover'});
+            $('.panel-heading img').popover({ trigger : 'hover'});
+            $('.my-happy img').popover({ trigger : 'hover'});
+        });
+    </script>
 </aside>
