@@ -45,13 +45,15 @@ class UserController extends HeadController {
         $condition['user_name']= $user_name;
         $count=M()->query("SELECT count(id) as count FROM(SELECT 1 AS union_type,c.id,c.user_name FROM mr_dianmian c UNION SELECT 2,dhy.id,dhy.user_name FROM mr_happy dhy UNION SELECT 3,h.id,h.user_name FROM mr_car h UNION SELECT 4,ma.id,ma.user_name FROM mr_marry ma UNION SELECT 5,ho.id,ho.user_name FROM mr_house ho UNION SELECT 6,dq.id,dq.user_name FROM mr_dianqi dq UNION SELECT 7,se.id,se.user_name FROM mr_sea se UNION SELECT 8,fo.id,fo.user_name FROM mr_food fo UNION SELECT 9,fa.id,fa.user_name FROM mr_farm fa UNION SELECT 10,ed.id,ed.user_name FROM mr_edu ed UNION SELECT 11,ri.id,ri.user_name FROM mr_recruit ri UNION SELECT 12,ch.id,ch.user_name FROM mr_chang ch UNION SELECT 13,ji.id,ji.user_name FROM mr_jiaju ji UNION SELECT 14,xj.id,xj.user_name FROM mr_xiju xj) ta
 WHERE ta.user_name = '$user_name'");
-        //$Page       = new \Think\Page($count,4);;
-        //$show       = $Page->show();// 分页显示输出
+        foreach($count as $vo){}
+        $count = $vo['count'];
+        $Page  = new \Think\Page($count,20);
+        $show  = $Page->show();// 分页显示输出
         $list=M()->query("SELECT union_type,id,title,add_time,user_name,area,status,expire,type FROM(SELECT 1 AS union_type,c.id,c.title,c.add_time,c.user_name,c.area,c.status,c.expire,c.type FROM mr_dianmian c UNION SELECT 2,dhy.id,dhy.title,dhy.add_time,dhy.user_name,dhy.area,dhy.status,dhy.expire,dhy.type FROM mr_happy dhy UNION SELECT 3,h.id,h.title,h.add_time,h.user_name,h.area,h.status,h.expire,h.type FROM mr_car h UNION SELECT 4,ma.id,ma.title,ma.add_time,ma.user_name,ma.area,ma.status,ma.expire,ma.type FROM mr_marry ma UNION SELECT 5,ho.id,ho.title,ho.add_time,ho.user_name,ho.area,ho.status,ho.expire,ho.type FROM mr_house ho UNION SELECT 6,dq.id,dq.title,dq.add_time,dq.user_name,dq.area,dq.status,dq.expire,dq.type FROM mr_dianqi dq UNION SELECT 7,se.id,se.title,se.add_time,se.user_name,se.area,se.status,se.expire,se.type FROM mr_sea se UNION SELECT 8,fo.id,fo.title,fo.add_time,fo.user_name,fo.area,fo.status,fo.expire,fo.type FROM mr_food fo UNION SELECT 9,fa.id,fa.title,fa.add_time,fa.user_name,fa.area,fa.status,fa.expire,fa.type FROM mr_farm fa UNION SELECT 10,ed.id,ed.title,ed.add_time,ed.user_name,ed.area,ed.status,ed.expire,ed.type FROM mr_edu ed UNION SELECT 11,ri.id,ri.title,ri.add_time,ri.user_name,ri.area,ri.status,ri.expire,ri.type FROM mr_recruit ri UNION SELECT 12,ch.id,ch.title,ch.add_time,ch.user_name,ch.area,ch.status,ch.expire,ch.type FROM mr_chang ch UNION SELECT 13,ji.id,ji.title,ji.add_time,ji.user_name,ji.area,ji.status,ji.expire,ji.type FROM mr_jiaju ji UNION SELECT 14,xj.id,xj.title,xj.add_time,xj.user_name,xj.area,xj.status,xj.expire,xj.type FROM mr_xiju xj) ta
-WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc");
+WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc limit $Page->firstRow,$Page->listRows");
         $this->assign('count',$count);// 赋值数据集
         $this->assign('list',$list);// 赋值数据集
-       // $this->assign('page',$show);// 赋值分页输出
+        $this->assign('page',$show);// 赋值分页输出
         $this->display('write-infos');
     }
     public static function merge($a='', $b=''){
@@ -150,33 +152,21 @@ WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc");
         $username = $_POST['member_username'];
         $pwd = md5($_POST['member_pwd']);
         $update_logintime['member_list_logintime'] = time();
-        $list1 = $this->_member_list->where(array('member_list_username' => $username, 'member_list_pwd' => $pwd))->find();//用户名
-        $list2 = $this->_member_list->where(array('member_list_tel' => $username, 'member_list_pwd' => $pwd))->find();//电话号码
-        $list3 = $this->_member_list->where(array('member_list_email' => $username, 'member_list_pwd' => $pwd))->find();//邮箱
+        $list1 = $this->_member_list->where(array('member_list_username' => $username,'member_list_pwd' => $pwd))->find();//用户名
+        $list2 = $this->_member_list->where(array('member_list_tel' => $username,'member_list_pwd' => $pwd))->find();//电话号码
+        $list3 = $this->_member_list->where(array('member_list_email' => $username,'member_list_pwd' => $pwd))->find();//邮箱
         if($list1){
-            if(!($list1['member_list_status']) == 1){
-                //echo "<script>alert('账号还没激活，请及时激活！');</script>";
-                $this->error('账号还没激活，请及时激活或者联系管理员');
-            }else{
-                session('account', $list1['member_list_username']);
-                session('member_list_logintime', $list1['member_list_logintime']);
-            }
+            session('account', $list1['member_list_username']);
+            session('member_list_logintime', $list1['member_list_logintime']);
 
         }else if($list2){
-            if(!($list2['member_list_status']) == 1){
-                $this->error('账号还没激活，请及时激活或者联系管理员');
-            }else{
-                session('account', $list2['member_list_username']);
-                session('member_list_logintime', $list2['member_list_logintime']);
-            }
+            session('account', $list2['member_list_username']);
+            session('member_list_logintime', $list2['member_list_logintime']);
         }else if($list3){
-            if(!($list3['member_list_status']) == 1){
-                $this->error('账号还没激活，请及时激活或者联系管理员');
-            }else{
-                session('account', $list3['member_list_username']);
-                session('member_list_logintime', $list3['member_list_logintime']);
-            }
-        }else{
+            session('account', $list3['member_list_username']);
+            session('member_list_logintime', $list3['member_list_logintime']);
+        }
+        else{
             $this->error('登录失败，请重试');
         }
         $dest_url = $_POST['log_referer'];
@@ -189,8 +179,50 @@ WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc");
         if ($dest_url == $tager) {
             redirect($tager);
         }else{
-
             redirect($dest_url);
+        }
+    }
+
+    public function checkLogin(){
+        $username = $_POST['member_username'];
+        $list1 = $this->_member_list->where(array('member_list_username' => $username))->find();//用户名
+        $list2 = $this->_member_list->where(array('member_list_tel' => $username))->find();//电话号码
+        $list3 = $this->_member_list->where(array('member_list_email' => $username))->find();//邮箱
+        $valid = true;
+        if($list1){
+            if ( $list1['member_list_status'] != 1) {
+                $valid = false;
+                echo json_encode(array(
+                    'valid' => $valid,
+                ));
+            }else{
+                echo json_encode(array(
+                    'valid' => $valid,
+                ));
+            }
+
+        }else if($list2){
+            if ( $list2['member_list_status'] !=1) {
+                $valid = false;
+                echo json_encode(array(
+                    'valid' => $valid,
+                ));
+            }else{
+                echo json_encode(array(
+                    'valid' => $valid,
+                ));
+            }
+        }else if($list3){
+            if ( $list3['member_list_status'] !=1) {
+                $valid = false;
+                echo json_encode(array(
+                    'valid' => $valid,
+                ));
+            }else{
+                echo json_encode(array(
+                    'valid' => $valid,
+                ));
+            }
         }
     }
 
@@ -211,7 +243,7 @@ WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc");
         $data['member_list_groupid'] = 1;
         $list = $this->_member_list -> add($data);
         if($list){
-            $this->success('注册成功',U("User/register"),1);exit;
+            $this->success('注册成功',U("User/register"),1);
             $list = $this->_member_list->where("member_list_username='$username'")->find();
             session('account',$list['member_list_username']);
             session('member_list_logintime',$list['member_list_logintime']);

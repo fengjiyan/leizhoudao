@@ -26,6 +26,9 @@ a:focus{
 .deep{
     color: #080808;
 }
+.yahei{
+    font-family:'微软雅黑';
+}
 html{
     margin:0;
     padding:0;
@@ -160,8 +163,7 @@ ul,li{
     padding:10px 0;
 }
 .my-info-top li{
-    line-height: 0.4 !important;
-    padding-left: 10px;
+    padding:5px 8px 5.9px 10px;
 }
 .my-news{
     margin-left: 20px;
@@ -277,12 +279,13 @@ ul,li{
 .my-friendship a{
     line-height: 36px;
 }
+.index-list span{font-family: '微软雅黑';}
 .index-list span:nth-child(1){
     text-align: right;
-    width: 120px;
+    width: 134px;
 }
 .index-list span:nth-child(2){
-    width: 1070px;
+    width: 1066px;
 }
 .index-list{
     height: 32px;
@@ -291,7 +294,7 @@ ul,li{
 .index-list span:nth-child(2) a{
     float: left;
     display: block;
-    padding: 0 9.3px;
+    padding: 0 8.5px;
 }
 .index-list span:nth-child(1) a{
     color:#333;
@@ -939,12 +942,9 @@ ul,li{
     color: #fff;
 }
 .centent-cn{
-    padding:24px 15px 10px;
+    padding:20px 4px 10px;
     color: #444;
     line-height: 26px;
-}
-.centent-cn p{
-    text-indent: 2em;
 }
 .content-detail-noborder{
     margin-top:22px !important;

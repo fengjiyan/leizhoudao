@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$list.news_title}-{$sys.sys_name}</title>
+    <include file='Public:header' />
+    <section class="container" style="margin-top: 12px">
+        <include file='Public:left-side' />
+        <aside class="pull-right list-rt songti font12">
+            <div class="list-daohang">
+                <span class="glyphicon glyphicon-home"></span> 当前位置：<a href="__APP__">首页</a> / <a href="">帮助中心</a> / {$list.news_title}
+            </div>
+            <div class="content-detail-info">
+                 <span>{$list.news_title}</span>
+            </div>
+            <div class="centent-cn font14">
+                {$list.news_content|htmlspecialchars_decode}
+            </div>
+
+
+        </aside>
+    </section>
+    <include file='Public:footer' />
+    </body>
+</html>

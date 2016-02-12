@@ -15,6 +15,10 @@ WHERE ta.attr = 1 ORDER BY ta.add_time desc LIMIT 10");
         $this->assign("listnew",$list_new);
         $search_column =  $this->_column->where(array('column_leftid' => 1))->order('c_id')->select();
         $this->assign('search_column',$search_column);// 赋值数据集
+
+        $sys=M('sys')->where(array('sys_id'=>1))->find();
+        $this->assign('sys',$sys);
+
     }
 
     public function  search(){
@@ -84,6 +88,14 @@ WHERE ta.attr = 1 ORDER BY ta.add_time desc LIMIT 10");
             M('say')->add($sl_data);
             $this->success('恭喜你，评论成功');
         }
+    }
+
+    public function help(){
+        $id = I('id');
+        $list = M("news")->where(array('n_id'=>$id))->select();
+        foreach($list as $list){}
+        $this->assign("list", $list);
+        $this->display('public/help');
     }
 
 

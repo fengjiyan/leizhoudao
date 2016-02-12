@@ -6,6 +6,34 @@ class StoreController extends HeadController {
     //控制器初始化方法
     public function _initialize(){
         parent::_initialize();
+        $ctrl = CONTROLLER_NAME;//当前控制器名
+        $action = ACTION_NAME;//获取当前操作名
+        switch($ctrl){
+            case 'Store' : $name = '店铺大全';$href = "__APP__/Store";break;
+            case 'Marry' : $name = '相亲';$href = "__APP__/Marry";break;
+            case 'Happy' : $name = '喜庆';$href = "__APP__/Happy";break;
+            case 'Car' : $name = '汽车';$href = "__APP__/Car";break;
+            case 'House' : $name = '房子';$href = "__APP__/House";break;
+            case 'Dianqi' : $name = '电器';$href = "__APP__/Dianqi";break;
+            case 'Sea' : $name = '海鲜';$href = "__APP__/Sea";break;
+            case 'Food' : $name = '美食';$href = "__APP__/Food";break;
+            case 'Farm' : $name = '农业';$href = "__APP__/Farm";break;
+            case 'Edu' : $name = '教育';$href = "__APP__/Edu";break;
+            case 'Recruit' : $name = '招聘';$href = "__APP__/Recruit";break;
+            case 'Chang' : $name = '厂家/批发/代理商';$href = "__APP__/Chang";break;
+            case 'Jiaju' : $name = '家居';$href = "__APP__/Jiaju";break;
+            case 'Xiju' : $name = '雷州戏剧';$href = "__APP__/Xiju";break;
+            case 'Head' : $name = '搜索列表';$href = "";break;
+        }
+        if($action == 'detail'){
+            $detai = " / 详细内容";
+        }
+        if($action == 'modify'){
+            $detai = " / 编辑";
+        }
+        $this->assign('name',$name);
+        $this->assign('href',$href);
+        $this->assign('detai',$detai);
         $this->_column = M('column');
        // $this->head();
 

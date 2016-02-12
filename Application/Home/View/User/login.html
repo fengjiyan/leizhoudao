@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>欢迎您的登陆--雷州岛网站</title>
+    <title>欢迎您的登陆-{$sys.sys_name}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link href="__PUBLIC__/assets/css/bootstrap.min.css" rel="stylesheet">
     <!--<link rel="stylesheet" href="__PUBLIC__/assets/css/bootstrapValidator.css" />-->
@@ -21,12 +21,12 @@
         <div class="container">
             <div class="login-inbg">
                 <div class="pull-right login">
-                    <h1 class="bg-info">欢迎登录雷州岛网</h1>
+                    <h1 class="bg-info">欢迎登录雷州半岛网</h1>
                     <form id="defaultForm" action="__APP__/User/doLogin" role="form" method="post">
                         <div class="form-group">
                             <input type="text" name="member_username" class="form-control"  placeholder="用户名/邮箱/手机"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="member_pwd">
                             <input type="password" name="member_pwd" class="form-control" placeholder="密码"/>
                         </div>
                         <div class="form-group">
@@ -74,6 +74,10 @@
                         stringLength: {
                             min: 2,
                             message: '至少2个字符'
+                        },
+                        remote: {
+                            url: '{:U("User/checkLogin")}',
+                            message: '账号还没激活!'
                         }
                     }
                 },
