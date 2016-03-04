@@ -7,7 +7,7 @@ use Think\Auth;
 class NewsController extends AuthController {
 	
 /************************************************文章管理**************************************************/
-	//文章列表
+	//帮助中心--文章列表
     public function news_list(){
     	$keytype=I('keytype',news_title);
     	$key=I('key');
@@ -34,7 +34,6 @@ class NewsController extends AuthController {
     	$show= $Page->show();// 分页显示输出
     	$news=D('News')->where($map)->limit($Page->firstRow.','.$Page->listRows)->order('news_time desc')->relation(true)->select();
     	$diyflag_list=M('diyflag')->select();//文章属性数据
-    	
     	$this->assign('opentype_check',$opentype_check);
     	$this->assign('keytype',$keytype);
     	$this->assign('keyy',$key);
@@ -44,6 +43,52 @@ class NewsController extends AuthController {
     	$this->assign('news',$news);
     	$this->assign('page',$show);
 		$this->display();
+    }
+
+    //14个表文章列表
+    public function all(){
+        $area = I('big_area') ? I('big_area') : '';
+        $column = I('column') ? I('column') : '';
+        $title = I('title');
+        $conditon['title'] = array("like", "%".$title."%");
+        switch($column){
+            case '店铺大全' : $table = 'dianmian'; break;
+            case '喜庆' : $table = 'happy'; break;
+            case '汽车' : $table = 'car'; break;
+            case '相亲' : $table = 'marry'; break;
+            case '房子' : $table = 'house'; break;
+            case '电器' : $table = 'dianqi'; break;
+            case '海鲜' : $table = 'sea'; break;
+            case '美食' : $table = 'food'; break;
+            case '农业' : $table = 'farm'; break;
+            case '教育' : $table = 'edu'; break;
+            case '家居' : $table = 'jiaju'; break;
+            case '厂|批发|代厂' : $table = 'chang'; break;
+            case '雷州剧' : $table = 'xiju'; break;
+            case '招聘' : $table = 'recruit'; break;
+        }
+        if(!empty($table)){
+            $count      = M("$table")->where($conditon)->count();
+        }else{
+            $count=M()->query("SELECT count(id) as count FROM(SELECT 1 AS union_type,c.id,c.user_name FROM mr_dianmian c UNION SELECT 2,dhy.id,dhy.user_name FROM mr_happy dhy UNION SELECT 3,h.id,h.user_name FROM mr_car h UNION SELECT 4,ma.id,ma.user_name FROM mr_marry ma UNION SELECT 5,ho.id,ho.user_name FROM mr_house ho UNION SELECT 6,dq.id,dq.user_name FROM mr_dianqi dq UNION SELECT 7,se.id,se.user_name FROM mr_sea se UNION SELECT 8,fo.id,fo.user_name FROM mr_food fo UNION SELECT 9,fa.id,fa.user_name FROM mr_farm fa UNION SELECT 10,ed.id,ed.user_name FROM mr_edu ed UNION SELECT 11,ri.id,ri.user_name FROM mr_recruit ri UNION SELECT 12,ch.id,ch.user_name FROM mr_chang ch UNION SELECT 13,ji.id,ji.user_name FROM mr_jiaju ji UNION SELECT 14,xj.id,xj.user_name FROM mr_xiju xj) ta");
+            foreach($count as $vo){}
+            $count = $vo['count'];
+        }
+        $Page  = new \Think\Page($count,20);
+        $show  = $Page->show();// 分页显示输出
+        $this->assign('page',$show);
+        $data[] = $area;
+        if(!empty($table)){
+            $news = M("$table")->where($conditon)->order('add_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+        }else{
+            $news=M()->query("SELECT union_type,id,title,add_time,area,status,expire,type,hits,user_name,ip FROM(SELECT 1 AS union_type,c.id,c.title,c.add_time,c.area,c.status,c.expire,c.type,c.hits,c.user_name,c.ip FROM mr_dianmian c UNION SELECT 2,dhy.id,dhy.title,dhy.add_time,dhy.area,dhy.status,dhy.expire,dhy.type,dhy.hits,dhy.user_name,dhy.ip FROM mr_happy dhy UNION SELECT 3,h.id,h.title,h.add_time,h.area,h.status,h.expire,h.type,h.hits,h.user_name,h.ip FROM mr_car h UNION SELECT 4,ma.id,ma.title,ma.add_time,ma.area,ma.status,ma.expire,ma.type,ma.hits,ma.user_name,ma.ip FROM mr_marry ma UNION SELECT 5,ho.id,ho.title,ho.add_time,ho.area,ho.status,ho.expire,ho.type,ho.hits,ho.user_name,ho.ip FROM mr_house ho UNION SELECT 6,dq.id,dq.title,dq.add_time,dq.area,dq.status,dq.expire,dq.type,dq.hits,dq.user_name,dq.ip FROM mr_dianqi dq UNION SELECT 7,se.id,se.title,se.add_time,se.area,se.status,se.expire,se.type,se.hits,se.user_name,se.ip FROM mr_sea se UNION SELECT 8,fo.id,fo.title,fo.add_time,fo.area,fo.status,fo.expire,fo.type,fo.hits,fo.user_name,fo.ip FROM mr_food fo UNION SELECT 9,fa.id,fa.title,fa.add_time,fa.area,fa.status,fa.expire,fa.type,fa.hits,fa.user_name,fa.ip FROM mr_farm fa UNION SELECT 10,ed.id,ed.title,ed.add_time,ed.area,ed.status,ed.expire,ed.type,ed.hits,ed.user_name,ed.ip FROM mr_edu ed UNION SELECT 11,ri.id,ri.title,ri.add_time,ri.area,ri.status,ri.expire,ri.type,ri.hits,ri.user_name,ri.ip FROM mr_recruit ri UNION SELECT 12,ch.id,ch.title,ch.add_time,ch.area,ch.status,ch.expire,ch.type,ch.hits,ch.user_name,ch.ip FROM mr_chang ch UNION SELECT 13,ji.id,ji.title,ji.add_time,ji.area,ji.status,ji.expire,ji.type,ji.hits,ji.user_name,ji.ip FROM mr_jiaju ji UNION SELECT 14,xj.id,xj.title,xj.add_time,xj.area,xj.status,xj.expire,xj.type,xj.hits,xj.user_name,xj.ip FROM mr_xiju xj) ta
+ ORDER BY ta.add_time desc limit $Page->firstRow,$Page->listRows");
+        }
+        $search_column =  M('column')->where(array('column_leftid' => 1))->order('c_id')->select();
+        $this->assign('search_column',$search_column);// 赋值数据集
+        $this->assign('count',$count);// 赋值数据集
+        $this->assign('news',$news);
+        $this->display('all');
     }
     
     //添加文章
@@ -272,20 +317,70 @@ class NewsController extends AuthController {
 	}
 	
 	public function news_list_state(){
+		$type=I('c');
 		$id=I('x');
-		$status=M('news')->where(array('n_id'=>$id))->getField('news_open');//判断当前状态情况
+        switch($type){
+            case '1' : $table = 'dianmian'; break;
+            case '2' : $table = 'happy'; break;
+            case '3' : $table = 'car'; break;
+            case '4' : $table = 'marry'; break;
+            case '5' : $table = 'house'; break;
+            case '6' : $table = 'dianqi'; break;
+            case '7' : $table = 'sea'; break;
+            case '8' : $table = 'food'; break;
+            case '9' : $table = 'farm'; break;
+            case '10' : $table = 'edu'; break;
+            case '11' : $table = 'recruit'; break;
+            case '12' : $table = 'chang'; break;
+            case '13' : $table = 'jiaju'; break;
+            case '14' : $table = 'xiju'; break;
+        }
+		$status=M("$table")->where(array('id'=>$id))->getField('status');//判断当前状态情况
 		if($status==1){
-			$statedata = array('news_open'=>0);
-			$auth_group=M('news')->where(array('n_id'=>$id))->setField($statedata);
-			$this->success('状态禁止',1,1);
+			$statedata = array('status'=>0);
+			$auth_group=M("$table")->where(array('id'=>$id))->setField($statedata);
+			$this->success('审核关闭',1,1);
 		}else{
-			$statedata = array('news_open'=>1);
-			$auth_group=M('news')->where(array('n_id'=>$id))->setField($statedata);
-			$this->success('状态开启',1,1);
+			$statedata = array('status'=>1);
+			$auth_group=M("$table")->where(array('id'=>$id))->setField($statedata);
+			$this->success('审核开启',1,1);
 		}
 	}
-	
-/************************************************栏目管理**************************************************/
+
+
+    public function allDel(){
+        $type=I('cr');
+        $id=I('x');
+        $p=I('p');
+        switch($type){
+            case '1' : $table = 'dianmian'; break;
+            case '2' : $table = 'happy'; break;
+            case '3' : $table = 'car'; break;
+            case '4' : $table = 'marry'; break;
+            case '5' : $table = 'house'; break;
+            case '6' : $table = 'dianqi'; break;
+            case '7' : $table = 'sea'; break;
+            case '8' : $table = 'food'; break;
+            case '9' : $table = 'farm'; break;
+            case '10' : $table = 'edu'; break;
+            case '11' : $table = 'recruit'; break;
+            case '12' : $table = 'chang'; break;
+            case '13' : $table = 'jiaju'; break;
+            case '14' : $table = 'xiju'; break;
+        }
+        $list = M("$table")->where(array('id'=>$id))->delete();
+        if($list!=0){
+            echo json_encode(
+                array('ok')
+            );
+        }else{
+            $this->error('删除失败');
+        }
+
+    }
+
+
+    /************************************************栏目管理**************************************************/
 	//栏目管理
 	public function news_column(){
 		$column=M('column');

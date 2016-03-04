@@ -35,6 +35,7 @@ class StoreController extends HeadController {
         $this->assign('href',$href);
         $this->assign('detai',$detai);
         $this->_column = M('column');
+        echo $_SERVER['HTTP_REFERER'];
        // $this->head();
 
     }
@@ -188,6 +189,7 @@ class StoreController extends HeadController {
                 $conditon[]="expire >= $day180";
                 break;
         }
+        $conditon['status'] = 1;
         $count      = M("$table")->where($conditon)->count();// 查询满足要求的总记录数
         $Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
         //分页跳转的时候保证查询条件
@@ -306,20 +308,21 @@ class StoreController extends HeadController {
     }
 
     public function modify($table = 'dianmian',$module = CONTROLLER_NAME){
+        $admin = session('admin_username');
         switch($module){
-            case 'Happy' : $bf = '喜庆';break;
-            case 'Car' : $bf = '汽车';break;
-            case 'Marry' : $bf = '相亲';break;
-            case 'Dianqi' : $bf = '电器';break;
-            case 'Sea' : $bf = '海鲜';break;
-            case 'Food' : $bf = '美食';break;
-            case 'Farm' : $bf = '农业';break;
-            case 'Edu' : $bf = '教育';break;
-            case 'House' : $bf = '房子';break;
-            case 'Recruit' : $bf = '招聘';break;
-            case 'Chang' : $bf = '厂家|批发|代理商';break;
-            case 'Jiaju' : $bf = '家居';break;
-            case 'Xiju' : $bf = '雷州剧';break;
+            case 'Happy' : $bf = '喜庆';$table = 'happy';break;
+            case 'Car' : $bf = '汽车';$table = 'car';break;
+            case 'Marry' : $bf = '相亲';$table = 'marry';break;
+            case 'Dianqi' : $bf = '电器';$table = 'dianqi';break;
+            case 'Sea' : $bf = '海鲜';$table = 'sea';break;
+            case 'Food' : $bf = '美食';$table = 'food';break;
+            case 'Farm' : $bf = '农业';$table = 'farm';break;
+            case 'Edu' : $bf = '教育';$table = 'edu';break;
+            case 'House' : $bf = '房子';$table = 'house';break;
+            case 'Recruit' : $bf = '招聘';$table = 'recruit';break;
+            case 'Chang' : $bf = '厂家|批发|代理商';$table = 'chang';break;
+            case 'Jiaju' : $bf = '家居';$table = 'jiaju';break;
+            case 'Xiju' : $bf = '雷州剧';$table = 'xiju';break;
         }
         // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
         $bf =I('bf') ? I('bf') : $bf ;
@@ -328,7 +331,11 @@ class StoreController extends HeadController {
         $condition['user_name']= session('account');
         $condition['id']= I('id');
         $all = $this->_column->where(array('column_leftid' => $cid))->order('c_id')->select();//全部栏目表
-        $list = M("$table")->where($condition)->find();//铺面发布表
+        if($admin){
+            $list = M("$table")->where(array('id'=>I('id')))->find();
+        }else{
+            $list = M("$table")->where($condition)->find();
+        }
         $this->assign('all', $all);
         $this->assign('list', $list);
         $this->display('modify');
@@ -417,6 +424,8 @@ class StoreController extends HeadController {
             $rand = M("$table")->limit(4)->order('rand()')->select();
         }
         M("$table")->where(array('id'=>$id))->setInc('hits',1);
+        //var_dump($_SERVER);
+        //echo $tager = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REDIRECT_URL'];
         $this->assign('count', $count);
         $this->assign('say', $say);
         $this->assign('list', $list);
@@ -426,9 +435,8 @@ class StoreController extends HeadController {
 
     public function storeDel($table='dianmian'){
         $id = $_GET['id'];
-        $list = M("$table")->where(array('id='.$id))->delete();
+        $list = M("$table")->where(array('id'=>$id))->delete();
         if($list){
-
             $this->redirect('Home/User/writeInfo');
         }else{
             $this->error('系统繁忙，请稍后重试');

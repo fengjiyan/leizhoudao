@@ -531,8 +531,8 @@ ul,li{
 .user-writeinfo th:nth-child(2),.user-writeinfo td:nth-child(2){text-align: center;width: 20%;}
 
 .user-say th:nth-child(1){width: 40%;font-size: 14px}
-.user-say th:nth-child(2){width: 45%;font-size: 14px}
-.user-say th:nth-child(3){width: 6%;font-size: 14px}
+.user-say th:nth-child(2){width: 43%;font-size: 14px}
+.user-say th:nth-child(3){width: 8%;font-size: 14px}
 .user-say th:nth-child(3){width: 8%;font-size: 14px}
 .farm-list a{color: #337AB7 !important}
 

@@ -106,6 +106,93 @@
 												<tbody>
                                                 
                                                 <foreach name="news" item="v">
+                                                    <?php
+                       if($list['union_type'] == 1){
+                           $column_name = '店铺面';
+                           $href = "__APP__/Store/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Store/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Store/storeDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 2){
+                           $column_name = '喜庆';
+                           $href = "__APP__/Happy/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Happy/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Happy/happyDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 3){
+                           $column_name = '汽车';
+                           $href = "__APP__/Car/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Car/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Car/carDel/id/".$list['id'].".html";
+
+                       }
+                       if($list['union_type'] == 4){
+                           $column_name = '相亲';
+                           $href = "__APP__/Marry/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Marry/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/marryDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 5){
+                           $column_name = '房子';
+                           $href = "__APP__/House/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/House/modify/id/".$list['id'].".html";
+                           $del = "__APP__/House/houseDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 6){
+                           $column_name = '电器';
+                           $href = "__APP__/Dianqi/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Dianqi/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Dianqi/dianqiDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 7){
+                           $column_name = '海鲜';
+                           $href = "__APP__/Sea/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Sea/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/seaDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 8){
+                           $column_name = '美食';
+                           $href = "__APP__/Food/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Food/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/foodDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 9){
+                           $column_name = '农业';
+                           $href = "__APP__/Farm/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Farm/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/farmDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 10){
+                           $column_name = '教育';
+                           $href = "__APP__/Edu/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Edu/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/eduDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 11){
+                           $column_name = '招聘';
+                           $href = "__APP__/Recruit/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Recruit/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/recruitDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 12){
+                           $column_name = '厂家|批发|代理商';
+                           $href = "__APP__/Chang/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Chang/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Marry/changDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 13){
+                           $column_name = '家居';
+                           $href = "__APP__/Jiaju/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Jiaju/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Jiaju/jiajuDel/id/".$list['id'].".html";
+                       }
+                       if($list['union_type'] == 14){
+                           $column_name = '雷州剧';
+                           $href = "__APP__/Xiju/detail/id/".$list['id'].".html";
+                           $modify = "__APP__/Xiju/modify/id/".$list['id'].".html";
+                           $del = "__APP__/Xiju/xijuDel/id/".$list['id'].".html";
+                       }
+                    ?>
 													<tr>
 														<td align="center">
 														<label class="pos-rel">
@@ -114,7 +201,7 @@
 														</label>
 														</td>
 														<td align="center">{$v.n_id}</td>
-														<td><a href="" target="_blank" title="{$v.news_title}">{$v.news_title|msubstr=0,30,'utf-8',true}</a></td>
+														<td><a href="" target="_blank" title="{$v.news_title}">{$v.news_title|msubstr=0,25,'utf-8',true}</a>【{$v.news_auto}】</td>
 														<td>{$v.column_name}</td>
 														<td>
 													<if condition="strstr($v['news_flag'],'h') eq true"><span style="color:#03C">头</span></if>

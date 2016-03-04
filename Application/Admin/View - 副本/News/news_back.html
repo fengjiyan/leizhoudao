@@ -20,17 +20,17 @@
                   });
                });
                </script>
-					<form name="admin_list_sea" class="form-search form-horizontal" method="post" action="__URL__/news_list">
+					<form name="admin_list_sea" class="form-search form-horizontal" method="post" action="__URL__/news_back">
 							<div class="row maintop">
 							<div class="col-xs-12 col-sm-3">
 	<select name="keytype">
-		<option value="news_title" <if condition="($keytype eq 'news_title') or ($keytype eq '')">selected</if>>按标题</option>
+		<option value="news_title" <if condition="($keytype eq 'news_title') or ($keytype eq '')">selected</if>>按标题搜</option>
 		<option value="news_auto" <if condition="$keytype eq 'news_auto'">selected</if>>按发布人</option>
 	</select>
 	<select name="diyflag">
 		<option value="">按属性</option>
 		<foreach name="diyflag" item="v">
-		<option value="{$v.diyflag_value}" <if condition="$diyflag_check eq $v['diyflag_value']">selected</if>>{$v.diyflag_name}({$v.diyflag_value})</option>
+		<option value="{$v.diyflag_value}" <if condition="$diyflag_check eq $v['diyflag_value']">selected</if>>{$v.diyflag_name}【{$v.diyflag_value}】</option>
 		</foreach>
 	</select>
 	<select name="opentype_check">
@@ -83,7 +83,7 @@
 							<div class="row">
 							    <div class="col-xs-12">
 										<div>
-                                        <form id="alldel" name="alldel" method="post" action="{:U('news_list_alldel')}" >
+                                        <form id="alldel" name="alldel" method="post" action="{:U('news_back_alldel')}" >
 										<input name="p" id="p" value="{:I('p',1)}" type="hidden" />
 											<table width="100%" class="table table-striped table-bordered table-hover" id="dynamic-table">
 												<thead>
@@ -92,7 +92,7 @@
 															<label class="pos-rel">
 																<input type="checkbox" class="ace"  id='chkAll' onclick='CheckAll(this.form)' value="全选"/>
 													  <span class="lbl"></span>															</label>														</th>
-													  <th width="5%">ID</th>
+													  <th width="5%" align="center">ID</th>
 													  <th width="40%">文章标题</th>
 													  <th width="10%">所属栏目</th>
 													  <th width="12%">文章属性</th>
@@ -110,11 +110,9 @@
 														<td align="center">
 														<label class="pos-rel">
 															<input name='n_id[]' id="navid" class="ace"  type='checkbox' value='{$v.n_id}'>
-														<span class="lbl"></span>
-														</label>
-														</td>
+														<span class="lbl"></span>														</label>														</td>
 														<td align="center">{$v.n_id}</td>
-														<td><a href="" target="_blank" title="{$v.news_title}">{$v.news_title|msubstr=0,30,'utf-8',true}</a></td>
+														<td><a href="" target="_blank" title="{$v.news_title}">{$v.news_title|subtext=25}</a>【{$v.news_auto}】</td>
 														<td>{$v.column_name}</td>
 														<td>
 													<if condition="strstr($v['news_flag'],'h') eq true"><span style="color:#03C">头</span></if>
@@ -124,27 +122,21 @@
                                                     <if condition="strstr($v['news_flag'],'s') eq true"><span style="color:#C0C">滚</span></if>
                                                     <if condition="strstr($v['news_flag'],'p') eq true"><span style="color:#960">图</span></if>
                                                     <if condition="strstr($v['news_flag'],'j') eq true"><span style="color:#C00">跳</span></if>
-                                                    <if condition="strstr($v['news_flag'],'d') eq true"><span style="color:#630">原</span></if>
-														</td>
+                                                    <if condition="strstr($v['news_flag'],'d') eq true"><span style="color:#630">原</span></if>														</td>
 														<td>{$v.news_hits}</td>
 														<td>
 														<if condition='$v[news_open] eq 1'>
-														<a class="red" href="javascript:;" onclick="return stateyes({$v.n_id});" title="已开启">
-														<div id="zt{$v.n_id}"><button class="btn btn-minier btn-yellow">开启</button></div>
-														</a>
+														<button class="btn btn-minier btn-yellow">开启</button>
 														<else/>
-														<a class="red" href="javascript:;" onclick="return stateyes({$v.n_id});" title="已禁用">
-														<div id="zt{$v.n_id}"><button class="btn btn-minier btn-danger">禁用</button></div>
-														</a>
-														</if>
-														</td>
+														<button class="btn btn-minier btn-danger">禁用</button>
+														</if>														</td>
 														<td>{$v.news_time|date='Y-m-d',###}</td>
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="green" href="{:U('news_list_edit',array('n_id'=>$v['n_id']))}" title="修改">
-																	<i class="ace-icon fa fa-pencil bigger-130"></i>																</a>
-																<a class="red" href="javascript:;" onclick="return del({$v.n_id},{:I('p',1)});" title="回收站">
-																	<i class="ace-icon fa fa-trash-o bigger-130"></i>																</a>															</div>														</td>
+																<a class="red" href="javascript:;" onclick="return backopen({$v.n_id},{:I('p',1)});" title="还原">
+																	<i class="ace-icon fa fa-check bigger-130"></i>																</a>
+																<a class="red" href="javascript:;" onclick="return del({$v.n_id},{:I('p',1)});" title="删除">
+																	<i class="ace-icon fa fa-close bigger-130"></i>																</a>															</div>														</td>
 													</tr>
                                                  </foreach>   
                                                   <tr>
@@ -166,12 +158,17 @@
 
 <script>
 function del(id,p){
-		layer.confirm('你确定要转移到回收站吗？', {icon: 3}, function(index){
+		layer.confirm('你确定要完全删除文章吗？', {icon: 3}, function(index){
 	    layer.close(index);
-	    window.location.href="__URL__/news_list_del/n_id/"+id+"/p/"+p+"";//重新获取当前页面，删除后返回当前页码
+	    window.location.href="__URL__/news_back_del/n_id/"+id+"/p/"+p+"";//重新获取当前页面，删除后返回当前页码
 	});
 }
-
+function backopen(id,p){
+		layer.confirm('你确定要还原文章到文章列表吗？', {icon: 3}, function(index){
+	    layer.close(index);
+	    window.location.href="__URL__/news_back_open/n_id/"+id+"/p/"+p+"";//重新获取当前页面，删除后返回当前页码
+	});
+}
 
 function unselectall(){
 if(document.myform.chkAll.checked){
@@ -186,8 +183,6 @@ e.checked = form.chkAll.checked;
 }
 }
 
-</script>
-<script>
 $(function(){
 	$('#alldel').ajaxForm({
 		beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置，一般是判断为空获取其他规则
@@ -223,28 +218,8 @@ $(function(){
  
 });
 
-
-function stateyes(val){
-		  $.post('{:U("news_list_state")}',
-		  {x:val},
-	function(data){
-	var $v=val;
-		if(data.status){
-			if(data.info=='状态禁止'){
-				var a='<button class="btn btn-minier btn-danger">禁用</button>'
-				$('#zt'+val).html(a);
-				layer.alert(data.info, {icon: 5});
-			}else{
-				var b='<button class="btn btn-minier btn-yellow">开启</button>'
-				$('#zt'+val).html(b);
-				layer.alert(data.info, {icon: 6});
-			}
-			
-		}
-	});
-	return false;
-}
 </script>
+
 	<include file='Common:footer' />
     
 		</div><!-- /.main-container -->

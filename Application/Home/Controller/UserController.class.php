@@ -141,6 +141,11 @@ WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc limit $Page->firstRo
         $this->assign('list',$list);
         $this->display('my-say');
     }
+    public function login(){
+        //echo $tager = $_SERVER['HTTP_REFERER'];
+        var_dump($_SERVER);
+        $this->display('login');
+    }
     public function doLogin(){
         header("Content-Type:text/html; charset=utf-8");
         $auto = $_POST['auto_login'];
@@ -165,8 +170,7 @@ WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc limit $Page->firstRo
         }else if($list3){
             session('account', $list3['member_list_username']);
             session('member_list_logintime', $list3['member_list_logintime']);
-        }
-        else{
+        }else{
             $this->error('登录失败，请重试');
         }
         $dest_url = $_POST['log_referer'];
@@ -175,12 +179,25 @@ WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc limit $Page->firstRo
             $dest_url = __APP__."/User/member";
         }
         $dest_url = empty($dest_url)? __APP__."/User/member" : $dest_url;
+       // $tager = $_SERVER['HTTP_REFERER'];
         $tager = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'];
-        if ($dest_url == $tager) {
-            redirect($tager);
-        }else{
+        $str = explode('/', $tager);
+        if(in_array('registerAdd.html', $str)){
             redirect($dest_url);
+        }else{
+            echo '99999999999';exit;
+            redirect($tager);
         }
+
+//        if ($dest_url == $tager) {
+//            if($tager == 'http://'.$_SERVER['HTTP_HOST'].'/User/registerAdd'){
+//                redirect($dest_url);
+//            }else{
+//                redirect($tager);
+//            }
+//        }else{
+//            redirect($dest_url);
+//        }
     }
 
     public function checkLogin(){
@@ -243,10 +260,9 @@ WHERE ta.user_name = '$user_name' ORDER BY ta.add_time desc limit $Page->firstRo
         $data['member_list_groupid'] = 1;
         $list = $this->_member_list -> add($data);
         if($list){
-            $this->success('注册成功',U("User/register"),1);
             $list = $this->_member_list->where("member_list_username='$username'")->find();
-            session('account',$list['member_list_username']);
-            session('member_list_logintime',$list['member_list_logintime']);
+            //session('account',$list['member_list_username']);
+            //session('member_list_logintime',$list['member_list_logintime']);
             $id=$list['member_list_id'];
             //定义激活地址
             $url = "http://".$_SERVER['HTTP_HOST'].U('User/active',array('id'=>$id));

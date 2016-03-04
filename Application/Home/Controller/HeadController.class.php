@@ -51,8 +51,8 @@ WHERE ta.attr = 1 ORDER BY ta.add_time desc LIMIT 10");
         }
         $show       = $Page->show();// 分页显示输出
         $list = M("$table")->where($conditon)->order('add_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
-        $a = "<b style='color:red'>".$_GET['name']."</b>";
-        echo str_replace($_POST['text'],$a,$list['title']);
+        //$a = "<b style='color:red'>".$_GET['name']."</b>";
+        //echo str_replace($_POST['text'],$a,$list['title']);
         //echo M()->_sql();
         $this->assign('list',$list);// 赋值数据集
         $this->assign('page',$show);// 赋值分页输出

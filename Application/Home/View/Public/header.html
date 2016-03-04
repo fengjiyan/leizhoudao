@@ -20,14 +20,13 @@
                                 <ul class="dropdown-menu">
                                     <li ><a href="javascript:;">雷州</a></li>
                                     <li><a href="javascript:;">湛江</a></li>
-                                    <li><a href="javascript:;">遂溪</a></li>
                                 </ul>
                             </a>
                         </li>
                         <form  class="form-inline pull-left"  >
                         <!--<form action="__APP__/Head/search" class="form-inline pull-left" method="get">-->
                             <div id="search-input">
-                                <input type="text" class="form-control" placeholder="请输入关键字"/>
+                                <input type="text" class="form-control" id="search-text" placeholder="请输入关键字"/>
                                 <div class="search-choice">
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;"><span><if condition="$Think.get.type neq ''">{$Think.get.type}<else/>店铺大全</if></span><span class="caret"></span></a>
@@ -49,6 +48,7 @@
                                                 e.stopPropagation();
                                                 e.preventDefault();
                                                 window.location.href="__APP__/Head/search?name="+input.val()+"&type="+type.text();
+                                                $("#search-text").val('');
                                             });
                                         });
                                     </script>
